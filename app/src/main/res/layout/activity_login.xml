@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".view.login.LoginActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingLeft="@dimen/padding_16"
+        android:paddingTop="@dimen/padding_16"
+        android:paddingRight="@dimen/padding_16"
+        android:paddingBottom="@dimen/padding_16">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/login_label_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textSize="@dimen/text_size_28"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.2" />
+
+        <ProgressBar
+            android:id="@+id/login_loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_16"
+            android:indeterminate="true"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/login_label_tv" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/login_username_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_16"
+            android:autofillHints="@string/prompt_email"
+            android:background="@color/smoke_transparent"
+            android:drawableEnd="@drawable/ic_baseline_person_24"
+            android:drawablePadding="@dimen/padding_16"
+            android:hint="@string/prompt_email"
+            android:imeOptions="actionNext"
+            android:inputType="textEmailAddress"
+            android:paddingStart="@dimen/padding_16"
+            android:paddingTop="@dimen/padding_12"
+            android:paddingEnd="@dimen/padding_16"
+            android:paddingBottom="@dimen/padding_12"
+            android:textColor="@color/white"
+            android:textColorHint="@color/smoke"
+            app:layout_constraintTop_toBottomOf="@id/login_loading" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/login_password_et"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_16"
+            android:autofillHints="@string/prompt_password"
+            android:background="@color/smoke_transparent"
+            android:drawableEnd="@drawable/ic_baseline_lock_24"
+            android:drawablePadding="@dimen/padding_16"
+            android:hint="@string/prompt_password"
+            android:imeActionLabel="@string/action_sign_in_short"
+            android:imeOptions="actionDone"
+            android:inputType="textPassword"
+            android:paddingStart="@dimen/padding_16"
+            android:paddingTop="@dimen/padding_12"
+            android:paddingEnd="@dimen/padding_16"
+            android:paddingBottom="@dimen/padding_12"
+            android:textColor="@color/white"
+            android:textColorHint="@color/smoke"
+            app:layout_constraintTop_toBottomOf="@id/login_username_et" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/login_btn"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_32"
+            android:text="@string/action_sign_in"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/login_password_et"
+            app:layout_constraintVertical_bias="0.2" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

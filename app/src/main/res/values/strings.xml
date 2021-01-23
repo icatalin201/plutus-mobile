@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Plutus Finance</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Parola</string>
+    <string name="action_sign_in">Conectare</string>
+    <string name="action_sign_in_short">Login</string>
+    <string name="login_failed">Autentificare esuata</string>
+</resources>
