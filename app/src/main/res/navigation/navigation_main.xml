@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/dashboard">
+
+    <fragment
+        android:id="@+id/dashboard"
+        android:name="com.finance.plutus.mobile.view.dashboard.DashboardFragment"
+        android:label="@string/dashboard_title"
+        tools:layout="@layout/fragment_dashboard" />
+
+    <fragment
+        android:id="@+id/services"
+        android:name="com.finance.plutus.mobile.view.services.ServicesFragment"
+        android:label="@string/services_title"
+        tools:layout="@layout/fragment_services" />
+
+    <fragment
+        android:id="@+id/partners"
+        android:name="com.finance.plutus.mobile.view.partners.PartnersFragment"
+        android:label="@string/partners_title"
+        tools:layout="@layout/fragment_partners" />
+
+    <fragment
+        android:id="@+id/invoices"
+        android:name="com.finance.plutus.mobile.view.invoices.InvoicesFragment"
+        android:label="@string/invoices_title"
+        tools:layout="@layout/fragment_invoices" />
+
+    <fragment
+        android:id="@+id/transactions"
+        android:name="com.finance.plutus.mobile.view.transactions.TransactionsFragment"
+        android:label="@string/transactions_title"
+        tools:layout="@layout/fragment_transactions" />
+
+</navigation>

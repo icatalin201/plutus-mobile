@@ -17,6 +17,4 @@ data class Item(
     val uom: String?,
     val code: String?,
     val description: String?,
-    val createdOn: LocalDateTime,
-    val updatedOn: LocalDateTime
 )

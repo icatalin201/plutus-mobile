@@ -6,17 +6,8 @@
 
     <color name="smoke_transparent">#33909090</color>
     <color name="black_transparent">#66000000</color>
-    <color name="dodger_blue_transparent">#663d5afd</color>
 
-    <color name="dodger_blue_primary">#3d5afd</color>
-    <color name="dodger_blue_secondary">#2c3ea0</color>
-    <color name="dodger_blue_dark">#161e47</color>
-
-    <color name="heliotrope_primary">#a553fe</color>
-    <color name="heliotrope_secondary">#4b2975</color>
-    <color name="heliotrope_dark">#2a1944</color>
-
-    <color name="french_rose_primary">#ee4b6e</color>
-    <color name="french_rose_secondary">#823048</color>
-    <color name="french_rose_dark">#3d0f1d</color>
+    <color name="primary">#303030</color>
+    <color name="primaryDark">#262626</color>
+    <color name="accent">#ffeb3b</color>
 </resources>

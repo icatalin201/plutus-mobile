@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/dashboard"
+        android:icon="@drawable/ic_baseline_dashboard_24"
+        android:title="@string/dashboard_title" />
+
+    <item
+        android:id="@+id/services"
+        android:icon="@drawable/ic_baseline_category_24"
+        android:title="@string/services_title" />
+
+    <item
+        android:id="@+id/partners"
+        android:icon="@drawable/ic_baseline_person_24"
+        android:title="@string/partners_title" />
+
+    <item
+        android:id="@+id/invoices"
+        android:icon="@drawable/ic_baseline_receipt_24"
+        android:title="@string/invoices_title" />
+
+    <item
+        android:id="@+id/transactions"
+        android:icon="@drawable/ic_baseline_money_24"
+        android:title="@string/transactions_title" />
+
+</menu>

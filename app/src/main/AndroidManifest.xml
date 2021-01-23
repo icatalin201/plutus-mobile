@@ -13,6 +13,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Plutus.Splash"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".view.partner.UpdatePartnerActivity"
+            android:theme="@style/Theme.Plutus" />
+        <activity
+            android:name=".view.services.UpdateItemActivity"
+            android:theme="@style/Theme.Plutus" />
+        <activity
+            android:name=".view.main.MainActivity"
+            android:theme="@style/Theme.Plutus" />
         <activity android:name=".view.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

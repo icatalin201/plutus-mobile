@@ -1,6 +1,7 @@
 package com.finance.plutus.mobile.model
 
-import java.time.LocalDateTime
+import android.os.Parcel
+import android.os.Parcelable
 import java.util.*
 
 /**
@@ -21,6 +22,53 @@ data class Partner(
     val bank: Bank?,
     val country: Country,
     val businessType: BusinessType,
-    val createdOn: LocalDateTime,
-    val updatedOn: LocalDateTime
-)
+) : Parcelable {
+
+    constructor(parcel: Parcel) : this(
+        UUID.fromString(parcel.readString()),
+        parcel.readString()!!,
+        parcel.readString(),
+        PartnerType.valueOf(parcel.readString()!!),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readValue(Int::class.java.classLoader) as? Int,
+        parcel.readString(),
+        parcel.readParcelable(Bank::class.java.classLoader),
+        parcel.readParcelable(Country::class.java.classLoader)!!,
+        BusinessType.valueOf(parcel.readString()!!)
+    )
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeString(id.toString())
+        parcel.writeString(name)
+        parcel.writeString(email)
+        parcel.writeString(type.name)
+        parcel.writeString(phone)
+        parcel.writeString(vat)
+        parcel.writeString(commercialRegistry)
+        parcel.writeString(address)
+        parcel.writeValue(termInDays)
+        parcel.writeString(bankAccount)
+        parcel.writeParcelable(bank, flags)
+        parcel.writeParcelable(country, flags)
+        parcel.writeString(businessType.name)
+    }
+
+    override fun describeContents(): Int {
+        return 0
+    }
+
+    companion object CREATOR : Parcelable.Creator<Partner> {
+        override fun createFromParcel(parcel: Parcel): Partner {
+            return Partner(parcel)
+        }
+
+        override fun newArray(size: Int): Array<Partner?> {
+            return arrayOfNulls(size)
+        }
+    }
+
+
+}

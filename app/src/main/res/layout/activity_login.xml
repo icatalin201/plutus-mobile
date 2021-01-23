@@ -7,10 +7,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:paddingLeft="@dimen/padding_16"
-        android:paddingTop="@dimen/padding_16"
-        android:paddingRight="@dimen/padding_16"
-        android:paddingBottom="@dimen/padding_16">
+        android:paddingLeft="@dimen/padding_32"
+        android:paddingTop="@dimen/padding_32"
+        android:paddingRight="@dimen/padding_32"
+        android:paddingBottom="@dimen/padding_32">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/login_label_tv"
@@ -78,10 +78,9 @@
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/login_btn"
-            style="@style/Widget.AppCompat.Button.Colored"
+            style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_32"
             android:text="@string/action_sign_in"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

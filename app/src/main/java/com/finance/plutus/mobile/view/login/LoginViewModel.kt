@@ -2,13 +2,13 @@ package com.finance.plutus.mobile.view.login
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.finance.plutus.mobile.R
 import com.finance.plutus.mobile.repository.TokenRepository
+import com.finance.plutus.mobile.view.BaseViewModel
 
 class LoginViewModel(
     private val tokenRepository: TokenRepository
-) : ViewModel() {
+) : BaseViewModel() {
 
     private val _loginResult = MutableLiveData<LoginResult>()
     val loginResult: LiveData<LoginResult> = _loginResult
@@ -26,5 +26,6 @@ class LoginViewModel(
                     _loginResult.value = LoginResult(error = R.string.login_failed)
                 }
             )
+        compositeDisposable.add(disposable)
     }
 }

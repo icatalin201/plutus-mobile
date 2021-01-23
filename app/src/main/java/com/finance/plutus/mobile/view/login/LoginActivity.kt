@@ -1,5 +1,6 @@
 package com.finance.plutus.mobile.view.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.view.inputmethod.EditorInfo
@@ -10,6 +11,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import com.finance.plutus.mobile.R
 import com.finance.plutus.mobile.databinding.ActivityLoginBinding
+import com.finance.plutus.mobile.view.main.MainActivity
 import org.koin.android.ext.android.inject
 
 class LoginActivity : AppCompatActivity() {
@@ -27,7 +29,7 @@ class LoginActivity : AppCompatActivity() {
                 showLoginFailed(loginResult.error)
             }
             if (loginResult.success != null) {
-
+                startActivity(Intent(this@LoginActivity, MainActivity::class.java))
             }
         })
 

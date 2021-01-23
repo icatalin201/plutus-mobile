@@ -1,6 +1,7 @@
 package com.finance.plutus.mobile.network
 
 import com.finance.plutus.mobile.BuildConfig
+import com.finance.plutus.mobile.network.interceptor.HeaderInterceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -13,8 +14,8 @@ Created by Catalin on 1/23/2021
  **/
 object ClientBuilder {
 
-    fun createApiClient(): Retrofit {
-        return build(BuildConfig.PLUTUS_API_URL)
+    fun createApiClient(headerInterceptor: HeaderInterceptor): Retrofit {
+        return build(BuildConfig.PLUTUS_API_URL, headerInterceptor)
     }
 
     fun createLoginClient(): Retrofit {
@@ -22,13 +23,15 @@ object ClientBuilder {
     }
 
     private fun build(
-        url: String
+        url: String,
+        headerInterceptor: HeaderInterceptor? = null
     ): Retrofit {
         val loggingInterceptor = HttpLoggingInterceptor()
         loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
         val okHttpClientBuilder = OkHttpClient
             .Builder()
             .addInterceptor(loggingInterceptor)
+        headerInterceptor?.let { okHttpClientBuilder.addInterceptor(it) }
         return Retrofit.Builder()
             .baseUrl(url)
             .client(okHttpClientBuilder.build())

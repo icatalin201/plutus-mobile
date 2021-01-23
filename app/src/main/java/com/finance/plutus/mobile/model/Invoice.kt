@@ -12,8 +12,6 @@ data class Invoice(
     val id: UUID,
     val name: String,
     val partner: Partner,
-    val createdOn: LocalDateTime,
-    val updatedOn: LocalDateTime,
     val date: LocalDate,
     val dueDate: LocalDate,
     val subtotal: Double,

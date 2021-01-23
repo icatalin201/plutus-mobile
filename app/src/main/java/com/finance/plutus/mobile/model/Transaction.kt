@@ -17,8 +17,6 @@ data class Transaction(
     val type: TransactionType,
     val method: TransactionMethod,
     val value: Double,
-    val createdOn: LocalDateTime,
-    val updatedOn: LocalDateTime,
     val status: TransactionStatus,
     val deductible: Boolean,
 )

@@ -5,4 +5,26 @@
     <string name="action_sign_in">Conectare</string>
     <string name="action_sign_in_short">Login</string>
     <string name="login_failed">Autentificare esuata</string>
+    <string name="logout">Deconectare</string>
+    <string name="logout_confirmation_message">Esti sigur ca vrei sa te deconectezi?</string>
+    <string name="cancel">Anuleaza</string>
+    <string name="confirm">Confirma</string>
+    <string name="transactions_title">Tranzactii</string>
+    <string name="invoices_title">Facturi</string>
+    <string name="partners_title">Parteneri</string>
+    <string name="services_title">Servicii</string>
+    <string name="dashboard_title">Dashboard</string>
+    <string name="delete">Sterge</string>
+    <string name="edit">Editeaza</string>
+    <string name="add_service_title">Add Service</string>
+    <string name="delete_confirmation">Esti sigur ca vrei sa stergi?</string>
+    <string name="partner_save_failed">A aparut o eroare in salvarea partenerului</string>
+    <string name="prompt_name">Nume</string>
+    <string name="prompt_phone">Telefon</string>
+    <string name="action_save">Salveaza</string>
+    <string name="prompt_vat">VAT</string>
+    <string name="prompt_commercial_registry">Reg. Com.</string>
+    <string name="prompt_bank_account">Cont bancar</string>
+    <string name="prompt_term_in_days">Scadenta (in zile)</string>
+    <string name="prompt_address">Adresa</string>
 </resources>

@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".view.partner.UpdatePartnerActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/partner_app_bar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/partner_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/primaryDark"
+                android:theme="@style/Theme.Plutus.Toolbar" />
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_32"
+            app:cardBackgroundColor="@color/primaryDark"
+            app:cardCornerRadius="8dp"
+            app:layout_constraintTop_toBottomOf="@id/partner_app_bar">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/partner_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="@string/prompt_name"
+                    android:background="@color/smoke_transparent"
+                    android:hint="@string/prompt_name"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:paddingStart="@dimen/padding_16"
+                    android:paddingTop="@dimen/padding_12"
+                    android:paddingEnd="@dimen/padding_16"
+                    android:paddingBottom="@dimen/padding_12"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/smoke" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/partner_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="@string/prompt_email"
+                    android:background="@color/smoke_transparent"
+                    android:hint="@string/prompt_email"
+                    android:imeOptions="actionNext"
+                    android:inputType="textEmailAddress"
+                    android:paddingStart="@dimen/padding_16"
+                    android:paddingTop="@dimen/padding_12"
+                    android:paddingEnd="@dimen/padding_16"
+                    android:paddingBottom="@dimen/padding_12"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/smoke" />
+
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/partner_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="@string/prompt_phone"
+                    android:background="@color/smoke_transparent"
+                    android:hint="@string/prompt_phone"
+                    android:imeOptions="actionNext"
+                    android:inputType="phone"
+                    android:paddingStart="@dimen/padding_16"
+                    android:paddingTop="@dimen/padding_12"
+                    android:paddingEnd="@dimen/padding_16"
+                    android:paddingBottom="@dimen/padding_12"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/smoke" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/partner_vat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="@string/prompt_vat"
+                    android:background="@color/smoke_transparent"
+                    android:hint="@string/prompt_vat"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:paddingStart="@dimen/padding_16"
+                    android:paddingTop="@dimen/padding_12"
+                    android:paddingEnd="@dimen/padding_16"
+                    android:paddingBottom="@dimen/padding_12"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/smoke" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/partner_commercial_registry"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="@string/prompt_commercial_registry"
+                    android:background="@color/smoke_transparent"
+                    android:hint="@string/prompt_commercial_registry"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:paddingStart="@dimen/padding_16"
+                    android:paddingTop="@dimen/padding_12"
+                    android:paddingEnd="@dimen/padding_16"
+                    android:paddingBottom="@dimen/padding_12"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/smoke" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/partner_address"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="@string/prompt_address"
+                    android:background="@color/smoke_transparent"
+                    android:hint="@string/prompt_address"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:paddingStart="@dimen/padding_16"
+                    android:paddingTop="@dimen/padding_12"
+                    android:paddingEnd="@dimen/padding_16"
+                    android:paddingBottom="@dimen/padding_12"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/smoke" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/partner_term_in_days"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="@string/prompt_term_in_days"
+                    android:background="@color/smoke_transparent"
+                    android:hint="@string/prompt_term_in_days"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:paddingStart="@dimen/padding_16"
+                    android:paddingTop="@dimen/padding_12"
+                    android:paddingEnd="@dimen/padding_16"
+                    android:paddingBottom="@dimen/padding_12"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/smoke" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/partner_bank_account"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="@string/prompt_bank_account"
+                    android:background="@color/smoke_transparent"
+                    android:hint="@string/prompt_bank_account"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:paddingStart="@dimen/padding_16"
+                    android:paddingTop="@dimen/padding_12"
+                    android:paddingEnd="@dimen/padding_16"
+                    android:paddingBottom="@dimen/padding_12"
+                    android:textColor="@color/white"
+                    android:textColorHint="@color/smoke" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/partner_save_btn"
+                    style="@style/Widget.AppCompat.Button.Borderless"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:text="@string/action_save" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

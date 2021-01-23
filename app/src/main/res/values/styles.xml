@@ -2,18 +2,18 @@
 <resources>
 
     <style name="Theme.Plutus" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/dodger_blue_dark</item>
-        <item name="colorPrimaryDark">@color/dodger_blue_dark</item>
-        <item name="colorAccent">@color/heliotrope_primary</item>
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primaryDark</item>
+        <item name="colorAccent">@color/accent</item>
         <item name="android:textColor">@color/white</item>
         <item name="android:windowContentTransitions">true</item>
         <item name="android:windowBackground">@drawable/gradient_background</item>
     </style>
 
     <style name="Theme.Plutus.Splash" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/dodger_blue_dark</item>
-        <item name="colorPrimaryDark">@color/dodger_blue_dark</item>
-        <item name="colorAccent">@color/heliotrope_primary</item>
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/primaryDark</item>
+        <item name="colorAccent">@color/accent</item>
         <item name="android:windowBackground">@drawable/splash_background</item>
     </style>
 

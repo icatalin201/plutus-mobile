@@ -9,8 +9,6 @@ Created by Catalin on 1/23/2021
  **/
 data class InvoiceLine(
     val id: UUID,
-    val createdOn: LocalDateTime,
-    val updatedOn: LocalDateTime,
     val item: Item,
     val uom: String?,
     val quantity: Int,
