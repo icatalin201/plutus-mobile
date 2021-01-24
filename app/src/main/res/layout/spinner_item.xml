@@ -6,6 +6,4 @@
     android:paddingStart="@dimen/padding_16"
     android:paddingTop="@dimen/padding_12"
     android:paddingEnd="@dimen/padding_16"
-    android:paddingBottom="@dimen/padding_12"
-    android:textColor="@color/white"
-    android:textColorHint="@color/smoke" />
+    android:paddingBottom="@dimen/padding_12" />

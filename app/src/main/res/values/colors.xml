@@ -7,7 +7,7 @@
     <color name="smoke_transparent">#33909090</color>
     <color name="black_transparent">#66000000</color>
 
-    <color name="primary">#303030</color>
-    <color name="primaryDark">#262626</color>
-    <color name="accent">#ffeb3b</color>
+    <color name="colorPrimary">#559938</color>
+    <color name="colorPrimaryDark">#1b8a24</color>
+    <color name="colorAccent">#d4cc56</color>
 </resources>

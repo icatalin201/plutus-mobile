@@ -25,182 +25,182 @@
                 android:id="@+id/transaction_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/primaryDark"
                 android:theme="@style/Theme.Plutus.Toolbar" />
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <androidx.cardview.widget.CardView
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_32"
-            app:cardBackgroundColor="@color/primaryDark"
-            app:cardCornerRadius="8dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/transaction_app_bar">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/padding_32">
 
-                <RadioGroup
+                <com.google.android.material.button.MaterialButtonToggleGroup
+                    android:id="@+id/transaction_type_group"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingStart="@dimen/padding_16"
-                    android:paddingTop="@dimen/padding_12"
-                    android:paddingEnd="@dimen/padding_16"
-                    android:paddingBottom="@dimen/padding_12">
+                    app:checkedButton="@id/transaction_income"
+                    app:selectionRequired="true"
+                    app:singleSelection="true">
 
-                    <androidx.appcompat.widget.AppCompatRadioButton
-                        android:id="@+id/transaction_income_radio"
-                        android:layout_width="wrap_content"
+                    <Button
+                        android:id="@+id/transaction_income"
+                        style="@style/ButtonGroupLayoutStyle"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:buttonTint="@color/white"
-                        android:checked="true"
-                        android:text="@string/income_label"
-                        android:textColor="@color/white" />
+                        android:text="@string/income_label" />
 
-                    <androidx.appcompat.widget.AppCompatRadioButton
-                        android:id="@+id/transaction_expense_radio"
-                        android:layout_width="wrap_content"
+                    <Button
+                        android:id="@+id/transaction_expense"
+                        style="@style/ButtonGroupLayoutStyle"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:buttonTint="@color/white"
-                        android:text="@string/expense_label"
-                        android:textColor="@color/white" />
+                        android:text="@string/expense_label" />
 
-                </RadioGroup>
+                </com.google.android.material.button.MaterialButtonToggleGroup>
+
+                <com.google.android.material.button.MaterialButtonToggleGroup
+                    android:id="@+id/transaction_method_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:checkedButton="@id/transaction_bank"
+                    app:selectionRequired="true"
+                    app:singleSelection="true">
+
+                    <Button
+                        android:id="@+id/transaction_cash"
+                        style="@style/ButtonGroupLayoutStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/cash_label" />
+
+                    <Button
+                        android:id="@+id/transaction_bank"
+                        style="@style/ButtonGroupLayoutStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/bank_label" />
+
+                </com.google.android.material.button.MaterialButtonToggleGroup>
 
                 <androidx.appcompat.widget.AppCompatSpinner
                     android:id="@+id/transaction_partner_spinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/smoke_transparent" />
+                    android:background="@drawable/spinner_background" />
 
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/transaction_date"
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/TextInputLayoutStyle"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:autofillHints="@string/prompt_date"
-                    android:background="@color/smoke_transparent"
-                    android:editable="false"
-                    android:hint="@string/prompt_date"
-                    android:paddingStart="@dimen/padding_16"
-                    android:paddingTop="@dimen/padding_12"
-                    android:paddingEnd="@dimen/padding_16"
-                    android:paddingBottom="@dimen/padding_12"
-                    android:text="@={request.date}"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/smoke" />
+                    android:layout_height="wrap_content">
 
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/transaction_document"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:autofillHints="@string/prompt_document"
-                    android:background="@color/smoke_transparent"
-                    android:hint="@string/prompt_document"
-                    android:imeOptions="actionNext"
-                    android:inputType="text"
-                    android:paddingStart="@dimen/padding_16"
-                    android:paddingTop="@dimen/padding_12"
-                    android:paddingEnd="@dimen/padding_16"
-                    android:paddingBottom="@dimen/padding_12"
-                    android:text="@={request.document}"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/smoke" />
-
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/transaction_details"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:autofillHints="@string/prompt_details"
-                    android:background="@color/smoke_transparent"
-                    android:hint="@string/prompt_details"
-                    android:imeOptions="actionNext"
-                    android:inputType="text"
-                    android:paddingStart="@dimen/padding_16"
-                    android:paddingTop="@dimen/padding_12"
-                    android:paddingEnd="@dimen/padding_16"
-                    android:paddingBottom="@dimen/padding_12"
-                    android:text="@={request.details}"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/smoke" />
-
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/transaction_value"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:autofillHints="@string/prompt_value"
-                    android:background="@color/smoke_transparent"
-                    android:hint="@string/prompt_value"
-                    android:imeOptions="actionNext"
-                    android:inputType="numberDecimal"
-                    android:paddingStart="@dimen/padding_16"
-                    android:paddingTop="@dimen/padding_12"
-                    android:paddingEnd="@dimen/padding_16"
-                    android:paddingBottom="@dimen/padding_12"
-                    android:text="@={`` + request.value}"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/smoke" />
-
-                <RadioGroup
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingStart="@dimen/padding_16"
-                    android:paddingTop="@dimen/padding_12"
-                    android:paddingEnd="@dimen/padding_16"
-                    android:paddingBottom="@dimen/padding_12">
-
-                    <androidx.appcompat.widget.AppCompatRadioButton
-                        android:id="@+id/transaction_cash_radio"
-                        android:layout_width="wrap_content"
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/transaction_date"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:buttonTint="@color/white"
-                        android:text="@string/cash_label"
-                        android:textColor="@color/white" />
+                        android:autofillHints="@string/prompt_date"
+                        android:editable="false"
+                        android:hint="@string/prompt_date"
+                        android:paddingStart="@dimen/padding_16"
+                        android:paddingTop="@dimen/padding_12"
+                        android:paddingEnd="@dimen/padding_16"
+                        android:paddingBottom="@dimen/padding_12"
+                        android:text="@={request.date}" />
 
-                    <androidx.appcompat.widget.AppCompatRadioButton
-                        android:id="@+id/transaction_bank_radio"
-                        android:layout_width="wrap_content"
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/TextInputLayoutStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/transaction_document"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:buttonTint="@color/white"
-                        android:checked="true"
-                        android:text="@string/bank_label"
-                        android:textColor="@color/white" />
+                        android:autofillHints="@string/prompt_document"
+                        android:hint="@string/prompt_document"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:paddingStart="@dimen/padding_16"
+                        android:paddingTop="@dimen/padding_12"
+                        android:paddingEnd="@dimen/padding_16"
+                        android:paddingBottom="@dimen/padding_12"
+                        android:text="@={request.document}" />
 
-                </RadioGroup>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/TextInputLayoutStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/transaction_details"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="@string/prompt_details"
+                        android:hint="@string/prompt_details"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:paddingStart="@dimen/padding_16"
+                        android:paddingTop="@dimen/padding_12"
+                        android:paddingEnd="@dimen/padding_16"
+                        android:paddingBottom="@dimen/padding_12"
+                        android:text="@={request.details}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/TextInputLayoutStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/transaction_value"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="@string/prompt_value"
+                        android:hint="@string/prompt_value"
+                        android:imeOptions="actionNext"
+                        android:inputType="numberDecimal"
+                        android:paddingStart="@dimen/padding_16"
+                        android:paddingTop="@dimen/padding_12"
+                        android:paddingEnd="@dimen/padding_16"
+                        android:paddingBottom="@dimen/padding_12"
+                        android:text="@={`` + request.value}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
 
                 <androidx.appcompat.widget.AppCompatCheckBox
                     android:id="@+id/transaction_deductible"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/padding_16"
-                    android:layout_marginEnd="@dimen/padding_16"
-                    android:buttonTint="@color/white"
                     android:checked="@={request.deductible}"
-                    android:paddingTop="@dimen/padding_12"
-                    android:paddingBottom="@dimen/padding_12"
-                    android:text="@string/deductible_label"
-                    android:textColor="@color/white" />
+                    android:text="@string/deductible_label" />
 
-
-                <androidx.appcompat.widget.AppCompatButton
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/transaction_save_btn"
-                    style="@style/Widget.AppCompat.Button.Borderless"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
+                    android:layout_marginTop="@dimen/margin_8"
                     android:text="@string/action_save" />
 
             </LinearLayout>
 
-        </androidx.cardview.widget.CardView>
+        </ScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

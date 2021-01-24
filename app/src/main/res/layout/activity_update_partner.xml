@@ -25,243 +25,268 @@
                 android:id="@+id/partner_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/primaryDark"
                 android:theme="@style/Theme.Plutus.Toolbar" />
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <androidx.cardview.widget.CardView
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_32"
-            app:cardBackgroundColor="@color/primaryDark"
-            app:cardCornerRadius="8dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/partner_app_bar">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="@dimen/padding_32">
 
-                <RadioGroup
+                <com.google.android.material.button.MaterialButtonToggleGroup
+                    android:id="@+id/partner_type_group"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingStart="@dimen/padding_16"
-                    android:paddingTop="@dimen/padding_12"
-                    android:paddingEnd="@dimen/padding_16"
-                    android:paddingBottom="@dimen/padding_12">
+                    app:checkedButton="@id/partner_customer"
+                    app:selectionRequired="true"
+                    app:singleSelection="true">
 
-                    <androidx.appcompat.widget.AppCompatRadioButton
-                        android:id="@+id/partner_customer_radio"
-                        android:layout_width="wrap_content"
+                    <Button
+                        android:id="@+id/partner_customer"
+                        style="@style/ButtonGroupLayoutStyle"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:buttonTint="@color/white"
-                        android:checked="true"
-                        android:text="@string/customer_label"
-                        android:textColor="@color/white" />
+                        android:text="@string/customer_label" />
 
-                    <androidx.appcompat.widget.AppCompatRadioButton
-                        android:id="@+id/partner_vendor_radio"
-                        android:layout_width="wrap_content"
+                    <Button
+                        android:id="@+id/partner_vendor"
+                        style="@style/ButtonGroupLayoutStyle"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:buttonTint="@color/white"
-                        android:text="@string/vendor_label"
-                        android:textColor="@color/white" />
+                        android:text="@string/vendor_label" />
 
-                </RadioGroup>
+                </com.google.android.material.button.MaterialButtonToggleGroup>
 
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/partner_name"
+                <com.google.android.material.button.MaterialButtonToggleGroup
+                    android:id="@+id/partner_business_type_group"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:autofillHints="@string/prompt_name"
-                    android:background="@color/smoke_transparent"
-                    android:hint="@string/prompt_name"
-                    android:imeOptions="actionNext"
-                    android:inputType="text"
-                    android:paddingStart="@dimen/padding_16"
-                    android:paddingTop="@dimen/padding_12"
-                    android:paddingEnd="@dimen/padding_16"
-                    android:paddingBottom="@dimen/padding_12"
-                    android:text="@={request.name}"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/smoke" />
+                    app:checkedButton="@id/partner_business_individual"
+                    app:selectionRequired="true"
+                    app:singleSelection="true">
 
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/partner_email"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:autofillHints="@string/prompt_email"
-                    android:background="@color/smoke_transparent"
-                    android:hint="@string/prompt_email"
-                    android:imeOptions="actionNext"
-                    android:inputType="textEmailAddress"
-                    android:paddingStart="@dimen/padding_16"
-                    android:paddingTop="@dimen/padding_12"
-                    android:paddingEnd="@dimen/padding_16"
-                    android:paddingBottom="@dimen/padding_12"
-                    android:text="@={request.email}"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/smoke" />
+                    <Button
+                        android:id="@+id/partner_business_individual"
+                        style="@style/ButtonGroupLayoutStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/individual_label" />
 
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/partner_phone"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:autofillHints="@string/prompt_phone"
-                    android:background="@color/smoke_transparent"
-                    android:hint="@string/prompt_phone"
-                    android:imeOptions="actionNext"
-                    android:inputType="phone"
-                    android:paddingStart="@dimen/padding_16"
-                    android:paddingTop="@dimen/padding_12"
-                    android:paddingEnd="@dimen/padding_16"
-                    android:paddingBottom="@dimen/padding_12"
-                    android:text="@={request.phone}"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/smoke" />
+                    <Button
+                        android:id="@+id/partner_business_legal"
+                        style="@style/ButtonGroupLayoutStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/legal_label" />
 
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/partner_vat"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:autofillHints="@string/prompt_vat"
-                    android:background="@color/smoke_transparent"
-                    android:hint="@string/prompt_vat"
-                    android:imeOptions="actionNext"
-                    android:inputType="text"
-                    android:paddingStart="@dimen/padding_16"
-                    android:paddingTop="@dimen/padding_12"
-                    android:paddingEnd="@dimen/padding_16"
-                    android:paddingBottom="@dimen/padding_12"
-                    android:text="@={request.vat}"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/smoke" />
+                </com.google.android.material.button.MaterialButtonToggleGroup>
 
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/partner_commercial_registry"
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/TextInputLayoutStyle"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:autofillHints="@string/prompt_commercial_registry"
-                    android:background="@color/smoke_transparent"
-                    android:hint="@string/prompt_commercial_registry"
-                    android:imeOptions="actionNext"
-                    android:inputType="text"
-                    android:paddingStart="@dimen/padding_16"
-                    android:paddingTop="@dimen/padding_12"
-                    android:paddingEnd="@dimen/padding_16"
-                    android:paddingBottom="@dimen/padding_12"
-                    android:text="@={request.commercialRegistry}"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/smoke" />
+                    android:layout_height="wrap_content">
 
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/partner_address"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:autofillHints="@string/prompt_address"
-                    android:background="@color/smoke_transparent"
-                    android:hint="@string/prompt_address"
-                    android:imeOptions="actionNext"
-                    android:inputType="text"
-                    android:paddingStart="@dimen/padding_16"
-                    android:paddingTop="@dimen/padding_12"
-                    android:paddingEnd="@dimen/padding_16"
-                    android:paddingBottom="@dimen/padding_12"
-                    android:text="@={request.address}"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/smoke" />
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/partner_name"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="@string/prompt_name"
+                        android:hint="@string/prompt_name"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:paddingStart="@dimen/padding_16"
+                        android:paddingTop="@dimen/padding_12"
+                        android:paddingEnd="@dimen/padding_16"
+                        android:paddingBottom="@dimen/padding_12"
+                        android:text="@={request.name}" />
 
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/partner_term_in_days"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:autofillHints="@string/prompt_term_in_days"
-                    android:background="@color/smoke_transparent"
-                    android:hint="@string/prompt_term_in_days"
-                    android:imeOptions="actionNext"
-                    android:inputType="number"
-                    android:paddingStart="@dimen/padding_16"
-                    android:paddingTop="@dimen/padding_12"
-                    android:paddingEnd="@dimen/padding_16"
-                    android:paddingBottom="@dimen/padding_12"
-                    android:text="@={`` + request.termInDays}"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/smoke" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-                <androidx.appcompat.widget.AppCompatEditText
-                    android:id="@+id/partner_bank_account"
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/TextInputLayoutStyle"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:autofillHints="@string/prompt_bank_account"
-                    android:background="@color/smoke_transparent"
-                    android:hint="@string/prompt_bank_account"
-                    android:imeOptions="actionNext"
-                    android:inputType="text"
-                    android:paddingStart="@dimen/padding_16"
-                    android:paddingTop="@dimen/padding_12"
-                    android:paddingEnd="@dimen/padding_16"
-                    android:paddingBottom="@dimen/padding_12"
-                    android:text="@={request.bankAccount}"
-                    android:textColor="@color/white"
-                    android:textColorHint="@color/smoke" />
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/partner_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="@string/prompt_email"
+                        android:hint="@string/prompt_email"
+                        android:imeOptions="actionNext"
+                        android:inputType="textEmailAddress"
+                        android:paddingStart="@dimen/padding_16"
+                        android:paddingTop="@dimen/padding_12"
+                        android:paddingEnd="@dimen/padding_16"
+                        android:paddingBottom="@dimen/padding_12"
+                        android:text="@={request.email}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/TextInputLayoutStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/partner_phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="@string/prompt_phone"
+                        android:hint="@string/prompt_phone"
+                        android:imeOptions="actionNext"
+                        android:inputType="phone"
+                        android:paddingStart="@dimen/padding_16"
+                        android:paddingTop="@dimen/padding_12"
+                        android:paddingEnd="@dimen/padding_16"
+                        android:paddingBottom="@dimen/padding_12"
+                        android:text="@={request.phone}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/TextInputLayoutStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/partner_vat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="@string/prompt_vat"
+                        android:hint="@string/prompt_vat"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:paddingStart="@dimen/padding_16"
+                        android:paddingTop="@dimen/padding_12"
+                        android:paddingEnd="@dimen/padding_16"
+                        android:paddingBottom="@dimen/padding_12"
+                        android:text="@={request.vat}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/TextInputLayoutStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/partner_commercial_registry"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="@string/prompt_commercial_registry"
+                        android:hint="@string/prompt_commercial_registry"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:paddingStart="@dimen/padding_16"
+                        android:paddingTop="@dimen/padding_12"
+                        android:paddingEnd="@dimen/padding_16"
+                        android:paddingBottom="@dimen/padding_12"
+                        android:text="@={request.commercialRegistry}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/TextInputLayoutStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/partner_address"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="@string/prompt_address"
+                        android:hint="@string/prompt_address"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:paddingStart="@dimen/padding_16"
+                        android:paddingTop="@dimen/padding_12"
+                        android:paddingEnd="@dimen/padding_16"
+                        android:paddingBottom="@dimen/padding_12"
+                        android:text="@={request.address}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/TextInputLayoutStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/partner_term_in_days"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="@string/prompt_term_in_days"
+                        android:hint="@string/prompt_term_in_days"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:paddingStart="@dimen/padding_16"
+                        android:paddingTop="@dimen/padding_12"
+                        android:paddingEnd="@dimen/padding_16"
+                        android:paddingBottom="@dimen/padding_12"
+                        android:text="@={`` + request.termInDays}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/TextInputLayoutStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/partner_bank_account"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="@string/prompt_bank_account"
+                        android:hint="@string/prompt_bank_account"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:paddingStart="@dimen/padding_16"
+                        android:paddingTop="@dimen/padding_12"
+                        android:paddingEnd="@dimen/padding_16"
+                        android:paddingBottom="@dimen/padding_12"
+                        android:text="@={request.bankAccount}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <androidx.appcompat.widget.AppCompatSpinner
                     android:id="@+id/partner_bank_spinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/smoke_transparent" />
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:background="@drawable/spinner_background" />
 
                 <androidx.appcompat.widget.AppCompatSpinner
                     android:id="@+id/partner_country_spinner"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/smoke_transparent" />
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:background="@drawable/spinner_background" />
 
-                <RadioGroup
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:paddingStart="@dimen/padding_16"
-                    android:paddingTop="@dimen/padding_12"
-                    android:paddingEnd="@dimen/padding_16"
-                    android:paddingBottom="@dimen/padding_12">
-
-                    <androidx.appcompat.widget.AppCompatRadioButton
-                        android:id="@+id/partner_business_individual_radio"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:buttonTint="@color/white"
-                        android:checked="true"
-                        android:text="@string/individual_label"
-                        android:textColor="@color/white" />
-
-                    <androidx.appcompat.widget.AppCompatRadioButton
-                        android:id="@+id/partner_business_legal_radio"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:buttonTint="@color/white"
-                        android:text="@string/legal_label"
-                        android:textColor="@color/white" />
-
-                </RadioGroup>
-
-                <androidx.appcompat.widget.AppCompatButton
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/partner_save_btn"
-                    style="@style/Widget.AppCompat.Button.Borderless"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
+                    android:layout_marginTop="@dimen/margin_8"
                     android:text="@string/action_save" />
 
             </LinearLayout>
 
-        </androidx.cardview.widget.CardView>
+        </ScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

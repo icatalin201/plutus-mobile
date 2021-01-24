@@ -38,6 +38,10 @@ class UpdatePartnerActivity : AppCompatActivity() {
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_close_24)
         viewModel.result.observe(this) { handleResult(it) }
         val partner: Partner? = intent.getParcelableExtra(PARTNER)
+        title = when (partner == null) {
+            true -> getString(R.string.create_partner_title)
+            else -> getString(R.string.update_partner_title)
+        }
         setPartner(partner)
         binding.partnerSaveBtn.setOnClickListener {
             save()
@@ -51,13 +55,13 @@ class UpdatePartnerActivity : AppCompatActivity() {
     }
 
     private fun save() {
-        viewModel.updateRequest.type = when (binding.partnerCustomerRadio.isChecked) {
-            true -> PartnerType.CLIENT
+        viewModel.updateRequest.type = when (binding.partnerTypeGroup.checkedButtonId) {
+            R.id.partner_customer -> PartnerType.CLIENT
             else -> PartnerType.VENDOR
         }
         viewModel.updateRequest.businessType =
-            when (binding.partnerBusinessIndividualRadio.isChecked) {
-                true -> BusinessType.INDIVIDUAL
+            when (binding.partnerBusinessTypeGroup.checkedButtonId) {
+                R.id.partner_business_individual -> BusinessType.INDIVIDUAL
                 else -> BusinessType.LEGAL
             }
         if (binding.partnerName.text.toString().isBlank()) {
@@ -71,11 +75,16 @@ class UpdatePartnerActivity : AppCompatActivity() {
         viewModel.banks.observe(this) { setBanks(it, partner) }
         viewModel.countries.observe(this) { setCountries(it, partner) }
         partner?.let {
-            binding.partnerCustomerRadio.isChecked = it.type == PartnerType.CLIENT
-            binding.partnerVendorRadio.isChecked = it.type == PartnerType.VENDOR
-            binding.partnerBusinessIndividualRadio.isChecked =
-                it.businessType == BusinessType.INDIVIDUAL
-            binding.partnerBusinessLegalRadio.isChecked = it.businessType == BusinessType.LEGAL
+            if (it.type == PartnerType.CLIENT) {
+                binding.partnerTypeGroup.check(R.id.partner_customer)
+            } else {
+                binding.partnerTypeGroup.check(R.id.partner_vendor)
+            }
+            if (it.businessType == BusinessType.INDIVIDUAL) {
+                binding.partnerBusinessTypeGroup.check(R.id.partner_business_individual)
+            } else {
+                binding.partnerBusinessTypeGroup.check(R.id.partner_business_legal)
+            }
         }
     }
 

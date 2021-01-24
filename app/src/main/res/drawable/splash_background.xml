@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <item>
-        <shape>
-            <gradient
-                android:gradientRadius="700dp"
-                android:endColor="@color/primary"
-                android:startColor="@color/primaryDark"
-                android:type="radial" />
+        <shape android:shape="rectangle">
+            <solid android:color="@android:color/white" />
         </shape>
     </item>
     <item
-        android:width="100dp"
-        android:height="100dp"
         android:drawable="@drawable/ic_launcher_foreground"
         android:gravity="center" />
 </layer-list>

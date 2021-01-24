@@ -29,8 +29,8 @@
     <string name="prompt_address">Adresa</string>
     <string name="customer_label">Client</string>
     <string name="vendor_label">Furnizor</string>
-    <string name="individual_label">Persoana fizica</string>
-    <string name="legal_label">Persoana juridica</string>
+    <string name="individual_label">Individual</string>
+    <string name="legal_label">Juridic</string>
     <string name="add_transaction_title">Adauga tranzactie</string>
     <string name="add_partner_title">Adauga partener</string>
     <string name="income_label">Incasare</string>
@@ -43,4 +43,14 @@
     <string name="deductible_label">Deductibil</string>
     <string name="prompt_date">Data</string>
     <string name="invalid_field">Camp obligatoriu</string>
+    <string name="create_partner_title">Creare partener</string>
+    <string name="update_partner_title">Actualizare partener</string>
+    <string name="update_transaction_title">Actualizare tranzactie</string>
+    <string name="create_transaction_title">Creare tranzactie</string>
+    <string name="product_label">Produs</string>
+    <string name="service_label">Serviciu</string>
+    <string name="prompt_unit_price">Pret unitar</string>
+    <string name="prompt_uom">Unitate de masura</string>
+    <string name="prompt_code">Cod</string>
+    <string name="prompt_description">Descriere</string>
 </resources>

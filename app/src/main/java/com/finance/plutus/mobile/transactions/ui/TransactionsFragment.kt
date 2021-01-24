@@ -17,7 +17,6 @@ import com.finance.plutus.mobile.app.util.Buttons
 import com.finance.plutus.mobile.app.util.SwipeHelper
 import com.finance.plutus.mobile.app.util.showDeleteConfirmationDialog
 import com.finance.plutus.mobile.databinding.FragmentTransactionsBinding
-import com.finance.plutus.mobile.partners.ui.UpdatePartnerActivity
 import com.finance.plutus.mobile.transactions.data.model.Transaction
 import org.koin.android.ext.android.inject
 
@@ -51,8 +50,7 @@ class TransactionsFragment : Fragment() {
         }, requireContext())
         setupRecycler()
         binding.transactionsSwipeLayout.setOnRefreshListener {
-            binding.transactionsSwipeLayout.isRefreshing = true
-            viewModel.fetchTransactions()
+            triggerSwipeRefresh()
         }
         binding.transactionsAddBtn.setOnClickListener {
             openAddTransactionActivity()
@@ -62,11 +60,16 @@ class TransactionsFragment : Fragment() {
     }
 
     override fun onResume() {
-        super.onResume()
         binding.transactionsSwipeLayout.post {
-            binding.transactionsSwipeLayout.isRefreshing = true
-            viewModel.fetchTransactions()
+            triggerSwipeRefresh()
         }
+        super.onResume()
+    }
+
+    private fun triggerSwipeRefresh() {
+        binding.transactionsSwipeLayout.isRefreshing = true
+        adapter.submitData(lifecycle, PagingData.empty())
+        viewModel.fetchTransactions()
     }
 
     private fun openAddTransactionActivity() {

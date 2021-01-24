@@ -38,6 +38,10 @@ class UpdateTransactionActivity : AppCompatActivity() {
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_close_24)
         viewModel.result.observe(this) { handleResult(it) }
         val transaction: Transaction? = intent.getParcelableExtra(TRANSACTION)
+        title = when (transaction == null) {
+            true -> getString(R.string.create_transaction_title)
+            else -> getString(R.string.update_transaction_title)
+        }
         setTransaction(transaction)
         binding.transactionSaveBtn.setOnClickListener {
             save()
@@ -57,12 +61,12 @@ class UpdateTransactionActivity : AppCompatActivity() {
     }
 
     private fun save() {
-        viewModel.updateRequest.type = when (binding.transactionIncomeRadio.isChecked) {
-            true -> TransactionType.INCOME
+        viewModel.updateRequest.type = when (binding.transactionTypeGroup.checkedButtonId) {
+            R.id.transaction_income -> TransactionType.INCOME
             else -> TransactionType.EXPENSE
         }
-        viewModel.updateRequest.method = when (binding.transactionCashRadio.isChecked) {
-            true -> TransactionMethod.CASH
+        viewModel.updateRequest.method = when (binding.transactionMethodGroup.checkedButtonId) {
+            R.id.transaction_cash -> TransactionMethod.CASH
             else -> TransactionMethod.BANK
         }
         viewModel.updateRequest.deductible = binding.transactionDeductible.isChecked
@@ -81,10 +85,16 @@ class UpdateTransactionActivity : AppCompatActivity() {
     private fun setTransaction(transaction: Transaction?) {
         viewModel.transaction = transaction
         transaction?.let {
-            binding.transactionIncomeRadio.isChecked = it.type == TransactionType.INCOME
-            binding.transactionExpenseRadio.isChecked = it.type == TransactionType.EXPENSE
-            binding.transactionCashRadio.isChecked = it.method == TransactionMethod.CASH
-            binding.transactionBankRadio.isChecked = it.method == TransactionMethod.BANK
+            if (it.type == TransactionType.INCOME) {
+                binding.transactionTypeGroup.check(R.id.transaction_income)
+            } else {
+                binding.transactionTypeGroup.check(R.id.transaction_expense)
+            }
+            if (it.method == TransactionMethod.CASH) {
+                binding.transactionMethodGroup.check(R.id.transaction_cash)
+            } else {
+                binding.transactionMethodGroup.check(R.id.transaction_bank)
+            }
             binding.transactionDeductible.isChecked = it.deductible
         }
         viewModel.partners.observe(this) { data ->

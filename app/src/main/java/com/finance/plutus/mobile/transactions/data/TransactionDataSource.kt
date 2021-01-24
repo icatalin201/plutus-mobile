@@ -2,6 +2,8 @@ package com.finance.plutus.mobile.transactions.data
 
 import androidx.paging.rxjava2.RxPagingSource
 import com.finance.plutus.mobile.app.network.PlutusService
+import com.finance.plutus.mobile.app.util.PaginationConstants.PAGE_SIZE
+import com.finance.plutus.mobile.app.util.PaginationConstants.STARTING_PAGE
 import com.finance.plutus.mobile.transactions.data.model.Transaction
 import com.finance.plutus.mobile.transactions.data.model.TransactionFilter
 import io.reactivex.Single
@@ -17,13 +19,9 @@ class TransactionDataSource(
     private val filter: TransactionFilter
 ) : RxPagingSource<Int, Transaction>() {
 
-    companion object {
-        private const val STARTING_PAGE = 0
-    }
-
     override fun loadSingle(params: LoadParams<Int>): Single<LoadResult<Int, Transaction>> {
         val page = params.key ?: STARTING_PAGE
-        val size = params.loadSize
+        val size = PAGE_SIZE
         return plutusService.findAllTransactions(
             page,
             size,

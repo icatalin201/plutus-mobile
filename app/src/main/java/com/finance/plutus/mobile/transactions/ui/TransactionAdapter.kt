@@ -45,8 +45,8 @@ class TransactionAdapter(
                 binding.transactionDateTv.text = transaction.date
                 binding.transactionValueTv.text = transaction.value.formatInLocalCurrency()
                 val color = when (transaction.type) {
-                    TransactionType.INCOME -> android.R.color.holo_green_light
-                    TransactionType.EXPENSE -> android.R.color.holo_red_light
+                    TransactionType.INCOME -> android.R.color.holo_green_dark
+                    TransactionType.EXPENSE -> android.R.color.holo_red_dark
                 }
                 binding.transactionValueTv.setTextColor(context.getColor(color))
             }

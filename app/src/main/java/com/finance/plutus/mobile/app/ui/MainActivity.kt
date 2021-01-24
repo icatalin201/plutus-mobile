@@ -58,7 +58,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun openLogoutDialog() {
-        val dialog = AlertDialog.Builder(this, R.style.Theme_Plutus_Dialog)
+        val dialog = AlertDialog.Builder(this)
             .setTitle(R.string.logout)
             .setMessage(R.string.logout_confirmation_message)
             .setNegativeButton(R.string.cancel) { dialog, _ -> dialog.dismiss() }

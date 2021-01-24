@@ -13,7 +13,7 @@ Plutus Finance
 Created by Catalin on 1/24/2021
  **/
 fun LifecycleOwner.showDeleteConfirmationDialog(context: Context, callback: Runnable) {
-    val dialog = AlertDialog.Builder(context, R.style.Theme_Plutus_Dialog)
+    val dialog = AlertDialog.Builder(context)
         .setTitle(R.string.delete)
         .setMessage(R.string.delete_confirmation)
         .setNegativeButton(R.string.cancel) { dialog, _ -> dialog.dismiss() }
@@ -34,7 +34,7 @@ fun LifecycleOwner.showDateDialog(
     val month = calendar[Calendar.MONTH]
     val day = calendar[Calendar.DAY_OF_MONTH]
     val datePickerDialog = DatePickerDialog(
-        context, R.style.Theme_Plutus_Dialog,
+        context,
         { _: DatePicker?, selectedYear: Int, selectedMonth: Int, selectedDayOfMonth: Int ->
             val start = Calendar.getInstance()
             start[Calendar.YEAR] = selectedYear
