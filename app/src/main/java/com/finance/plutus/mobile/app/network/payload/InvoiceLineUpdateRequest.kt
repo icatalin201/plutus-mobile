@@ -3,26 +3,26 @@ package com.finance.plutus.mobile.app.network.payload
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import com.finance.plutus.mobile.BR
-import com.finance.plutus.mobile.items.data.model.ItemType
+import java.util.*
 
 /**
-Plutus Finance
-Created by Catalin on 1/23/2021
+ * Plutus Finance
+ * Created by Catalin on 1/24/2021
  **/
-class ItemUpdateRequest : BaseObservable() {
+class InvoiceLineUpdateRequest : BaseObservable() {
 
     @get:Bindable
-    var name: String? = null
+    var itemId: UUID? = null
         set(value) {
             field = value
-            notifyPropertyChanged(BR.name)
+            notifyPropertyChanged(BR.itemId)
         }
 
     @get:Bindable
-    var unitPrice: Double = 0.0
+    var quantity: Int = 0
         set(value) {
             field = value
-            notifyPropertyChanged(BR.unitPrice)
+            notifyPropertyChanged(BR.quantity)
         }
 
     @get:Bindable
@@ -33,10 +33,10 @@ class ItemUpdateRequest : BaseObservable() {
         }
 
     @get:Bindable
-    var type: ItemType = ItemType.SERVICE
+    var unitPrice: Double = 0.0
         set(value) {
             field = value
-            notifyPropertyChanged(BR.type)
+            notifyPropertyChanged(BR.unitPrice)
         }
 
     @get:Bindable
@@ -47,16 +47,9 @@ class ItemUpdateRequest : BaseObservable() {
         }
 
     @get:Bindable
-    var code: String? = null
+    var details: String? = null
         set(value) {
             field = value
-            notifyPropertyChanged(BR.code)
-        }
-
-    @get:Bindable
-    var description: String? = null
-        set(value) {
-            field = value
-            notifyPropertyChanged(BR.description)
+            notifyPropertyChanged(BR.details)
         }
 }

@@ -14,6 +14,9 @@
         android:theme="@style/Theme.Plutus.Splash"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".invoices.ui.UpdateInvoiceActivity"
+            android:theme="@style/Theme.Plutus" />
+        <activity
             android:name=".transactions.ui.UpdateTransactionActivity"
             android:theme="@style/Theme.Plutus" />
         <activity

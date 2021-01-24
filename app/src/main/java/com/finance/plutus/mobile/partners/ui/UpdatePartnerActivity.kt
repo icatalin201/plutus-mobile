@@ -1,9 +1,6 @@
 package com.finance.plutus.mobile.partners.ui
 
 import android.os.Bundle
-import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -11,6 +8,7 @@ import com.finance.plutus.mobile.R
 import com.finance.plutus.mobile.app.data.model.Bank
 import com.finance.plutus.mobile.app.data.model.BusinessType
 import com.finance.plutus.mobile.app.data.model.Country
+import com.finance.plutus.mobile.app.util.showListDialog
 import com.finance.plutus.mobile.databinding.ActivityUpdatePartnerBinding
 import com.finance.plutus.mobile.partners.data.model.Partner
 import com.finance.plutus.mobile.partners.data.model.PartnerResult
@@ -67,6 +65,9 @@ class UpdatePartnerActivity : AppCompatActivity() {
         if (binding.partnerName.text.toString().isBlank()) {
             binding.partnerName.error = getString(R.string.invalid_field)
         }
+        if (binding.partnerCountry.text.toString().isBlank()) {
+            binding.partnerCountry.error = getString(R.string.invalid_field)
+        }
         viewModel.save()
     }
 
@@ -89,74 +90,38 @@ class UpdatePartnerActivity : AppCompatActivity() {
     }
 
     private fun setBanks(banks: List<Bank>, partner: Partner?) {
-        val banksNames = mutableListOf("Selecteaza Banca")
-        banksNames.addAll(banks.stream().map { bank -> bank.name }
-            .collect(Collectors.toList()))
-        val adapter = ArrayAdapter(
-            this, R.layout.spinner_item,
-            banksNames
-        )
-        adapter.setDropDownViewResource(R.layout.spinner_item)
-        binding.partnerBankSpinner.adapter = adapter
+        val banksNames = banks.stream().map { bank -> bank.name }
+            .collect(Collectors.toList())
         partner?.let {
             it.bank?.let { bank ->
-                var position: Int = banks.indexOf(bank)
-                if (position == -1) {
-                    position = 0
-                }
                 viewModel.updateRequest.bankId = bank.id
-                binding.partnerBankSpinner.setSelection(position)
+                binding.partnerBank.setText(bank.name)
             }
         }
-        binding.partnerBankSpinner.onItemSelectedListener =
-            object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(
-                    parent: AdapterView<*>?,
-                    view: View?,
-                    position: Int,
-                    id: Long
-                ) {
-                    if (position == 0) return
-                    val bank = banks[position]
-                    viewModel.updateRequest.bankId = bank.id
-                }
-
-                override fun onNothingSelected(parent: AdapterView<*>?) {}
+        binding.partnerBank.setOnClickListener {
+            showListDialog(this, banksNames.toTypedArray()) { position ->
+                val bank = banks[position]
+                viewModel.updateRequest.bankId = bank.id
+                binding.partnerBank.setText(bank.name)
             }
+        }
     }
 
     private fun setCountries(countries: List<Country>, partner: Partner?) {
         val countriesNames = mutableListOf<String>()
         countriesNames.addAll(countries.stream().map { country -> country.name }
             .collect(Collectors.toList()))
-        val adapter = ArrayAdapter(
-            this, R.layout.spinner_item,
-            countriesNames
-        )
-        adapter.setDropDownViewResource(R.layout.spinner_item)
-        binding.partnerCountrySpinner.adapter = adapter
         partner?.let {
-            var position: Int = countries.indexOf(it.country)
-            if (position == -1) {
-                position = 0
-            }
             viewModel.updateRequest.countryCode = it.country.code
-            binding.partnerCountrySpinner.setSelection(position)
+            binding.partnerCountry.setText(it.country.name)
         }
-        binding.partnerCountrySpinner.onItemSelectedListener =
-            object : AdapterView.OnItemSelectedListener {
-                override fun onItemSelected(
-                    parent: AdapterView<*>?,
-                    view: View?,
-                    position: Int,
-                    id: Long
-                ) {
-                    val country = countries[position]
-                    viewModel.updateRequest.countryCode = country.code
-                }
-
-                override fun onNothingSelected(parent: AdapterView<*>?) {}
+        binding.partnerCountry.setOnClickListener {
+            showListDialog(this, countriesNames.toTypedArray()) { position ->
+                val country = countries[position]
+                viewModel.updateRequest.countryCode = country.code
+                binding.partnerCountry.setText(country.name)
             }
+        }
     }
 
     private fun handleResult(result: PartnerResult) {

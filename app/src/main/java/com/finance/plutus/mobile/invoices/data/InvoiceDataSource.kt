@@ -4,6 +4,8 @@ import androidx.paging.rxjava2.RxPagingSource
 import com.finance.plutus.mobile.app.network.PlutusService
 import com.finance.plutus.mobile.invoices.data.model.Invoice
 import io.reactivex.Single
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 
 /**
 Plutus Finance
@@ -23,12 +25,14 @@ class InvoiceDataSource(
         return plutusService.findAllInvoices(
             page,
             size
-        ).map { response ->
-            LoadResult.Page(
-                data = response.data,
-                prevKey = if (page == STARTING_PAGE) null else page - 1,
-                nextKey = if (response.data.isEmpty()) null else page + 1
-            )
-        }
+        ).observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .map { response ->
+                LoadResult.Page(
+                    data = response.data,
+                    prevKey = if (page == STARTING_PAGE) null else page - 1,
+                    nextKey = if (response.data.isEmpty()) null else page + 1
+                )
+            }
     }
 }

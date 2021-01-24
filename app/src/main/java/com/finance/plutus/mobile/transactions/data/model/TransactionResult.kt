@@ -1,4 +1,4 @@
-package com.finance.plutus.mobile.transactions.data
+package com.finance.plutus.mobile.transactions.data.model
 
 /**
 Plutus Finance

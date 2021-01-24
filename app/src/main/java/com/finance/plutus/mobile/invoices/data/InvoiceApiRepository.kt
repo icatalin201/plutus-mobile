@@ -6,7 +6,7 @@ import androidx.paging.PagingData
 import androidx.paging.rxjava2.flowable
 import com.finance.plutus.mobile.app.network.PlutusService
 import com.finance.plutus.mobile.app.network.payload.EntityCreatedResponse
-import com.finance.plutus.mobile.app.network.payload.InvoiceCreateRequest
+import com.finance.plutus.mobile.app.network.payload.InvoiceUpdateRequest
 import com.finance.plutus.mobile.app.network.payload.PlutusRequest
 import com.finance.plutus.mobile.invoices.data.model.Invoice
 import io.reactivex.Completable
@@ -24,7 +24,7 @@ class InvoiceApiRepository(
     private val plutusService: PlutusService
 ) : InvoiceRepository {
 
-    override fun create(request: InvoiceCreateRequest): Single<EntityCreatedResponse> {
+    override fun create(request: InvoiceUpdateRequest): Single<EntityCreatedResponse> {
         return plutusService.createInvoice(PlutusRequest(request))
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())

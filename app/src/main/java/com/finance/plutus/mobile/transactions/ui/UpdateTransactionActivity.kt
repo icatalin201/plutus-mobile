@@ -1,19 +1,16 @@
 package com.finance.plutus.mobile.transactions.ui
 
 import android.os.Bundle
-import android.view.View
-import android.widget.AdapterView
-import android.widget.ArrayAdapter
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.finance.plutus.mobile.R
 import com.finance.plutus.mobile.app.util.showDateDialog
+import com.finance.plutus.mobile.app.util.showListDialog
 import com.finance.plutus.mobile.databinding.ActivityUpdateTransactionBinding
-import com.finance.plutus.mobile.transactions.data.TransactionResult
 import com.finance.plutus.mobile.transactions.data.model.Transaction
 import com.finance.plutus.mobile.transactions.data.model.TransactionMethod
+import com.finance.plutus.mobile.transactions.data.model.TransactionResult
 import com.finance.plutus.mobile.transactions.data.model.TransactionType
 import org.koin.android.ext.android.inject
 import java.util.stream.Collectors
@@ -49,7 +46,6 @@ class UpdateTransactionActivity : AppCompatActivity() {
         binding.transactionDate.setOnClickListener {
             showDateDialog(this, viewModel.updateRequest.date) {
                 viewModel.updateRequest.date = it
-                binding.transactionDate.setText(it, TextView.BufferType.NORMAL)
             }
         }
         binding.request = viewModel.updateRequest
@@ -101,34 +97,17 @@ class UpdateTransactionActivity : AppCompatActivity() {
             val partnersNames = mutableListOf<String>()
             partnersNames.addAll(data.stream().map { partner -> partner.name }
                 .collect(Collectors.toList()))
-            val adapter = ArrayAdapter(
-                this, R.layout.spinner_item,
-                partnersNames
-            )
-            adapter.setDropDownViewResource(R.layout.spinner_item)
-            binding.transactionPartnerSpinner.adapter = adapter
             transaction?.let {
-                var position: Int = data.indexOf(it.partner)
-                if (position == -1) {
-                    position = 0
-                }
                 viewModel.updateRequest.partnerId = it.partner.id
-                binding.transactionPartnerSpinner.setSelection(position)
+                binding.transactionPartner.setText(it.partner.name)
             }
-            binding.transactionPartnerSpinner.onItemSelectedListener =
-                object : AdapterView.OnItemSelectedListener {
-                    override fun onItemSelected(
-                        parent: AdapterView<*>?,
-                        view: View?,
-                        position: Int,
-                        id: Long
-                    ) {
-                        val partner = data[position]
-                        viewModel.updateRequest.partnerId = partner.id
-                    }
-
-                    override fun onNothingSelected(parent: AdapterView<*>?) {}
+            binding.transactionPartner.setOnClickListener {
+                showListDialog(this, partnersNames.toTypedArray()) { position ->
+                    val partner = data[position]
+                    viewModel.updateRequest.partnerId = partner.id
+                    binding.transactionPartner.setText(partner.name)
                 }
+            }
         }
     }
 

@@ -2,13 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".transactions.ui.UpdateTransactionActivity">
+    tools:context=".invoices.ui.UpdateInvoiceActivity">
 
     <data>
 
         <variable
             name="request"
-            type="com.finance.plutus.mobile.app.network.payload.TransactionUpdateRequest" />
+            type="com.finance.plutus.mobile.app.network.payload.InvoiceUpdateRequest" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -16,13 +16,13 @@
         android:layout_height="match_parent">
 
         <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/transaction_app_bar"
+            android:id="@+id/invoice_app_bar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.Toolbar
-                android:id="@+id/transaction_toolbar"
+                android:id="@+id/invoice_toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:theme="@style/Theme.Plutus.Toolbar" />
@@ -33,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/transaction_app_bar">
+            app:layout_constraintTop_toBottomOf="@id/invoice_app_bar">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -42,54 +42,36 @@
                 android:padding="@dimen/padding_32">
 
                 <com.google.android.material.button.MaterialButtonToggleGroup
-                    android:id="@+id/transaction_type_group"
+                    android:id="@+id/invoice_currency_group"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    app:checkedButton="@id/transaction_income"
+                    app:checkedButton="@id/invoice_usd"
                     app:selectionRequired="true"
                     app:singleSelection="true">
 
                     <Button
-                        android:id="@+id/transaction_income"
+                        android:id="@+id/invoice_ron"
                         style="@style/ButtonGroupLayoutStyle"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/income_label" />
+                        android:text="@string/ron_label" />
 
                     <Button
-                        android:id="@+id/transaction_expense"
+                        android:id="@+id/invoice_eur"
                         style="@style/ButtonGroupLayoutStyle"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/expense_label" />
-
-                </com.google.android.material.button.MaterialButtonToggleGroup>
-
-                <com.google.android.material.button.MaterialButtonToggleGroup
-                    android:id="@+id/transaction_method_group"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    app:checkedButton="@id/transaction_bank"
-                    app:selectionRequired="true"
-                    app:singleSelection="true">
+                        android:text="@string/eur_label" />
 
                     <Button
-                        android:id="@+id/transaction_cash"
+                        android:id="@+id/invoice_usd"
                         style="@style/ButtonGroupLayoutStyle"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/cash_label" />
-
-                    <Button
-                        android:id="@+id/transaction_bank"
-                        style="@style/ButtonGroupLayoutStyle"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/bank_label" />
+                        android:text="@string/usd_label" />
 
                 </com.google.android.material.button.MaterialButtonToggleGroup>
 
@@ -99,12 +81,12 @@
                     android:layout_height="wrap_content">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/transaction_partner"
+                        android:id="@+id/invoice_partner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:autofillHints="@string/prompt_partner"
+                        android:autofillHints="@string/prompt_client"
                         android:editable="false"
-                        android:hint="@string/prompt_partner"
+                        android:hint="@string/prompt_client"
                         android:paddingStart="@dimen/padding_16"
                         android:paddingTop="@dimen/padding_12"
                         android:paddingEnd="@dimen/padding_16"
@@ -118,7 +100,7 @@
                     android:layout_height="wrap_content">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/transaction_date"
+                        android:id="@+id/invoice_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:autofillHints="@string/prompt_date"
@@ -138,73 +120,21 @@
                     android:layout_height="wrap_content">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/transaction_document"
+                        android:id="@+id/invoice_due_date"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:autofillHints="@string/prompt_document"
-                        android:hint="@string/prompt_document"
-                        android:imeOptions="actionNext"
-                        android:inputType="text"
+                        android:autofillHints="@string/prompt_due_date"
+                        android:hint="@string/prompt_due_date"
                         android:paddingStart="@dimen/padding_16"
                         android:paddingTop="@dimen/padding_12"
                         android:paddingEnd="@dimen/padding_16"
                         android:paddingBottom="@dimen/padding_12"
-                        android:text="@={request.document}" />
+                        android:text="@={request.dueDate}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/TextInputLayoutStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/transaction_details"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:autofillHints="@string/prompt_details"
-                        android:hint="@string/prompt_details"
-                        android:imeOptions="actionNext"
-                        android:inputType="text"
-                        android:paddingStart="@dimen/padding_16"
-                        android:paddingTop="@dimen/padding_12"
-                        android:paddingEnd="@dimen/padding_16"
-                        android:paddingBottom="@dimen/padding_12"
-                        android:text="@={request.details}" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    style="@style/TextInputLayoutStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/transaction_value"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:autofillHints="@string/prompt_value"
-                        android:hint="@string/prompt_value"
-                        android:imeOptions="actionNext"
-                        android:inputType="numberDecimal"
-                        android:paddingStart="@dimen/padding_16"
-                        android:paddingTop="@dimen/padding_12"
-                        android:paddingEnd="@dimen/padding_16"
-                        android:paddingBottom="@dimen/padding_12"
-                        android:text="@={`` + request.value}" />
-
-                </com.google.android.material.textfield.TextInputLayout>
-
-
-                <androidx.appcompat.widget.AppCompatCheckBox
-                    android:id="@+id/transaction_deductible"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:checked="@={request.deductible}"
-                    android:text="@string/deductible_label" />
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/transaction_save_btn"
+                    android:id="@+id/invoice_save_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
@@ -216,4 +146,5 @@
         </ScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

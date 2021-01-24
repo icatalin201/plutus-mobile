@@ -53,4 +53,16 @@
     <string name="prompt_uom">Unitate de masura</string>
     <string name="prompt_code">Cod</string>
     <string name="prompt_description">Descriere</string>
+    <string name="update_item_title">Actualizare item</string>
+    <string name="create_item_title">Creare item</string>
+    <string name="add_invoice_title">Adauga factura</string>
+    <string name="ron_label">RON</string>
+    <string name="eur_label">EUR</string>
+    <string name="usd_label">USD</string>
+    <string name="prompt_due_date">Data scadenta</string>
+    <string name="create_invoice_title">Creare factura</string>
+    <string name="prompt_client">Client</string>
+    <string name="prompt_partner">Partener</string>
+    <string name="prompt_country">Tara</string>
+    <string name="prompt_bank">Banca</string>
 </resources>

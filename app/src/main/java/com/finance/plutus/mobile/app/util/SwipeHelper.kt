@@ -30,7 +30,7 @@ abstract class SwipeHelper(
 ) {
 
     companion object {
-        private const val BUTTON_WIDTH = 300
+        private const val BUTTON_WIDTH = 200
     }
 
     private var swipedPosition = -1

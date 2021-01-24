@@ -8,7 +8,7 @@ import com.finance.plutus.mobile.app.ui.BaseViewModel
 import com.finance.plutus.mobile.partners.data.PartnerRepository
 import com.finance.plutus.mobile.partners.data.model.Partner
 import com.finance.plutus.mobile.transactions.data.TransactionRepository
-import com.finance.plutus.mobile.transactions.data.TransactionResult
+import com.finance.plutus.mobile.transactions.data.model.TransactionResult
 import com.finance.plutus.mobile.transactions.data.model.Transaction
 import java.util.*
 

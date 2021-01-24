@@ -108,7 +108,9 @@ class ServicesFragment : Fragment() {
     }
 
     private fun editItem(item: Item) {
-
+        val intent = Intent(requireContext(), UpdateItemActivity::class.java)
+        intent.putExtra(UpdateItemActivity.ITEM, item)
+        startActivity(intent)
     }
 
     private fun deleteItem(item: Item) {

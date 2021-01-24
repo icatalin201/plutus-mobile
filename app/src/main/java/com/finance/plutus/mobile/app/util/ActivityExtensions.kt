@@ -24,6 +24,20 @@ fun LifecycleOwner.showDeleteConfirmationDialog(context: Context, callback: Runn
     dialog.show()
 }
 
+fun LifecycleOwner.showListDialog(
+    context: Context,
+    items: Array<String>,
+    callback: (position: Int) -> Unit
+) {
+    val dialog = AlertDialog.Builder(context)
+        .setTitle(R.string.app_name)
+        .setItems(items) { dialog, which ->
+            dialog.dismiss()
+            callback(which)
+        }
+    dialog.show()
+}
+
 fun LifecycleOwner.showDateDialog(
     context: Context,
     date: String,

@@ -9,7 +9,9 @@
             android:id="@+id/item_name_tv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:padding="@dimen/padding_16" />
+            android:padding="@dimen/padding_16"
+            android:textSize="@dimen/text_size_18"
+            android:textStyle="bold" />
 
     </androidx.cardview.widget.CardView>
 </layout>

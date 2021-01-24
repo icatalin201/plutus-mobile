@@ -99,7 +99,7 @@ interface PlutusService {
 
     @POST("invoices")
     @Headers("Content-Type: application/vnd.plutus.finance+json")
-    fun createInvoice(@Body request: PlutusRequest<InvoiceCreateRequest>): Single<EntityCreatedResponse>
+    fun createInvoice(@Body request: PlutusRequest<InvoiceUpdateRequest>): Single<EntityCreatedResponse>
 
     @DELETE("invoices/{id}")
     @Headers("Content-Type: application/vnd.plutus.finance+json")
