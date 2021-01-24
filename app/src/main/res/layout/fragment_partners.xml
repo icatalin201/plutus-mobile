@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/margin_32"
-            android:contentDescription="@string/add_service_title"
+            android:contentDescription="@string/add_partner_title"
             android:src="@drawable/ic_baseline_add_24"
             android:tint="@color/primaryDark" />
 

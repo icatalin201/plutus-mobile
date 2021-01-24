@@ -18,7 +18,7 @@
     <string name="edit">Editeaza</string>
     <string name="add_service_title">Add Service</string>
     <string name="delete_confirmation">Esti sigur ca vrei sa stergi?</string>
-    <string name="partner_save_failed">A aparut o eroare in salvarea partenerului</string>
+    <string name="save_failed">A aparut o eroare</string>
     <string name="prompt_name">Nume</string>
     <string name="prompt_phone">Telefon</string>
     <string name="action_save">Salveaza</string>
@@ -27,4 +27,20 @@
     <string name="prompt_bank_account">Cont bancar</string>
     <string name="prompt_term_in_days">Scadenta (in zile)</string>
     <string name="prompt_address">Adresa</string>
+    <string name="customer_label">Client</string>
+    <string name="vendor_label">Furnizor</string>
+    <string name="individual_label">Persoana fizica</string>
+    <string name="legal_label">Persoana juridica</string>
+    <string name="add_transaction_title">Adauga tranzactie</string>
+    <string name="add_partner_title">Adauga partener</string>
+    <string name="income_label">Incasare</string>
+    <string name="expense_label">Plata</string>
+    <string name="prompt_document">Document</string>
+    <string name="prompt_details">Detalii</string>
+    <string name="prompt_value">Valoare</string>
+    <string name="cash_label">Cash</string>
+    <string name="bank_label">Banca</string>
+    <string name="deductible_label">Deductibil</string>
+    <string name="prompt_date">Data</string>
+    <string name="invalid_field">Camp obligatoriu</string>
 </resources>

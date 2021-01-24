@@ -7,31 +7,31 @@
 
     <fragment
         android:id="@+id/dashboard"
-        android:name="com.finance.plutus.mobile.view.dashboard.DashboardFragment"
+        android:name="com.finance.plutus.mobile.dashboard.DashboardFragment"
         android:label="@string/dashboard_title"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/services"
-        android:name="com.finance.plutus.mobile.view.services.ServicesFragment"
+        android:name="com.finance.plutus.mobile.items.ui.ServicesFragment"
         android:label="@string/services_title"
         tools:layout="@layout/fragment_services" />
 
     <fragment
         android:id="@+id/partners"
-        android:name="com.finance.plutus.mobile.view.partners.PartnersFragment"
+        android:name="com.finance.plutus.mobile.partners.ui.PartnersFragment"
         android:label="@string/partners_title"
         tools:layout="@layout/fragment_partners" />
 
     <fragment
         android:id="@+id/invoices"
-        android:name="com.finance.plutus.mobile.view.invoices.InvoicesFragment"
+        android:name="com.finance.plutus.mobile.invoices.ui.InvoicesFragment"
         android:label="@string/invoices_title"
         tools:layout="@layout/fragment_invoices" />
 
     <fragment
         android:id="@+id/transactions"
-        android:name="com.finance.plutus.mobile.view.transactions.TransactionsFragment"
+        android:name="com.finance.plutus.mobile.transactions.ui.TransactionsFragment"
         android:label="@string/transactions_title"
         tools:layout="@layout/fragment_transactions" />
 

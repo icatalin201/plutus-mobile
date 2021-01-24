@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".PlutusApplication"
+        android:name=".app.PlutusApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -14,15 +14,18 @@
         android:theme="@style/Theme.Plutus.Splash"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".view.partner.UpdatePartnerActivity"
+            android:name=".transactions.ui.UpdateTransactionActivity"
             android:theme="@style/Theme.Plutus" />
         <activity
-            android:name=".view.services.UpdateItemActivity"
+            android:name=".partners.ui.UpdatePartnerActivity"
             android:theme="@style/Theme.Plutus" />
         <activity
-            android:name=".view.main.MainActivity"
+            android:name=".items.ui.UpdateItemActivity"
             android:theme="@style/Theme.Plutus" />
-        <activity android:name=".view.splash.SplashActivity">
+        <activity
+            android:name=".app.ui.MainActivity"
+            android:theme="@style/Theme.Plutus" />
+        <activity android:name=".app.ui.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,7 +33,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.login.LoginActivity"
+            android:name=".login.ui.LoginActivity"
             android:theme="@style/Theme.Plutus" />
     </application>
 

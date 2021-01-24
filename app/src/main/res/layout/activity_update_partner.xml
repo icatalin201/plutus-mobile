@@ -2,7 +2,14 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".view.partner.UpdatePartnerActivity">
+    tools:context=".partners.ui.UpdatePartnerActivity">
+
+    <data>
+
+        <variable
+            name="request"
+            type="com.finance.plutus.mobile.app.network.payload.PartnerUpdateRequest" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -36,6 +43,36 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingStart="@dimen/padding_16"
+                    android:paddingTop="@dimen/padding_12"
+                    android:paddingEnd="@dimen/padding_16"
+                    android:paddingBottom="@dimen/padding_12">
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/partner_customer_radio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:buttonTint="@color/white"
+                        android:checked="true"
+                        android:text="@string/customer_label"
+                        android:textColor="@color/white" />
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/partner_vendor_radio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:buttonTint="@color/white"
+                        android:text="@string/vendor_label"
+                        android:textColor="@color/white" />
+
+                </RadioGroup>
+
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/partner_name"
                     android:layout_width="match_parent"
@@ -49,6 +86,7 @@
                     android:paddingTop="@dimen/padding_12"
                     android:paddingEnd="@dimen/padding_16"
                     android:paddingBottom="@dimen/padding_12"
+                    android:text="@={request.name}"
                     android:textColor="@color/white"
                     android:textColorHint="@color/smoke" />
 
@@ -65,9 +103,9 @@
                     android:paddingTop="@dimen/padding_12"
                     android:paddingEnd="@dimen/padding_16"
                     android:paddingBottom="@dimen/padding_12"
+                    android:text="@={request.email}"
                     android:textColor="@color/white"
                     android:textColorHint="@color/smoke" />
-
 
                 <androidx.appcompat.widget.AppCompatEditText
                     android:id="@+id/partner_phone"
@@ -82,6 +120,7 @@
                     android:paddingTop="@dimen/padding_12"
                     android:paddingEnd="@dimen/padding_16"
                     android:paddingBottom="@dimen/padding_12"
+                    android:text="@={request.phone}"
                     android:textColor="@color/white"
                     android:textColorHint="@color/smoke" />
 
@@ -98,6 +137,7 @@
                     android:paddingTop="@dimen/padding_12"
                     android:paddingEnd="@dimen/padding_16"
                     android:paddingBottom="@dimen/padding_12"
+                    android:text="@={request.vat}"
                     android:textColor="@color/white"
                     android:textColorHint="@color/smoke" />
 
@@ -114,6 +154,7 @@
                     android:paddingTop="@dimen/padding_12"
                     android:paddingEnd="@dimen/padding_16"
                     android:paddingBottom="@dimen/padding_12"
+                    android:text="@={request.commercialRegistry}"
                     android:textColor="@color/white"
                     android:textColorHint="@color/smoke" />
 
@@ -130,6 +171,7 @@
                     android:paddingTop="@dimen/padding_12"
                     android:paddingEnd="@dimen/padding_16"
                     android:paddingBottom="@dimen/padding_12"
+                    android:text="@={request.address}"
                     android:textColor="@color/white"
                     android:textColorHint="@color/smoke" />
 
@@ -146,6 +188,7 @@
                     android:paddingTop="@dimen/padding_12"
                     android:paddingEnd="@dimen/padding_16"
                     android:paddingBottom="@dimen/padding_12"
+                    android:text="@={`` + request.termInDays}"
                     android:textColor="@color/white"
                     android:textColorHint="@color/smoke" />
 
@@ -162,8 +205,51 @@
                     android:paddingTop="@dimen/padding_12"
                     android:paddingEnd="@dimen/padding_16"
                     android:paddingBottom="@dimen/padding_12"
+                    android:text="@={request.bankAccount}"
                     android:textColor="@color/white"
                     android:textColorHint="@color/smoke" />
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/partner_bank_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/smoke_transparent" />
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/partner_country_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/smoke_transparent" />
+
+                <RadioGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingStart="@dimen/padding_16"
+                    android:paddingTop="@dimen/padding_12"
+                    android:paddingEnd="@dimen/padding_16"
+                    android:paddingBottom="@dimen/padding_12">
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/partner_business_individual_radio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:buttonTint="@color/white"
+                        android:checked="true"
+                        android:text="@string/individual_label"
+                        android:textColor="@color/white" />
+
+                    <androidx.appcompat.widget.AppCompatRadioButton
+                        android:id="@+id/partner_business_legal_radio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:buttonTint="@color/white"
+                        android:text="@string/legal_label"
+                        android:textColor="@color/white" />
+
+                </RadioGroup>
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/partner_save_btn"
