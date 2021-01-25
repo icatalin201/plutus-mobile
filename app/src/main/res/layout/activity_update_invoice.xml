@@ -134,6 +134,23 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.button.MaterialButton
+                    android:id="@+id/invoice_add_line_btn"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_8"
+                    android:drawableEnd="@drawable/ic_baseline_add_24"
+                    android:drawableTint="@color/colorPrimaryDark"
+                    android:text="@string/invoice_lines_title"
+                    android:textAlignment="textStart" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/invoice_lines_recycler"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    tools:listitem="@layout/editable_invoice_line_view" />
+
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/invoice_save_btn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

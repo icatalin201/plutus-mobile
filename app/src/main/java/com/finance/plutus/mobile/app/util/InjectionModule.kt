@@ -6,6 +6,7 @@ import com.finance.plutus.mobile.app.network.LoginService
 import com.finance.plutus.mobile.app.network.PlutusService
 import com.finance.plutus.mobile.app.network.interceptor.HeaderInterceptor
 import com.finance.plutus.mobile.app.ui.SplashViewModel
+import com.finance.plutus.mobile.dashboard.DashboardViewModel
 import com.finance.plutus.mobile.invoices.data.InvoiceApiRepository
 import com.finance.plutus.mobile.invoices.data.InvoiceRepository
 import com.finance.plutus.mobile.invoices.ui.InvoicesViewModel
@@ -68,7 +69,8 @@ object InjectionModule {
         viewModel { UpdateTransactionViewModel(get(), get()) }
         viewModel { UpdateItemViewModel(get()) }
         viewModel { InvoicesViewModel(get()) }
-        viewModel { UpdateInvoiceViewModel(get(), get(), get()) }
+        viewModel { UpdateInvoiceViewModel(get(), get(), get(), get()) }
+        viewModel { DashboardViewModel(get()) }
     }
 
 }

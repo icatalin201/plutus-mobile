@@ -57,4 +57,13 @@ class ItemApiRepository(
             pagingSourceFactory = { ItemDataSource(plutusService) }
         ).flowable
     }
+
+    override fun findAllNonPaged(): Flowable<List<Item>> {
+        return plutusService.findAllItems(0, 100)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+            .map { response ->
+                response.data
+            }.toFlowable()
+    }
 }

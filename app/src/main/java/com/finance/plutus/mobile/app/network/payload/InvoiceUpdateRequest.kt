@@ -3,6 +3,7 @@ package com.finance.plutus.mobile.app.network.payload
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import com.finance.plutus.mobile.BR
+import com.finance.plutus.mobile.app.data.SerialApiRepository
 import com.finance.plutus.mobile.app.data.model.Currency
 import java.time.LocalDate
 import java.util.*
@@ -21,7 +22,7 @@ class InvoiceUpdateRequest : BaseObservable() {
         }
 
     @get:Bindable
-    var serialId: UUID = UUID.fromString("2e978bc3-115d-4226-90a7-24bd24ef5054")
+    var serialId: UUID = SerialApiRepository.SERIAL_ID
 
     @get:Bindable
     var currency: Currency = Currency.USD
@@ -45,6 +46,6 @@ class InvoiceUpdateRequest : BaseObservable() {
         }
 
     @get:Bindable
-    var lines: List<InvoiceLineUpdateRequest> = mutableListOf()
+    var lines: MutableList<InvoiceLineUpdateRequest> = mutableListOf(InvoiceLineUpdateRequest())
 
 }

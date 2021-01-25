@@ -4,6 +4,7 @@ import androidx.paging.PagingData
 import com.finance.plutus.mobile.app.network.payload.EntityCreatedResponse
 import com.finance.plutus.mobile.app.network.payload.ItemUpdateRequest
 import com.finance.plutus.mobile.items.data.model.Item
+import com.finance.plutus.mobile.partners.data.model.Partner
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Single
@@ -20,5 +21,6 @@ interface ItemRepository {
     fun delete(id: UUID): Completable
     fun findById(id: UUID): Single<Item>
     fun findAll(): Flowable<PagingData<Item>>
+    fun findAllNonPaged(): Flowable<List<Item>>
 
 }

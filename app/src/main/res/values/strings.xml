@@ -65,4 +65,13 @@
     <string name="prompt_partner">Partener</string>
     <string name="prompt_country">Tara</string>
     <string name="prompt_bank">Banca</string>
+    <string name="action_add_invoice_line">Adauga linie factura</string>
+    <string name="invoice_lines_title">Linii factura</string>
+    <string name="prompt_item">Item</string>
+    <string name="prompt_quantity">Cantitate</string>
+    <string name="prompt_price">Pret</string>
+    <string name="serial_title">Serie facturi</string>
+    <string name="action_update_serial">Actualizeaza</string>
+    <string name="currency_title">Curs valutar</string>
+    <string name="update_serial_title">Actualizare numar de serie</string>
 </resources>

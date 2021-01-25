@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="request"
+            type="com.finance.plutus.mobile.app.network.payload.InvoiceLineUpdateRequest" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/invoice_line_item_layout"
+            style="@style/TextInputLayoutStyle"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            app:layout_constraintEnd_toStartOf="@id/invoice_line_quantity_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/invoice_line_item"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="@string/prompt_item"
+                android:hint="@string/prompt_item"
+                android:paddingStart="@dimen/padding_16"
+                android:paddingTop="@dimen/padding_12"
+                android:paddingEnd="@dimen/padding_16"
+                android:paddingBottom="@dimen/padding_12" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/invoice_line_quantity_layout"
+            style="@style/TextInputLayoutStyle"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            app:layout_constraintEnd_toStartOf="@+id/invoice_line_price_layout"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/invoice_line_item_layout"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/invoice_line_quantity"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="@string/prompt_quantity"
+                android:hint="@string/prompt_quantity"
+                android:inputType="number"
+                android:paddingStart="@dimen/padding_16"
+                android:paddingTop="@dimen/padding_12"
+                android:paddingEnd="@dimen/padding_16"
+                android:paddingBottom="@dimen/padding_12"
+                android:text="@={`` + request.quantity}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/invoice_line_price_layout"
+            style="@style/TextInputLayoutStyle"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/invoice_line_quantity_layout"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/invoice_line_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="@string/prompt_price"
+                android:hint="@string/prompt_price"
+                android:inputType="number"
+                android:paddingStart="@dimen/padding_16"
+                android:paddingTop="@dimen/padding_12"
+                android:paddingEnd="@dimen/padding_16"
+                android:paddingBottom="@dimen/padding_12"
+                android:text="@={`` + request.unitPrice}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/invoice_line_vat_layout"
+            style="@style/TextInputLayoutStyle"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            app:layout_constraintEnd_toStartOf="@id/invoice_line_uom_layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/invoice_line_item_layout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/invoice_line_vat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="@string/prompt_vat"
+                android:hint="@string/prompt_vat"
+                android:inputType="numberDecimal"
+                android:paddingStart="@dimen/padding_16"
+                android:paddingTop="@dimen/padding_12"
+                android:paddingEnd="@dimen/padding_16"
+                android:paddingBottom="@dimen/padding_12"
+                android:text="@={`` + request.vat}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/invoice_line_uom_layout"
+            style="@style/TextInputLayoutStyle"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            app:layout_constraintEnd_toStartOf="@+id/invoice_line_details_layout"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/invoice_line_vat_layout"
+            app:layout_constraintTop_toBottomOf="@id/invoice_line_item_layout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/invoice_line_uom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="@string/prompt_uom"
+                android:hint="@string/prompt_uom"
+                android:inputType="text"
+                android:paddingStart="@dimen/padding_16"
+                android:paddingTop="@dimen/padding_12"
+                android:paddingEnd="@dimen/padding_16"
+                android:paddingBottom="@dimen/padding_12"
+                android:text="@={request.uom}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/invoice_line_details_layout"
+            style="@style/TextInputLayoutStyle"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/invoice_line_uom_layout"
+            app:layout_constraintTop_toBottomOf="@id/invoice_line_item_layout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/invoice_line_details"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="@string/prompt_details"
+                android:hint="@string/prompt_details"
+                android:inputType="text"
+                android:paddingStart="@dimen/padding_16"
+                android:paddingTop="@dimen/padding_12"
+                android:paddingEnd="@dimen/padding_16"
+                android:paddingBottom="@dimen/padding_12"
+                android:text="@={request.details}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

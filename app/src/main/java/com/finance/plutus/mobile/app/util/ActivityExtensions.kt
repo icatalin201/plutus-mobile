@@ -2,7 +2,11 @@ package com.finance.plutus.mobile.app.util
 
 import android.app.DatePickerDialog
 import android.content.Context
+import android.content.DialogInterface
+import android.text.InputType
+import android.view.inputmethod.EditorInfo
 import android.widget.DatePicker
+import android.widget.EditText
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.LifecycleOwner
 import com.finance.plutus.mobile.R
@@ -35,6 +39,35 @@ fun LifecycleOwner.showListDialog(
             dialog.dismiss()
             callback(which)
         }
+    dialog.show()
+}
+
+fun LifecycleOwner.showInputDialog(
+    context: Context,
+    initialValue: String,
+    callback: (value: String) -> Unit
+) {
+    val editText = EditText(context)
+    editText.imeOptions = EditorInfo.IME_ACTION_DONE
+    editText.isSingleLine = true
+    editText.inputType = InputType.TYPE_NUMBER_FLAG_DECIMAL
+    editText.setText(initialValue)
+    val dialog = AlertDialog.Builder(context)
+        .setTitle(R.string.app_name)
+        .setMessage(R.string.update_serial_title)
+        .setView(editText)
+        .setNegativeButton(
+            R.string.cancel
+        ) { dialog: DialogInterface, _: Int ->
+            dialog.dismiss()
+        }
+        .setPositiveButton(
+            R.string.confirm
+        ) { dialog: DialogInterface, _: Int ->
+            val value = editText.text.toString()
+            callback(value)
+            dialog.dismiss()
+        }.create()
     dialog.show()
 }
 

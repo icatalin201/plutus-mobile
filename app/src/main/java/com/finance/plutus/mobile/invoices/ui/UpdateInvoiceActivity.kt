@@ -4,12 +4,16 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.DividerItemDecoration
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.finance.plutus.mobile.R
 import com.finance.plutus.mobile.app.data.model.Currency
+import com.finance.plutus.mobile.app.network.payload.InvoiceLineUpdateRequest
 import com.finance.plutus.mobile.app.util.showDateDialog
 import com.finance.plutus.mobile.app.util.showListDialog
 import com.finance.plutus.mobile.databinding.ActivityUpdateInvoiceBinding
 import com.finance.plutus.mobile.invoices.data.model.InvoiceResult
+import com.finance.plutus.mobile.items.data.model.Item
 import com.finance.plutus.mobile.partners.data.model.Partner
 import com.finance.plutus.mobile.partners.data.model.PartnerType
 import org.koin.android.ext.android.inject
@@ -32,7 +36,10 @@ class UpdateInvoiceActivity : AppCompatActivity() {
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_close_24)
         viewModel.result.observe(this) { handleResult(it) }
         viewModel.partners.observe(this) { setPartners(it) }
-        title = getString(R.string.create_invoice_title)
+        viewModel.items.observe(this) { setItems(it) }
+        viewModel.serial.observe(this) { serial ->
+            title = serial
+        }
         binding.invoiceSaveBtn.setOnClickListener {
             save()
         }
@@ -81,6 +88,39 @@ class UpdateInvoiceActivity : AppCompatActivity() {
                 binding.invoicePartner.setText(partner.name)
             }
         }
+    }
+
+    private fun setItems(items: List<Item>) {
+        val itemsNames = mutableListOf<String>()
+        itemsNames.addAll(items.stream()
+            .map { item -> item.name }
+            .collect(Collectors.toList()))
+        val invoiceLineAdapter =
+            EditableInvoiceLineAdapter(object : EditableInvoiceLineListener {
+                override fun onInvoiceItemClick(
+                    invoiceLine: InvoiceLineUpdateRequest,
+                    callback: (Item) -> Unit
+                ) {
+                    showListDialog(
+                        this@UpdateInvoiceActivity,
+                        itemsNames.toTypedArray()
+                    ) { position ->
+                        val item = items[position]
+                        invoiceLine.itemId = item.id
+                        callback(item)
+                    }
+                }
+            })
+        binding.invoiceLinesRecycler.layoutManager =
+            LinearLayoutManager(this)
+        binding.invoiceLinesRecycler.addItemDecoration(
+            DividerItemDecoration(
+                this,
+                DividerItemDecoration.VERTICAL
+            )
+        )
+        binding.invoiceLinesRecycler.adapter = invoiceLineAdapter
+        invoiceLineAdapter.submit(viewModel.updateRequest.lines)
     }
 
     private fun handleResult(result: InvoiceResult) {

@@ -19,7 +19,7 @@ class InvoiceLineUpdateRequest : BaseObservable() {
         }
 
     @get:Bindable
-    var quantity: Int = 0
+    var quantity: Int = 1
         set(value) {
             field = value
             notifyPropertyChanged(BR.quantity)

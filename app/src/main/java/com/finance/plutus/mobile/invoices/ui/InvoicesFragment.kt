@@ -98,10 +98,7 @@ class InvoicesFragment : Fragment() {
                 val deleteButton = Buttons.deleteButton(requireContext()) {
                     adapter.onDelete(position)
                 }
-                val editButton = Buttons.editButton(requireContext()) {
-                    adapter.onEdit(position)
-                }
-                return listOf(editButton, deleteButton)
+                return listOf(deleteButton)
             }
         })
         itemTouchHelper.attachToRecyclerView(binding.invoicesRecyclerView)
