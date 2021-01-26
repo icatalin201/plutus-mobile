@@ -25,15 +25,7 @@ class UpdateItemViewModel(
     var item: Item? = null
         set(value) {
             field = value
-            value?.let {
-                updateRequest.name = value.name
-                updateRequest.code = value.code
-                updateRequest.description = value.description
-                updateRequest.type = value.type
-                updateRequest.unitPrice = value.unitPrice
-                updateRequest.uom = value.uom
-                updateRequest.vat = value.vat
-            }
+            updateRequest.sync(value)
         }
 
     fun save() {

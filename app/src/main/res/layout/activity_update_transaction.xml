@@ -93,6 +93,40 @@
 
                 </com.google.android.material.button.MaterialButtonToggleGroup>
 
+                <com.google.android.material.button.MaterialButtonToggleGroup
+                    android:id="@+id/transaction_currency_group"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:checkedButton="@id/transaction_ron"
+                    app:selectionRequired="true"
+                    app:singleSelection="true">
+
+                    <Button
+                        android:id="@+id/transaction_ron"
+                        style="@style/ButtonGroupLayoutStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/ron_label" />
+
+                    <Button
+                        android:id="@+id/transaction_eur"
+                        style="@style/ButtonGroupLayoutStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/eur_label" />
+
+                    <Button
+                        android:id="@+id/transaction_usd"
+                        style="@style/ButtonGroupLayoutStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/usd_label" />
+
+                </com.google.android.material.button.MaterialButtonToggleGroup>
+
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/TextInputLayoutStyle"
                     android:layout_width="match_parent"

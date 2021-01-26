@@ -3,6 +3,8 @@ package com.finance.plutus.mobile.app.network.payload
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import com.finance.plutus.mobile.BR
+import com.finance.plutus.mobile.app.data.model.Currency
+import com.finance.plutus.mobile.transactions.data.model.Transaction
 import com.finance.plutus.mobile.transactions.data.model.TransactionMethod
 import com.finance.plutus.mobile.transactions.data.model.TransactionType
 import java.time.LocalDate
@@ -19,6 +21,13 @@ class TransactionUpdateRequest : BaseObservable() {
         set(value) {
             field = value
             notifyPropertyChanged(BR.date)
+        }
+
+    @get:Bindable
+    var currency: Currency = Currency.RON
+        set(value) {
+            field = value
+            notifyPropertyChanged(BR.currency)
         }
 
     @get:Bindable
@@ -70,4 +79,20 @@ class TransactionUpdateRequest : BaseObservable() {
             notifyPropertyChanged(BR.deductible)
         }
 
+    fun sync(transaction: Transaction?) {
+        transaction?.let {
+            date = transaction.date
+            deductible = transaction.deductible
+            details = transaction.details
+            document = transaction.document
+            method = transaction.method
+            partnerId = transaction.partner.id
+            type = transaction.type
+            value = transaction.value
+            if (transaction.currency != null) {
+                currency = transaction.currency.currency
+                value = transaction.currency.value
+            }
+        }
+    }
 }

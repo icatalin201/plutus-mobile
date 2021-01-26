@@ -9,11 +9,13 @@ import com.finance.plutus.mobile.app.data.model.Serial
 import com.finance.plutus.mobile.app.network.payload.InvoiceUpdateRequest
 import com.finance.plutus.mobile.app.ui.BaseViewModel
 import com.finance.plutus.mobile.invoices.data.InvoiceRepository
+import com.finance.plutus.mobile.invoices.data.model.Invoice
 import com.finance.plutus.mobile.invoices.data.model.InvoiceResult
 import com.finance.plutus.mobile.items.data.ItemRepository
 import com.finance.plutus.mobile.items.data.model.Item
 import com.finance.plutus.mobile.partners.data.PartnerRepository
 import com.finance.plutus.mobile.partners.data.model.Partner
+import java.util.*
 
 /**
  * Plutus Finance
@@ -36,19 +38,13 @@ class UpdateInvoiceViewModel(
     val result: LiveData<InvoiceResult> = _result
 
     val updateRequest = InvoiceUpdateRequest()
+    var invoice: Invoice? = null
 
     init {
         compositeDisposable.add(
             partnerRepository.findAllNonPaged()
                 .subscribe(
                     { partners -> _partners.value = partners },
-                    { error -> error.printStackTrace() }
-                )
-        )
-        compositeDisposable.add(
-            serialRepository.findById(SerialApiRepository.SERIAL_ID)
-                .subscribe(
-                    { serial -> _serial.value = prepareSerialName(serial) },
                     { error -> error.printStackTrace() }
                 )
         )
@@ -61,13 +57,46 @@ class UpdateInvoiceViewModel(
         )
     }
 
+    fun submitInvoice(invoice: Invoice?) {
+        this.invoice = invoice
+        this.updateRequest.sync(invoice)
+        if (invoice != null) {
+            _serial.value = invoice.name
+        } else {
+            compositeDisposable.add(
+                serialRepository.findById(SerialApiRepository.SERIAL_ID)
+                    .subscribe(
+                        { serial -> _serial.value = prepareSerialName(serial) },
+                        { error -> error.printStackTrace() }
+                    )
+            )
+        }
+    }
+
     fun save() {
-        create()
+        if (invoice == null) {
+            create()
+        } else {
+            update(invoice!!.id)
+        }
     }
 
     private fun create() {
         val disposable = invoiceRepository
             .create(updateRequest)
+            .subscribe(
+                { _result.value = InvoiceResult(ok = true) },
+                { error ->
+                    error.printStackTrace()
+                    _result.value = InvoiceResult(error = R.string.save_failed)
+                }
+            )
+        compositeDisposable.add(disposable)
+    }
+
+    private fun update(id: UUID) {
+        val disposable = invoiceRepository
+            .update(id, updateRequest)
             .subscribe(
                 { _result.value = InvoiceResult(ok = true) },
                 { error ->

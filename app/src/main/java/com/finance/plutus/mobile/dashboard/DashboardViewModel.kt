@@ -2,8 +2,10 @@ package com.finance.plutus.mobile.dashboard
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.finance.plutus.mobile.app.data.CurrencyRateRepository
 import com.finance.plutus.mobile.app.data.SerialApiRepository.Companion.SERIAL_ID
 import com.finance.plutus.mobile.app.data.SerialRepository
+import com.finance.plutus.mobile.app.data.model.CurrencyRate
 import com.finance.plutus.mobile.app.data.model.Serial
 import com.finance.plutus.mobile.app.network.payload.SerialUpdateRequest
 import com.finance.plutus.mobile.app.ui.BaseViewModel
@@ -13,14 +15,24 @@ Plutus Finance
 Created by Catalin on 1/25/2021
  **/
 class DashboardViewModel(
-    private val serialRepository: SerialRepository
+    private val serialRepository: SerialRepository,
+    private val currencyRateRepository: CurrencyRateRepository
 ) : BaseViewModel() {
 
     private val _serial = MutableLiveData<Serial>()
+    private val _rates = MutableLiveData<List<CurrencyRate>>()
     val serial: LiveData<Serial> = _serial
+    val rates: LiveData<List<CurrencyRate>> = _rates
 
     init {
         fetchSerial()
+        compositeDisposable.add(
+            currencyRateRepository.fetchTodayRates()
+                .subscribe(
+                    { rates -> _rates.value = rates },
+                    { error -> error.printStackTrace() }
+                )
+        )
     }
 
     fun updateSerial(serial: Serial, value: String) {

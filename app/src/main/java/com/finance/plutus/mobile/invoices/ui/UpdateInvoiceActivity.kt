@@ -12,6 +12,7 @@ import com.finance.plutus.mobile.app.network.payload.InvoiceLineUpdateRequest
 import com.finance.plutus.mobile.app.util.showDateDialog
 import com.finance.plutus.mobile.app.util.showListDialog
 import com.finance.plutus.mobile.databinding.ActivityUpdateInvoiceBinding
+import com.finance.plutus.mobile.invoices.data.model.Invoice
 import com.finance.plutus.mobile.invoices.data.model.InvoiceResult
 import com.finance.plutus.mobile.items.data.model.Item
 import com.finance.plutus.mobile.partners.data.model.Partner
@@ -21,6 +22,10 @@ import java.time.LocalDate
 import java.util.stream.Collectors
 
 class UpdateInvoiceActivity : AppCompatActivity() {
+
+    companion object {
+        const val INVOICE = "Invoice"
+    }
 
     private val viewModel: UpdateInvoiceViewModel by inject()
     private lateinit var binding: ActivityUpdateInvoiceBinding
@@ -34,6 +39,8 @@ class UpdateInvoiceActivity : AppCompatActivity() {
         setSupportActionBar(binding.invoiceToolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_close_24)
+        val invoice = intent.getParcelableExtra<Invoice>(INVOICE)
+        setInvoice(invoice)
         viewModel.result.observe(this) { handleResult(it) }
         viewModel.partners.observe(this) { setPartners(it) }
         viewModel.items.observe(this) { setItems(it) }
@@ -63,6 +70,18 @@ class UpdateInvoiceActivity : AppCompatActivity() {
         return super.onSupportNavigateUp()
     }
 
+    private fun setInvoice(invoice: Invoice?) {
+        viewModel.submitInvoice(invoice)
+        invoice?.let {
+            val currency = when (invoice.currency?.currency) {
+                Currency.EUR -> R.id.invoice_eur
+                Currency.RON -> R.id.invoice_ron
+                else -> R.id.invoice_usd
+            }
+            binding.invoiceCurrencyGroup.check(currency)
+        }
+    }
+
     private fun save() {
         viewModel.updateRequest.currency = when (binding.invoiceCurrencyGroup.checkedButtonId) {
             R.id.invoice_eur -> Currency.EUR
@@ -81,6 +100,9 @@ class UpdateInvoiceActivity : AppCompatActivity() {
             .filter { partner -> partner.type == PartnerType.CLIENT }
             .map { partner -> partner.name }
             .collect(Collectors.toList()))
+        viewModel.invoice?.let {
+            binding.invoicePartner.setText(it.partner.name)
+        }
         binding.invoicePartner.setOnClickListener {
             showListDialog(this, partnersNames.toTypedArray()) { position ->
                 val partner = partners[position]

@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.finance.plutus.mobile.R
 import com.finance.plutus.mobile.app.util.Buttons
 import com.finance.plutus.mobile.app.util.SwipeHelper
-import com.finance.plutus.mobile.app.util.showDeleteConfirmationDialog
+import com.finance.plutus.mobile.app.util.showConfirmationDialog
 import com.finance.plutus.mobile.databinding.FragmentTransactionsBinding
 import com.finance.plutus.mobile.transactions.data.model.Transaction
 import org.koin.android.ext.android.inject
@@ -46,6 +46,10 @@ class TransactionsFragment : Fragment() {
 
             override fun edit(transaction: Transaction) {
                 editTransaction(transaction)
+            }
+
+            override fun cashing(transaction: Transaction) {
+                cashingTransaction(transaction)
             }
         }, requireContext())
         setupRecycler()
@@ -114,17 +118,16 @@ class TransactionsFragment : Fragment() {
             ItemTouchHelper(object : SwipeHelper(binding.transactionsRecyclerView) {
                 override fun instantiateUnderlayButton(position: Int): List<UnderlayButton> {
                     val buttons = mutableListOf<UnderlayButton>()
-                    if (adapter.isEditable(position)) {
-                        val editButton = Buttons.editButton(requireContext()) {
-                            adapter.onEdit(position)
-                        }
-                        buttons.add(editButton)
-                    }
-                    if (adapter.isDeletable(position)) {
-                        val deleteButton = Buttons.deleteButton(requireContext()) {
+                    if (adapter.isDraft(position)) {
+                        buttons.add(Buttons.deleteButton(requireContext()) {
                             adapter.onDelete(position)
-                        }
-                        buttons.add(deleteButton)
+                        })
+                        buttons.add(Buttons.editButton(requireContext()) {
+                            adapter.onEdit(position)
+                        })
+                        buttons.add(Buttons.cashingButton(requireContext()) {
+                            adapter.onCashing(position)
+                        })
                     }
                     return buttons
                 }
@@ -139,7 +142,15 @@ class TransactionsFragment : Fragment() {
     }
 
     private fun deleteTransaction(transaction: Transaction) {
-        showDeleteConfirmationDialog(requireContext()) { viewModel.delete(transaction) }
+        showConfirmationDialog(requireContext(), R.string.delete_confirmation) {
+            viewModel.delete(
+                transaction
+            )
+        }
+    }
+
+    private fun cashingTransaction(transaction: Transaction) {
+
     }
 
 }

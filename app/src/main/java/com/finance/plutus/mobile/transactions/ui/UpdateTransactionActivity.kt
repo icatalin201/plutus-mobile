@@ -5,6 +5,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.finance.plutus.mobile.R
+import com.finance.plutus.mobile.app.data.model.Currency
 import com.finance.plutus.mobile.app.util.showDateDialog
 import com.finance.plutus.mobile.app.util.showListDialog
 import com.finance.plutus.mobile.databinding.ActivityUpdateTransactionBinding
@@ -65,6 +66,11 @@ class UpdateTransactionActivity : AppCompatActivity() {
             R.id.transaction_cash -> TransactionMethod.CASH
             else -> TransactionMethod.BANK
         }
+        viewModel.updateRequest.currency = when (binding.transactionCurrencyGroup.checkedButtonId) {
+            R.id.transaction_eur -> Currency.EUR
+            R.id.transaction_usd -> Currency.USD
+            else -> Currency.RON
+        }
         viewModel.updateRequest.deductible = binding.transactionDeductible.isChecked
         if (binding.transactionDate.text.toString().isBlank()) {
             binding.transactionDate.error = getString(R.string.invalid_field)
@@ -92,6 +98,12 @@ class UpdateTransactionActivity : AppCompatActivity() {
                 binding.transactionMethodGroup.check(R.id.transaction_bank)
             }
             binding.transactionDeductible.isChecked = it.deductible
+            val currency = when (it.currency?.currency) {
+                Currency.EUR -> R.id.transaction_eur
+                Currency.USD -> R.id.transaction_usd
+                else -> R.id.transaction_ron
+            }
+            binding.transactionCurrencyGroup.check(currency)
         }
         viewModel.partners.observe(this) { data ->
             val partnersNames = mutableListOf<String>()

@@ -32,11 +32,18 @@
                 app:layout_constraintTop_toBottomOf="@id/currency_title" />
 
             <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/currency_rate"
+                android:id="@+id/currency_rate_eur"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/currency_date" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/currency_rate_usd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/currency_rate_eur" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

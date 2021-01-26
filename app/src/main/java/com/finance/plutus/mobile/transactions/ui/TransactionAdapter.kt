@@ -8,11 +8,11 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.finance.plutus.mobile.R
+import com.finance.plutus.mobile.app.util.formatInLocalCurrency
 import com.finance.plutus.mobile.databinding.TransactionViewBinding
 import com.finance.plutus.mobile.transactions.data.model.Transaction
 import com.finance.plutus.mobile.transactions.data.model.TransactionStatus
 import com.finance.plutus.mobile.transactions.data.model.TransactionType
-import com.finance.plutus.mobile.app.util.formatInLocalCurrency
 
 /**
 Plutus Finance
@@ -61,12 +61,12 @@ class TransactionAdapter(
         getItem(position)?.let { listener.delete(it) }
     }
 
-    fun isEditable(position: Int): Boolean {
-        return getItem(position)?.status != TransactionStatus.DONE
+    fun onCashing(position: Int) {
+        getItem(position)?.let { listener.cashing(it) }
     }
 
-    fun isDeletable(position: Int): Boolean {
-        return getItem(position)?.status != TransactionStatus.DONE
+    fun isDraft(position: Int): Boolean {
+        return getItem(position)?.status == TransactionStatus.DRAFT
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransactionViewHolder {

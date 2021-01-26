@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import com.finance.plutus.mobile.R
+import com.finance.plutus.mobile.app.data.model.Currency
 import com.finance.plutus.mobile.app.util.showInputDialog
 import com.finance.plutus.mobile.databinding.FragmentDashboardBinding
 import org.koin.android.ext.android.inject
@@ -37,8 +38,19 @@ class DashboardFragment : Fragment() {
                 }
             }
         }
-        binding.dashboardCurrencyElement.currencyDate.text = "25.01.2021"
-        binding.dashboardCurrencyElement.currencyRate.text = "1 RON = 4.5 USD"
+        viewModel.rates.observe(viewLifecycleOwner) { rates ->
+            val rateUsd = rates.findLast { rate -> rate.currency == Currency.USD }
+            val rateEur = rates.findLast { rate -> rate.currency == Currency.EUR }
+            binding.dashboardCurrencyElement.currencyDate.text = rateUsd?.date
+            rateEur?.let {
+                val value = "1 EUR = ${it.rate} RON"
+                binding.dashboardCurrencyElement.currencyRateEur.text = value
+            }
+            rateUsd?.let {
+                val value = "1 USD = ${it.rate} RON"
+                binding.dashboardCurrencyElement.currencyRateUsd.text = value
+            }
+        }
         return binding.root
     }
 

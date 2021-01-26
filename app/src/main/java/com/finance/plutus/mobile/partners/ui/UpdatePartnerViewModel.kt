@@ -36,20 +36,7 @@ class UpdatePartnerViewModel(
     var partner: Partner? = null
         set(value) {
             field = value
-            value?.let {
-                updateRequest.address = it.address
-                updateRequest.bankAccount = it.bankAccount
-                updateRequest.bankId = it.bank?.id
-                updateRequest.commercialRegistry = it.commercialRegistry
-                updateRequest.termInDays = it.termInDays ?: 0
-                updateRequest.email = it.email
-                updateRequest.name = it.name
-                updateRequest.phone = it.phone
-                updateRequest.vat = it.vat
-                updateRequest.businessType = it.businessType
-                updateRequest.countryCode = it.country.code
-                updateRequest.type = it.type
-            }
+            updateRequest.sync(value)
         }
 
     init {

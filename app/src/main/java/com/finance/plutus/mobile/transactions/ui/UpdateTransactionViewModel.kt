@@ -30,16 +30,7 @@ class UpdateTransactionViewModel(
     var transaction: Transaction? = null
         set(value) {
             field = value
-            value?.let {
-                updateRequest.date = value.date
-                updateRequest.deductible = value.deductible
-                updateRequest.details = value.details
-                updateRequest.document = value.document
-                updateRequest.method = value.method
-                updateRequest.partnerId = value.partner.id
-                updateRequest.type = value.type
-                updateRequest.value = value.value
-            }
+            updateRequest.sync(value)
         }
 
     init {

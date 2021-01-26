@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.finance.plutus.mobile.R
 import com.finance.plutus.mobile.app.util.Buttons
 import com.finance.plutus.mobile.app.util.SwipeHelper
-import com.finance.plutus.mobile.app.util.showDeleteConfirmationDialog
+import com.finance.plutus.mobile.app.util.showConfirmationDialog
 import com.finance.plutus.mobile.databinding.FragmentInvoicesBinding
 import com.finance.plutus.mobile.invoices.data.model.Invoice
 import org.koin.android.ext.android.inject
@@ -34,6 +34,10 @@ class InvoicesFragment : Fragment() {
 
         override fun edit(invoice: Invoice) {
             editInvoice(invoice)
+        }
+
+        override fun cashing(invoice: Invoice) {
+            cashingInvoice(invoice)
         }
     })
 
@@ -95,21 +99,40 @@ class InvoicesFragment : Fragment() {
     private fun setupSwipeActions() {
         val itemTouchHelper = ItemTouchHelper(object : SwipeHelper(binding.invoicesRecyclerView) {
             override fun instantiateUnderlayButton(position: Int): List<UnderlayButton> {
-                val deleteButton = Buttons.deleteButton(requireContext()) {
-                    adapter.onDelete(position)
+                val buttons = mutableListOf<UnderlayButton>()
+                if (adapter.isDraft(position)) {
+                    buttons.add(Buttons.deleteButton(requireContext()) {
+                        adapter.onDelete(position)
+                    })
+                    buttons.add(Buttons.editButton(requireContext()) {
+                        adapter.onEdit(position)
+                    })
+                    buttons.add(Buttons.cashingButton(requireContext()) {
+                        adapter.onCashing(position)
+                    })
                 }
-                return listOf(deleteButton)
+                return buttons
             }
         })
         itemTouchHelper.attachToRecyclerView(binding.invoicesRecyclerView)
     }
 
     private fun editInvoice(invoice: Invoice) {
-
+        val intent = Intent(requireContext(), UpdateInvoiceActivity::class.java)
+        intent.putExtra(UpdateInvoiceActivity.INVOICE, invoice)
+        startActivity(intent)
     }
 
     private fun deleteInvoice(invoice: Invoice) {
-        showDeleteConfirmationDialog(requireContext()) { viewModel.delete(invoice) }
+        showConfirmationDialog(requireContext(), R.string.delete_confirmation) {
+            viewModel.delete(
+                invoice
+            )
+        }
+    }
+
+    private fun cashingInvoice(invoice: Invoice) {
+
     }
 
 }

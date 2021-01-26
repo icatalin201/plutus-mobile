@@ -20,6 +20,7 @@ data class Transaction(
     val value: Double,
     val status: TransactionStatus,
     val deductible: Boolean,
+    val currency: TransactionCurrency?
 ) : Parcelable {
 
     constructor(parcel: Parcel) : this(
@@ -32,7 +33,8 @@ data class Transaction(
         TransactionMethod.valueOf(parcel.readString()!!),
         parcel.readDouble(),
         TransactionStatus.valueOf(parcel.readString()!!),
-        parcel.readByte() != 0.toByte()
+        parcel.readByte() != 0.toByte(),
+        parcel.readParcelable(TransactionCurrency::class.java.classLoader)
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
@@ -46,6 +48,7 @@ data class Transaction(
         parcel.writeDouble(value)
         parcel.writeString(status.name)
         parcel.writeByte(if (deductible) 1 else 0)
+        parcel.writeParcelable(currency, flags)
     }
 
     override fun describeContents(): Int {

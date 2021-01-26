@@ -30,6 +30,12 @@ class InvoiceApiRepository(
             .subscribeOn(Schedulers.io())
     }
 
+    override fun update(id: UUID, request: InvoiceUpdateRequest): Completable {
+        return plutusService.updateInvoice(id, PlutusRequest(request))
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
+    }
+
     override fun findById(id: UUID): Single<Invoice> {
         return plutusService.findInvoiceById(id)
             .observeOn(AndroidSchedulers.mainThread())

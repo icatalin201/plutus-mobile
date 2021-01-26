@@ -3,6 +3,7 @@ package com.finance.plutus.mobile.app.network.payload
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import com.finance.plutus.mobile.BR
+import com.finance.plutus.mobile.items.data.model.Item
 import com.finance.plutus.mobile.items.data.model.ItemType
 
 /**
@@ -59,4 +60,16 @@ class ItemUpdateRequest : BaseObservable() {
             field = value
             notifyPropertyChanged(BR.description)
         }
+
+    fun sync(item: Item?) {
+        item?.let {
+            name = item.name
+            code = item.code
+            description = item.description
+            type = item.type
+            unitPrice = item.unitPrice
+            uom = item.uom
+            vat = item.vat
+        }
+    }
 }

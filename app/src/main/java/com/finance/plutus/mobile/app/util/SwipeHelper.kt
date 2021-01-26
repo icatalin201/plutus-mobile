@@ -219,4 +219,16 @@ object Buttons {
                 }
             })
     }
+
+    fun cashingButton(context: Context, callback: Runnable): SwipeHelper.UnderlayButton {
+        return SwipeHelper.UnderlayButton(
+            context,
+            R.drawable.ic_baseline_monetization_on_24,
+            android.R.color.holo_blue_light,
+            object : SwipeHelper.UnderlayButtonClickListener {
+                override fun onClick() {
+                    callback.run()
+                }
+            })
+    }
 }

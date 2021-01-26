@@ -1,9 +1,6 @@
 package com.finance.plutus.mobile.app.network
 
-import com.finance.plutus.mobile.app.data.model.Bank
-import com.finance.plutus.mobile.app.data.model.Business
-import com.finance.plutus.mobile.app.data.model.Country
-import com.finance.plutus.mobile.app.data.model.Serial
+import com.finance.plutus.mobile.app.data.model.*
 import com.finance.plutus.mobile.app.network.payload.*
 import com.finance.plutus.mobile.invoices.data.model.Invoice
 import com.finance.plutus.mobile.items.data.model.Item
@@ -101,6 +98,13 @@ interface PlutusService {
     @Headers("Content-Type: application/vnd.plutus.finance+json")
     fun createInvoice(@Body request: PlutusRequest<InvoiceUpdateRequest>): Single<EntityCreatedResponse>
 
+    @PUT("invoices/{id}")
+    @Headers("Content-Type: application/vnd.plutus.finance+json")
+    fun updateInvoice(
+        @Path("id") id: UUID,
+        @Body request: PlutusRequest<InvoiceUpdateRequest>
+    ): Completable
+
     @DELETE("invoices/{id}")
     @Headers("Content-Type: application/vnd.plutus.finance+json")
     fun deleteInvoice(@Path("id") id: UUID): Completable
@@ -157,5 +161,8 @@ interface PlutusService {
     @POST("transactions/file")
     @Headers("Content-Type: application/vnd.plutus.finance+json")
     fun uploadTransactionsFile(@Body request: PlutusRequest<UploadFileRequest>): Completable
+
+    @GET("rates/today")
+    fun fetchTodayRates(): Single<PlutusResponse<List<CurrencyRate>>>
 
 }

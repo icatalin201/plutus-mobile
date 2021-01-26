@@ -7,6 +7,7 @@ import android.text.InputType
 import android.view.inputmethod.EditorInfo
 import android.widget.DatePicker
 import android.widget.EditText
+import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.LifecycleOwner
 import com.finance.plutus.mobile.R
@@ -16,10 +17,14 @@ import java.util.*
 Plutus Finance
 Created by Catalin on 1/24/2021
  **/
-fun LifecycleOwner.showDeleteConfirmationDialog(context: Context, callback: Runnable) {
+fun LifecycleOwner.showConfirmationDialog(
+    context: Context,
+    @StringRes message: Int,
+    callback: Runnable
+) {
     val dialog = AlertDialog.Builder(context)
-        .setTitle(R.string.delete)
-        .setMessage(R.string.delete_confirmation)
+        .setTitle(R.string.app_name)
+        .setMessage(message)
         .setNegativeButton(R.string.cancel) { dialog, _ -> dialog.dismiss() }
         .setPositiveButton(R.string.confirm) { dialog, _ ->
             dialog.dismiss()

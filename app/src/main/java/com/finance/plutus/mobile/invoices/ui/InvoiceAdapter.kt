@@ -10,6 +10,7 @@ import com.finance.plutus.mobile.R
 import com.finance.plutus.mobile.app.util.formatInLocalCurrency
 import com.finance.plutus.mobile.databinding.InvoiceViewBinding
 import com.finance.plutus.mobile.invoices.data.model.Invoice
+import com.finance.plutus.mobile.invoices.data.model.InvoiceStatus
 
 /**
  * Plutus Finance
@@ -50,6 +51,14 @@ class InvoiceAdapter(
 
     fun onDelete(position: Int) {
         getItem(position)?.let { swipeListener.delete(it) }
+    }
+
+    fun onCashing(position: Int) {
+        getItem(position)?.let { swipeListener.cashing(it) }
+    }
+
+    fun isDraft(position: Int): Boolean {
+        return getItem(position)?.status == InvoiceStatus.DRAFT
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InvoiceViewHolder {

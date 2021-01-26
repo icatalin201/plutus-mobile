@@ -3,6 +3,7 @@ package com.finance.plutus.mobile.app.network.payload
 import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import com.finance.plutus.mobile.BR
+import com.finance.plutus.mobile.invoices.data.model.InvoiceLine
 import java.util.*
 
 /**
@@ -52,4 +53,15 @@ class InvoiceLineUpdateRequest : BaseObservable() {
             field = value
             notifyPropertyChanged(BR.details)
         }
+
+    fun sync(invoiceLine: InvoiceLine?) {
+        invoiceLine?.let {
+            itemId = invoiceLine.item.id
+            quantity = invoiceLine.quantity
+            vat = invoiceLine.vat
+            unitPrice = invoiceLine.unitPrice
+            uom = invoiceLine.uom
+            details = invoiceLine.details
+        }
+    }
 }

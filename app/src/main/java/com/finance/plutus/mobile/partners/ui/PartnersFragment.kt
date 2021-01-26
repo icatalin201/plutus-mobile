@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.finance.plutus.mobile.R
 import com.finance.plutus.mobile.app.util.Buttons
 import com.finance.plutus.mobile.app.util.SwipeHelper
-import com.finance.plutus.mobile.app.util.showDeleteConfirmationDialog
+import com.finance.plutus.mobile.app.util.showConfirmationDialog
 import com.finance.plutus.mobile.databinding.FragmentPartnersBinding
 import com.finance.plutus.mobile.partners.data.model.Partner
 import org.koin.android.ext.android.inject
@@ -128,7 +128,11 @@ class PartnersFragment : Fragment() {
     }
 
     private fun deletePartner(partner: Partner) {
-        showDeleteConfirmationDialog(requireContext()) { viewModel.delete(partner) }
+        showConfirmationDialog(requireContext(), R.string.delete_confirmation) {
+            viewModel.delete(
+                partner
+            )
+        }
     }
 
 }

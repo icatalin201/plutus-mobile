@@ -15,6 +15,7 @@ Created by Catalin on 1/23/2021
  **/
 interface InvoiceRepository {
     fun create(request: InvoiceUpdateRequest): Single<EntityCreatedResponse>
+    fun update(id: UUID, request: InvoiceUpdateRequest): Completable
     fun findById(id: UUID): Single<Invoice>
     fun findAll(): Flowable<PagingData<Invoice>>
     fun delete(id: UUID): Completable

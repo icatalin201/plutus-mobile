@@ -59,6 +59,7 @@ object InjectionModule {
         single<SerialRepository> { SerialApiRepository(get()) }
         single<InvoiceRepository> { InvoiceApiRepository(get()) }
         single<TransactionRepository> { TransactionApiRepository(get()) }
+        single<CurrencyRateRepository> { CurrencyRateApiRepository(get()) }
 
         viewModel { LoginViewModel(get()) }
         viewModel { ServicesViewModel(get()) }
@@ -70,7 +71,7 @@ object InjectionModule {
         viewModel { UpdateItemViewModel(get()) }
         viewModel { InvoicesViewModel(get()) }
         viewModel { UpdateInvoiceViewModel(get(), get(), get(), get()) }
-        viewModel { DashboardViewModel(get()) }
+        viewModel { DashboardViewModel(get(), get()) }
     }
 
 }

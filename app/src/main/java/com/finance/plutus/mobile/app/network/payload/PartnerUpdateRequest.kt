@@ -4,6 +4,7 @@ import androidx.databinding.BaseObservable
 import androidx.databinding.Bindable
 import com.finance.plutus.mobile.BR
 import com.finance.plutus.mobile.app.data.model.BusinessType
+import com.finance.plutus.mobile.partners.data.model.Partner
 import com.finance.plutus.mobile.partners.data.model.PartnerType
 import java.util.*
 
@@ -96,5 +97,22 @@ class PartnerUpdateRequest : BaseObservable() {
             field = value
             notifyPropertyChanged(BR.date)
         }
+
+    fun sync(partner: Partner?) {
+        partner?.let {
+            address = it.address
+            bankAccount = it.bankAccount
+            bankId = it.bank?.id
+            commercialRegistry = it.commercialRegistry
+            termInDays = it.termInDays ?: 0
+            email = it.email
+            name = it.name
+            phone = it.phone
+            vat = it.vat
+            businessType = it.businessType
+            countryCode = it.country.code
+            type = it.type
+        }
+    }
 
 }
