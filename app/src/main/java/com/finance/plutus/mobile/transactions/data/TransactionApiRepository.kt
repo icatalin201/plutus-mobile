@@ -4,8 +4,12 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.rxjava2.flowable
+import com.finance.plutus.mobile.app.data.model.TransactionStat
 import com.finance.plutus.mobile.app.network.PlutusService
-import com.finance.plutus.mobile.app.network.payload.*
+import com.finance.plutus.mobile.app.network.payload.EntityCreatedResponse
+import com.finance.plutus.mobile.app.network.payload.PlutusRequest
+import com.finance.plutus.mobile.app.network.payload.TransactionUpdateRequest
+import com.finance.plutus.mobile.app.network.payload.UploadFileRequest
 import com.finance.plutus.mobile.transactions.data.model.Transaction
 import com.finance.plutus.mobile.transactions.data.model.TransactionFilter
 import io.reactivex.Completable
@@ -58,5 +62,17 @@ class TransactionApiRepository(
             config = PagingConfig(pageSize = 30),
             pagingSourceFactory = { TransactionDataSource(plutusService, filter) }
         ).flowable
+    }
+
+    override fun findStats(filter: TransactionFilter): Single<TransactionStat> {
+        return plutusService.findStats(
+            filter.partnerId,
+            filter.type,
+            filter.deductible,
+            filter.startDate,
+            filter.endDate
+        ).map { response -> response.data }
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeOn(Schedulers.io())
     }
 }

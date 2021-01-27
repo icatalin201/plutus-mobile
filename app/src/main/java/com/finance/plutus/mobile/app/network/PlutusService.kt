@@ -150,9 +150,20 @@ interface PlutusService {
         @Query("size") size: Int,
         @Query("partnerId") partnerId: UUID?,
         @Query("type") type: TransactionType?,
+        @Query("deductible") deductible: Boolean?,
         @Query("startDate") startDate: LocalDate?,
         @Query("endDate") endDate: LocalDate?
     ): Single<PlutusResponse<List<Transaction>>>
+
+    @GET("transactions/stats")
+    @Headers("Content-Type: application/vnd.plutus.finance+json")
+    fun findStats(
+        @Query("partnerId") partnerId: UUID?,
+        @Query("type") type: TransactionType?,
+        @Query("deductible") deductible: Boolean?,
+        @Query("startDate") startDate: LocalDate?,
+        @Query("endDate") endDate: LocalDate?
+    ): Single<PlutusResponse<TransactionStat>>
 
     @POST("transactions/cashing")
     @Headers("Content-Type: application/vnd.plutus.finance+json")

@@ -1,6 +1,7 @@
 package com.finance.plutus.mobile.transactions.data
 
 import androidx.paging.PagingData
+import com.finance.plutus.mobile.app.data.model.TransactionStat
 import com.finance.plutus.mobile.app.network.payload.EntityCreatedResponse
 import com.finance.plutus.mobile.app.network.payload.TransactionUpdateRequest
 import com.finance.plutus.mobile.app.network.payload.UploadFileRequest
@@ -22,4 +23,5 @@ interface TransactionRepository {
     fun collect(ids: List<UUID>): Completable
     fun uploadFile(request: UploadFileRequest): Completable
     fun findAllFiltered(filter: TransactionFilter): Flowable<PagingData<Transaction>>
+    fun findStats(filter: TransactionFilter): Single<TransactionStat>
 }

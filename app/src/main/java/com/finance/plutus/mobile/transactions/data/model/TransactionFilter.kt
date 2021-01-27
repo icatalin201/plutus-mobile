@@ -12,5 +12,6 @@ data class TransactionFilter(
     var partnerId: UUID? = null,
     var type: TransactionType? = null,
     var startDate: LocalDate? = null,
-    var endDate: LocalDate? = null
+    var endDate: LocalDate? = null,
+    var deductible: Boolean? = null
 )

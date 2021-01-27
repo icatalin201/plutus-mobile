@@ -71,7 +71,7 @@ object InjectionModule {
         viewModel { UpdateItemViewModel(get()) }
         viewModel { InvoicesViewModel(get()) }
         viewModel { UpdateInvoiceViewModel(get(), get(), get(), get()) }
-        viewModel { DashboardViewModel(get(), get()) }
+        viewModel { DashboardViewModel(get(), get(), get()) }
     }
 
 }

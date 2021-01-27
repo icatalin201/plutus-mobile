@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
 import com.finance.plutus.mobile.R
 import com.finance.plutus.mobile.app.data.model.Currency
 import com.finance.plutus.mobile.app.util.showInputDialog
@@ -20,6 +21,7 @@ class DashboardFragment : Fragment() {
 
     private val viewModel: DashboardViewModel by inject()
     private lateinit var binding: FragmentDashboardBinding
+    private val adapter = DashboardAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -51,6 +53,16 @@ class DashboardFragment : Fragment() {
                 binding.dashboardCurrencyElement.currencyRateUsd.text = value
             }
         }
+        binding.dashboardStatRecycler.layoutManager = GridLayoutManager(requireContext(), 2)
+        binding.dashboardStatRecycler.adapter = adapter
+        viewModel.stats.observe(viewLifecycleOwner) { stat ->
+            adapter.add(stat)
+        }
+        viewModel.findDeductibleExpensesForLastYear()
+        viewModel.findTotalExpense()
+        viewModel.findTotalExpenseForLastYear()
+        viewModel.findTotalIncome()
+        viewModel.findTotalIncomeForLastYear()
         return binding.root
     }
 

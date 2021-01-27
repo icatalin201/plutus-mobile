@@ -8,20 +8,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/main_app_bar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/main_toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:theme="@style/Theme.Plutus.Toolbar" />
-
-        </com.google.android.material.appbar.AppBarLayout>
-
         <fragment
             android:id="@+id/main_container"
             android:name="androidx.navigation.fragment.NavHostFragment"
@@ -29,7 +15,7 @@
             android:layout_height="0dp"
             app:defaultNavHost="true"
             app:layout_constraintBottom_toTopOf="@id/main_bottom_nv"
-            app:layout_constraintTop_toBottomOf="@id/main_app_bar"
+            app:layout_constraintTop_toTopOf="parent"
             app:navGraph="@navigation/navigation_main"
             tools:ignore="FragmentTagUsage" />
 

@@ -27,6 +27,7 @@ class TransactionDataSource(
             size,
             filter.partnerId,
             filter.type,
+            filter.deductible,
             filter.startDate,
             filter.endDate
         ).observeOn(AndroidSchedulers.mainThread())

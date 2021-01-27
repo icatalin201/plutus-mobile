@@ -24,7 +24,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil
             .setContentView(this, R.layout.activity_main)
-        setSupportActionBar(binding.mainToolbar)
         setupNavigation()
     }
 
@@ -50,11 +49,6 @@ class MainActivity : AppCompatActivity() {
         ).build()
         navController = Navigation.findNavController(this, R.id.main_container)
         NavigationUI.setupWithNavController(binding.mainBottomNv, navController)
-        NavigationUI.setupWithNavController(
-            binding.mainToolbar,
-            navController,
-            appBarConfiguration
-        )
     }
 
     private fun openLogoutDialog() {
