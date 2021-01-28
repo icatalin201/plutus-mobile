@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.finance.plutus.mobile.R
+import com.finance.plutus.mobile.app.util.formatInLocalCurrency
 import com.finance.plutus.mobile.databinding.StatViewBinding
 
 /**
@@ -21,7 +22,7 @@ class DashboardAdapter : RecyclerView.Adapter<DashboardAdapter.DashboardViewHold
 
         fun render(stat: DashboardStat) {
             binding.statName.text = stat.name
-            binding.statValue.text = stat.value.toString()
+            binding.statValue.text = stat.value.formatInLocalCurrency()
         }
 
     }

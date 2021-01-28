@@ -58,11 +58,11 @@ class DashboardFragment : Fragment() {
         viewModel.stats.observe(viewLifecycleOwner) { stat ->
             adapter.add(stat)
         }
-        viewModel.findDeductibleExpensesForLastYear()
         viewModel.findTotalExpense()
         viewModel.findTotalExpenseForLastYear()
         viewModel.findTotalIncome()
         viewModel.findTotalIncomeForLastYear()
+        viewModel.findDeductibleExpensesForLastYear()
         return binding.root
     }
 
