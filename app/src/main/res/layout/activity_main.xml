@@ -23,6 +23,8 @@
             android:id="@+id/main_bottom_nv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/colorPrimaryDark"
+            app:itemIconTint="@color/bottom_nav_color"
             app:labelVisibilityMode="unlabeled"
             app:layout_constraintBottom_toBottomOf="parent"
             app:menu="@menu/menu_navigation" />
