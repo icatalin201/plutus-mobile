@@ -19,6 +19,7 @@
             android:id="@+id/item_app_bar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
+            android:background="@color/background"
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.Toolbar
@@ -51,7 +52,7 @@
 
                     <Button
                         android:id="@+id/item_product"
-                        style="@style/ButtonGroupLayoutStyle"
+                        style="@style/ButtonStyle"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -59,7 +60,7 @@
 
                     <Button
                         android:id="@+id/item_service"
-                        style="@style/ButtonGroupLayoutStyle"
+                        style="@style/ButtonStyle"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -80,10 +81,6 @@
                         android:hint="@string/prompt_name"
                         android:imeOptions="actionNext"
                         android:inputType="text"
-                        android:paddingStart="@dimen/padding_16"
-                        android:paddingTop="@dimen/padding_12"
-                        android:paddingEnd="@dimen/padding_16"
-                        android:paddingBottom="@dimen/padding_12"
                         android:text="@={request.name}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -101,10 +98,6 @@
                         android:hint="@string/prompt_unit_price"
                         android:imeOptions="actionNext"
                         android:inputType="textEmailAddress"
-                        android:paddingStart="@dimen/padding_16"
-                        android:paddingTop="@dimen/padding_12"
-                        android:paddingEnd="@dimen/padding_16"
-                        android:paddingBottom="@dimen/padding_12"
                         android:text="@={`` + request.unitPrice}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -122,10 +115,6 @@
                         android:hint="@string/prompt_vat"
                         android:imeOptions="actionNext"
                         android:inputType="text"
-                        android:paddingStart="@dimen/padding_16"
-                        android:paddingTop="@dimen/padding_12"
-                        android:paddingEnd="@dimen/padding_16"
-                        android:paddingBottom="@dimen/padding_12"
                         android:text="@={`` + request.vat}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -143,10 +132,6 @@
                         android:hint="@string/prompt_uom"
                         android:imeOptions="actionNext"
                         android:inputType="text"
-                        android:paddingStart="@dimen/padding_16"
-                        android:paddingTop="@dimen/padding_12"
-                        android:paddingEnd="@dimen/padding_16"
-                        android:paddingBottom="@dimen/padding_12"
                         android:text="@={request.uom}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -164,10 +149,6 @@
                         android:hint="@string/prompt_code"
                         android:imeOptions="actionNext"
                         android:inputType="text"
-                        android:paddingStart="@dimen/padding_16"
-                        android:paddingTop="@dimen/padding_12"
-                        android:paddingEnd="@dimen/padding_16"
-                        android:paddingBottom="@dimen/padding_12"
                         android:text="@={request.code}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -183,12 +164,8 @@
                         android:layout_height="wrap_content"
                         android:autofillHints="@string/prompt_description"
                         android:hint="@string/prompt_description"
-                        android:imeOptions="actionNext"
+                        android:imeOptions="actionDone"
                         android:inputType="text"
-                        android:paddingStart="@dimen/padding_16"
-                        android:paddingTop="@dimen/padding_12"
-                        android:paddingEnd="@dimen/padding_16"
-                        android:paddingBottom="@dimen/padding_12"
                         android:text="@={request.description}" />
 
                 </com.google.android.material.textfield.TextInputLayout>

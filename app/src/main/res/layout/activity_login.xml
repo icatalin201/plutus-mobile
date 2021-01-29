@@ -35,57 +35,55 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/login_label_tv" />
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/login_username_et"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/login_username_layout"
+            style="@style/TextInputLayoutStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_16"
-            android:autofillHints="@string/prompt_email"
-            android:background="@color/colorPrimary"
-            android:drawableEnd="@drawable/ic_baseline_person_24"
-            android:drawablePadding="@dimen/padding_16"
-            android:hint="@string/prompt_email"
-            android:imeOptions="actionNext"
-            android:inputType="textEmailAddress"
-            android:paddingStart="@dimen/padding_16"
-            android:paddingTop="@dimen/padding_12"
-            android:paddingEnd="@dimen/padding_16"
-            android:paddingBottom="@dimen/padding_12"
-            android:textColor="@color/colorPrimaryText"
-            android:textColorHint="@color/colorSecondaryText"
-            app:layout_constraintTop_toBottomOf="@id/login_loading" />
+            app:layout_constraintTop_toBottomOf="@id/login_loading"
+            app:startIconDrawable="@drawable/ic_baseline_person_24">
 
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/login_password_et"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/login_username_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="@string/prompt_email"
+                android:hint="@string/prompt_email"
+                android:imeOptions="actionNext"
+                android:inputType="textEmailAddress" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/login_password_layout"
+            style="@style/TextInputLayoutStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_16"
-            android:autofillHints="@string/prompt_password"
-            android:background="@color/colorPrimary"
-            android:drawableEnd="@drawable/ic_baseline_lock_24"
-            android:drawablePadding="@dimen/padding_16"
-            android:hint="@string/prompt_password"
-            android:imeActionLabel="@string/action_sign_in_short"
-            android:imeOptions="actionDone"
-            android:inputType="textPassword"
-            android:paddingStart="@dimen/padding_16"
-            android:paddingTop="@dimen/padding_12"
-            android:paddingEnd="@dimen/padding_16"
-            android:paddingBottom="@dimen/padding_12"
-            android:textColor="@color/colorPrimaryText"
-            android:textColorHint="@color/colorSecondaryText"
-            app:layout_constraintTop_toBottomOf="@id/login_username_et" />
+            app:layout_constraintTop_toBottomOf="@id/login_username_layout"
+            app:startIconDrawable="@drawable/ic_baseline_lock_24">
 
-        <androidx.appcompat.widget.AppCompatButton
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/login_password_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autofillHints="@string/prompt_password"
+                android:hint="@string/prompt_password"
+                android:imeOptions="actionDone"
+                android:inputType="textPassword" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/login_btn"
-            style="@style/Widget.AppCompat.Button.Borderless"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/action_sign_in"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/login_password_et"
+            app:layout_constraintTop_toBottomOf="@+id/login_password_layout"
             app:layout_constraintVertical_bias="0.2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

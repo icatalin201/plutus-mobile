@@ -1,8 +1,8 @@
 package com.finance.plutus.mobile.login.data
 
 import com.finance.plutus.mobile.BuildConfig
-import com.finance.plutus.mobile.app.network.payload.AuthorizationResponse
 import com.finance.plutus.mobile.app.network.LoginService
+import com.finance.plutus.mobile.app.network.payload.AuthorizationResponse
 import com.finance.plutus.mobile.app.util.SharedPreferencesUtil
 import io.reactivex.Completable
 import io.reactivex.Single
@@ -68,5 +68,15 @@ class TokenRepositoryImpl(
     override fun getRefreshToken(): String {
         return sharedPreferencesUtil
             .get(REFRESH_TOKEN_VALUE_KEY) ?: "token"
+    }
+
+    override fun isValid(): Boolean {
+        val expirationDateInSeconds = sharedPreferencesUtil
+            .get(TOKEN_VALIDITY_KEY, 0L)
+        val expirationDate = LocalDateTime.ofEpochSecond(
+            expirationDateInSeconds,
+            0, ZoneOffset.UTC
+        )
+        return LocalDateTime.now(ZoneOffset.UTC).isBefore(expirationDate)
     }
 }

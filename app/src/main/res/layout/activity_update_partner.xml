@@ -18,6 +18,7 @@
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/partner_app_bar"
             android:layout_width="match_parent"
+            android:background="@color/background"
             android:layout_height="?attr/actionBarSize"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -51,7 +52,7 @@
 
                     <Button
                         android:id="@+id/partner_customer"
-                        style="@style/ButtonGroupLayoutStyle"
+                        style="@style/ButtonStyle"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -59,7 +60,7 @@
 
                     <Button
                         android:id="@+id/partner_vendor"
-                        style="@style/ButtonGroupLayoutStyle"
+                        style="@style/ButtonStyle"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -77,7 +78,7 @@
 
                     <Button
                         android:id="@+id/partner_business_individual"
-                        style="@style/ButtonGroupLayoutStyle"
+                        style="@style/ButtonStyle"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -85,7 +86,7 @@
 
                     <Button
                         android:id="@+id/partner_business_legal"
-                        style="@style/ButtonGroupLayoutStyle"
+                        style="@style/ButtonStyle"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -106,10 +107,6 @@
                         android:hint="@string/prompt_name"
                         android:imeOptions="actionNext"
                         android:inputType="text"
-                        android:paddingStart="@dimen/padding_16"
-                        android:paddingTop="@dimen/padding_12"
-                        android:paddingEnd="@dimen/padding_16"
-                        android:paddingBottom="@dimen/padding_12"
                         android:text="@={request.name}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -127,10 +124,6 @@
                         android:hint="@string/prompt_email"
                         android:imeOptions="actionNext"
                         android:inputType="textEmailAddress"
-                        android:paddingStart="@dimen/padding_16"
-                        android:paddingTop="@dimen/padding_12"
-                        android:paddingEnd="@dimen/padding_16"
-                        android:paddingBottom="@dimen/padding_12"
                         android:text="@={request.email}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -148,10 +141,6 @@
                         android:hint="@string/prompt_phone"
                         android:imeOptions="actionNext"
                         android:inputType="phone"
-                        android:paddingStart="@dimen/padding_16"
-                        android:paddingTop="@dimen/padding_12"
-                        android:paddingEnd="@dimen/padding_16"
-                        android:paddingBottom="@dimen/padding_12"
                         android:text="@={request.phone}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -169,10 +158,6 @@
                         android:hint="@string/prompt_vat"
                         android:imeOptions="actionNext"
                         android:inputType="text"
-                        android:paddingStart="@dimen/padding_16"
-                        android:paddingTop="@dimen/padding_12"
-                        android:paddingEnd="@dimen/padding_16"
-                        android:paddingBottom="@dimen/padding_12"
                         android:text="@={request.vat}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -190,10 +175,6 @@
                         android:hint="@string/prompt_commercial_registry"
                         android:imeOptions="actionNext"
                         android:inputType="text"
-                        android:paddingStart="@dimen/padding_16"
-                        android:paddingTop="@dimen/padding_12"
-                        android:paddingEnd="@dimen/padding_16"
-                        android:paddingBottom="@dimen/padding_12"
                         android:text="@={request.commercialRegistry}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -211,10 +192,6 @@
                         android:hint="@string/prompt_address"
                         android:imeOptions="actionNext"
                         android:inputType="text"
-                        android:paddingStart="@dimen/padding_16"
-                        android:paddingTop="@dimen/padding_12"
-                        android:paddingEnd="@dimen/padding_16"
-                        android:paddingBottom="@dimen/padding_12"
                         android:text="@={request.address}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -232,10 +209,6 @@
                         android:hint="@string/prompt_term_in_days"
                         android:imeOptions="actionNext"
                         android:inputType="number"
-                        android:paddingStart="@dimen/padding_16"
-                        android:paddingTop="@dimen/padding_12"
-                        android:paddingEnd="@dimen/padding_16"
-                        android:paddingBottom="@dimen/padding_12"
                         android:text="@={`` + request.termInDays}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -253,10 +226,6 @@
                         android:hint="@string/prompt_bank_account"
                         android:imeOptions="actionNext"
                         android:inputType="text"
-                        android:paddingStart="@dimen/padding_16"
-                        android:paddingTop="@dimen/padding_12"
-                        android:paddingEnd="@dimen/padding_16"
-                        android:paddingBottom="@dimen/padding_12"
                         android:text="@={request.bankAccount}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -271,11 +240,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:autofillHints="@string/prompt_bank"
-                        android:hint="@string/prompt_bank"
-                        android:paddingStart="@dimen/padding_16"
-                        android:paddingTop="@dimen/padding_12"
-                        android:paddingEnd="@dimen/padding_16"
-                        android:paddingBottom="@dimen/padding_12" />
+                        android:hint="@string/prompt_bank" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -290,11 +255,7 @@
                         android:layout_height="wrap_content"
                         android:autofillHints="@string/prompt_country"
                         android:editable="false"
-                        android:hint="@string/prompt_country"
-                        android:paddingStart="@dimen/padding_16"
-                        android:paddingTop="@dimen/padding_12"
-                        android:paddingEnd="@dimen/padding_16"
-                        android:paddingBottom="@dimen/padding_12" />
+                        android:hint="@string/prompt_country" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 

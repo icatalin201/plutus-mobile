@@ -15,4 +15,5 @@ interface TokenRepository {
     fun saveRefreshToken(refreshToken: String)
     fun getToken(): String
     fun getRefreshToken(): String
+    fun isValid(): Boolean
 }
