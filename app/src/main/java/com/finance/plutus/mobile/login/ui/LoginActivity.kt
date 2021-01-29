@@ -30,6 +30,7 @@ class LoginActivity : AppCompatActivity() {
             }
             if (loginResult.success != null) {
                 startActivity(Intent(this@LoginActivity, MainActivity::class.java))
+                finish()
             }
         })
 
