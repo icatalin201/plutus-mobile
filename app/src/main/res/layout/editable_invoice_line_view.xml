@@ -28,10 +28,7 @@
                 android:layout_height="wrap_content"
                 android:autofillHints="@string/prompt_item"
                 android:hint="@string/prompt_item"
-                android:paddingStart="@dimen/padding_16"
-                android:paddingTop="@dimen/padding_12"
-                android:paddingEnd="@dimen/padding_16"
-                android:paddingBottom="@dimen/padding_12" />
+                android:imeOptions="actionDone" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -51,11 +48,8 @@
                 android:layout_height="wrap_content"
                 android:autofillHints="@string/prompt_quantity"
                 android:hint="@string/prompt_quantity"
+                android:imeOptions="actionDone"
                 android:inputType="number"
-                android:paddingStart="@dimen/padding_16"
-                android:paddingTop="@dimen/padding_12"
-                android:paddingEnd="@dimen/padding_16"
-                android:paddingBottom="@dimen/padding_12"
                 android:text="@={`` + request.quantity}" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -75,11 +69,8 @@
                 android:layout_height="wrap_content"
                 android:autofillHints="@string/prompt_price"
                 android:hint="@string/prompt_price"
+                android:imeOptions="actionDone"
                 android:inputType="number"
-                android:paddingStart="@dimen/padding_16"
-                android:paddingTop="@dimen/padding_12"
-                android:paddingEnd="@dimen/padding_16"
-                android:paddingBottom="@dimen/padding_12"
                 android:text="@={`` + request.unitPrice}" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -99,11 +90,8 @@
                 android:layout_height="wrap_content"
                 android:autofillHints="@string/prompt_vat"
                 android:hint="@string/prompt_vat"
+                android:imeOptions="actionDone"
                 android:inputType="numberDecimal"
-                android:paddingStart="@dimen/padding_16"
-                android:paddingTop="@dimen/padding_12"
-                android:paddingEnd="@dimen/padding_16"
-                android:paddingBottom="@dimen/padding_12"
                 android:text="@={`` + request.vat}" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -124,11 +112,8 @@
                 android:layout_height="wrap_content"
                 android:autofillHints="@string/prompt_uom"
                 android:hint="@string/prompt_uom"
+                android:imeOptions="actionDone"
                 android:inputType="text"
-                android:paddingStart="@dimen/padding_16"
-                android:paddingTop="@dimen/padding_12"
-                android:paddingEnd="@dimen/padding_16"
-                android:paddingBottom="@dimen/padding_12"
                 android:text="@={request.uom}" />
 
         </com.google.android.material.textfield.TextInputLayout>
@@ -148,11 +133,8 @@
                 android:layout_height="wrap_content"
                 android:autofillHints="@string/prompt_details"
                 android:hint="@string/prompt_details"
+                android:imeOptions="actionDone"
                 android:inputType="text"
-                android:paddingStart="@dimen/padding_16"
-                android:paddingTop="@dimen/padding_12"
-                android:paddingEnd="@dimen/padding_16"
-                android:paddingBottom="@dimen/padding_12"
                 android:text="@={request.details}" />
 
         </com.google.android.material.textfield.TextInputLayout>

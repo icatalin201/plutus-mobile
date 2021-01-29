@@ -19,6 +19,7 @@
             android:id="@+id/invoice_app_bar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
+            android:background="@color/background"
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.Toolbar
@@ -49,25 +50,25 @@
                     app:selectionRequired="true"
                     app:singleSelection="true">
 
-                    <Button
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/invoice_ron"
-                        style="@style/ButtonGroupLayoutStyle"
+                        style="@style/ButtonStyle"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="@string/ron_label" />
 
-                    <Button
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/invoice_eur"
-                        style="@style/ButtonGroupLayoutStyle"
+                        style="@style/ButtonStyle"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:text="@string/eur_label" />
 
-                    <Button
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/invoice_usd"
-                        style="@style/ButtonGroupLayoutStyle"
+                        style="@style/ButtonStyle"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -87,10 +88,7 @@
                         android:autofillHints="@string/prompt_client"
                         android:editable="false"
                         android:hint="@string/prompt_client"
-                        android:paddingStart="@dimen/padding_16"
-                        android:paddingTop="@dimen/padding_12"
-                        android:paddingEnd="@dimen/padding_16"
-                        android:paddingBottom="@dimen/padding_12" />
+                        android:imeOptions="actionDone" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -104,12 +102,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:autofillHints="@string/prompt_date"
-                        android:editable="false"
                         android:hint="@string/prompt_date"
-                        android:paddingStart="@dimen/padding_16"
-                        android:paddingTop="@dimen/padding_12"
-                        android:paddingEnd="@dimen/padding_16"
-                        android:paddingBottom="@dimen/padding_12"
+                        android:imeOptions="actionDone"
                         android:text="@={request.date}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -125,10 +119,7 @@
                         android:layout_height="wrap_content"
                         android:autofillHints="@string/prompt_due_date"
                         android:hint="@string/prompt_due_date"
-                        android:paddingStart="@dimen/padding_16"
-                        android:paddingTop="@dimen/padding_12"
-                        android:paddingEnd="@dimen/padding_16"
-                        android:paddingBottom="@dimen/padding_12"
+                        android:imeOptions="actionDone"
                         android:text="@={request.dueDate}" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -140,7 +131,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/margin_8"
                     android:drawableEnd="@drawable/ic_baseline_add_24"
-                    android:drawableTint="@color/colorPrimaryDark"
                     android:text="@string/invoice_lines_title"
                     android:textAlignment="textStart" />
 

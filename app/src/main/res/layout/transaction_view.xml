@@ -4,7 +4,8 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/colorPrimary">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -16,6 +17,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/margin_8"
+                android:textColor="@color/colorPrimaryText"
                 android:textSize="@dimen/text_size_18"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@id/transaction_value_tv"
@@ -27,6 +29,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/margin_8"
+                android:textColor="@color/colorSecondaryText"
                 app:layout_constraintEnd_toStartOf="@id/transaction_value_tv"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/transaction_name_tv" />

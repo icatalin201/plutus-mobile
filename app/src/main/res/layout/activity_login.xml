@@ -41,7 +41,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_16"
             android:autofillHints="@string/prompt_email"
-            android:background="@color/smoke_transparent"
+            android:background="@color/colorPrimary"
             android:drawableEnd="@drawable/ic_baseline_person_24"
             android:drawablePadding="@dimen/padding_16"
             android:hint="@string/prompt_email"
@@ -51,8 +51,8 @@
             android:paddingTop="@dimen/padding_12"
             android:paddingEnd="@dimen/padding_16"
             android:paddingBottom="@dimen/padding_12"
-            android:textColor="@color/white"
-            android:textColorHint="@color/smoke"
+            android:textColor="@color/colorPrimaryText"
+            android:textColorHint="@color/colorSecondaryText"
             app:layout_constraintTop_toBottomOf="@id/login_loading" />
 
         <androidx.appcompat.widget.AppCompatEditText
@@ -61,7 +61,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_16"
             android:autofillHints="@string/prompt_password"
-            android:background="@color/smoke_transparent"
+            android:background="@color/colorPrimary"
             android:drawableEnd="@drawable/ic_baseline_lock_24"
             android:drawablePadding="@dimen/padding_16"
             android:hint="@string/prompt_password"
@@ -72,8 +72,8 @@
             android:paddingTop="@dimen/padding_12"
             android:paddingEnd="@dimen/padding_16"
             android:paddingBottom="@dimen/padding_12"
-            android:textColor="@color/white"
-            android:textColorHint="@color/smoke"
+            android:textColor="@color/colorPrimaryText"
+            android:textColorHint="@color/colorSecondaryText"
             app:layout_constraintTop_toBottomOf="@id/login_username_et" />
 
         <androidx.appcompat.widget.AppCompatButton

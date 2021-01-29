@@ -6,6 +6,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/margin_8"
+        app:cardBackgroundColor="@color/colorPrimary"
         app:cardCornerRadius="8dp">
 
         <LinearLayout
@@ -19,6 +20,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
+                android:textColor="@color/colorPrimaryText"
                 android:textSize="@dimen/text_size_18"
                 android:textStyle="bold" />
 
@@ -26,7 +28,8 @@
                 android:id="@+id/stat_value"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textColor="@color/colorSecondaryText" />
 
         </LinearLayout>
 

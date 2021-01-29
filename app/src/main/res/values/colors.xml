@@ -13,4 +13,17 @@
 
     <color name="colorPrimaryText">#f1f1f1</color>
     <color name="colorSecondaryText">#919193</color>
+
+    <color name="primary">#0a82f3</color>
+    <color name="primaryVariant">#0a82f3</color>
+    <color name="secondary">#0a82f3</color>
+    <color name="secondaryVariant">#0a82f3</color>
+    <color name="background">#000000</color>
+    <color name="surface">#161618</color>
+    <color name="error">#C51162</color>
+    <color name="onPrimary">#f1f1f1</color>
+    <color name="onSecondary">#f1f1f1</color>
+    <color name="onBackground">#f1f1f1</color>
+    <color name="onSurface">#f1f1f1</color>
+    <color name="onError">#f1f1f1</color>
 </resources>
