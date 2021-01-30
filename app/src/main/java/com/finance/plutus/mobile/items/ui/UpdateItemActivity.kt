@@ -63,10 +63,17 @@ class UpdateItemActivity : AppCompatActivity() {
             R.id.item_product -> ItemType.PRODUCT
             else -> ItemType.SERVICE
         }
+        if (validate()) {
+            viewModel.save()
+        }
+    }
+
+    private fun validate(): Boolean {
         if (binding.itemName.text.toString().isBlank()) {
             binding.itemName.error = getString(R.string.invalid_field)
+            return false
         }
-        viewModel.save()
+        return true
     }
 
     private fun handleResult(result: ItemResult) {

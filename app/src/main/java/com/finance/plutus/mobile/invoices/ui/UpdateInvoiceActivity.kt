@@ -88,10 +88,17 @@ class UpdateInvoiceActivity : AppCompatActivity() {
             R.id.invoice_usd -> Currency.USD
             else -> Currency.RON
         }
+        if (validate()) {
+            viewModel.save()
+        }
+    }
+
+    private fun validate(): Boolean {
         if (binding.invoicePartner.text.toString().isBlank()) {
             binding.invoicePartner.error = getString(R.string.invalid_field)
+            return false
         }
-        viewModel.save()
+        return true
     }
 
     private fun setPartners(partners: List<Partner>) {

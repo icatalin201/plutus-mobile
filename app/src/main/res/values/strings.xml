@@ -40,7 +40,7 @@
     <string name="prompt_value">Valoare</string>
     <string name="cash_label">Cash</string>
     <string name="bank_label">Banca</string>
-    <string name="deductible_label">Deductibil</string>
+    <string name="deductible_label">Deductibila</string>
     <string name="prompt_date">Data</string>
     <string name="invalid_field">Camp obligatoriu</string>
     <string name="create_partner_title">Creare partener</string>
@@ -77,6 +77,6 @@
     <string name="download_transactions">Descarca registru tranzactii</string>
     <string name="download_invoices">Descarca arhiva facturi</string>
     <string name="file_downloaded">Fisierul a fost descarcat</string>
-    <string name="downloading">Se descarca...</string>
+    <string name="downloading">Se descarca…</string>
     <string name="downloaded">Descarcarea s-a incheiat</string>
 </resources>

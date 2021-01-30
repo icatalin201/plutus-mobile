@@ -62,13 +62,22 @@ class UpdatePartnerActivity : AppCompatActivity() {
                 R.id.partner_business_individual -> BusinessType.INDIVIDUAL
                 else -> BusinessType.LEGAL
             }
+        if (validate()) {
+            viewModel.save()
+        }
+    }
+
+    private fun validate(): Boolean {
+        var valid = true
         if (binding.partnerName.text.toString().isBlank()) {
             binding.partnerName.error = getString(R.string.invalid_field)
+            valid = false
         }
         if (binding.partnerCountry.text.toString().isBlank()) {
             binding.partnerCountry.error = getString(R.string.invalid_field)
+            valid = false
         }
-        viewModel.save()
+        return valid
     }
 
     private fun setPartner(partner: Partner?) {

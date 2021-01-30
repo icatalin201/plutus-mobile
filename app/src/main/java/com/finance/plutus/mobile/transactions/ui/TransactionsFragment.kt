@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.paging.PagingData
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,6 +17,7 @@ import com.finance.plutus.mobile.app.util.SwipeHelper
 import com.finance.plutus.mobile.app.util.showConfirmationDialog
 import com.finance.plutus.mobile.databinding.FragmentTransactionsBinding
 import com.finance.plutus.mobile.transactions.data.model.Transaction
+import com.finance.plutus.mobile.transactions.data.model.TransactionMonth
 import org.koin.android.ext.android.inject
 
 /**
@@ -53,27 +53,12 @@ class TransactionsFragment : Fragment() {
             }
         }, requireContext())
         setupRecycler()
-        binding.transactionsSwipeLayout.setOnRefreshListener {
-            triggerSwipeRefresh()
-        }
         binding.transactionsAddBtn.setOnClickListener {
             openAddTransactionActivity()
         }
         viewModel.transactions.observe(viewLifecycleOwner) { setTransactions(it) }
+        viewModel.months.observe(viewLifecycleOwner) { setMonths(it) }
         return binding.root
-    }
-
-    override fun onResume() {
-        binding.transactionsSwipeLayout.post {
-            triggerSwipeRefresh()
-        }
-        super.onResume()
-    }
-
-    private fun triggerSwipeRefresh() {
-        binding.transactionsSwipeLayout.isRefreshing = true
-        adapter.submitData(lifecycle, PagingData.empty())
-        viewModel.fetchTransactions()
     }
 
     private fun openAddTransactionActivity() {
@@ -81,19 +66,32 @@ class TransactionsFragment : Fragment() {
         startActivity(intent)
     }
 
+    private fun setMonths(months: List<TransactionMonth>) {
+        binding.transactionsMonthsRecyclerView.layoutManager =
+            LinearLayoutManager(
+                requireContext(),
+                LinearLayoutManager.HORIZONTAL,
+                true
+            )
+        val adapter = MonthAdapter(
+            months,
+            requireContext(),
+            object : MonthClickListener {
+                override fun onClick(month: TransactionMonth) {
+                    viewModel.fetchTransactions(month)
+                }
+            }
+        )
+        binding.transactionsMonthsRecyclerView.adapter = adapter
+        adapter.select(months[0])
+    }
+
     private fun setTransactions(transactions: PagingData<Transaction>) {
-        binding.transactionsSwipeLayout.isRefreshing = false
         adapter.submitData(lifecycle, transactions)
     }
 
     private fun setupRecycler() {
         binding.transactionsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        binding.transactionsRecyclerView.addItemDecoration(
-            DividerItemDecoration(
-                requireContext(),
-                DividerItemDecoration.VERTICAL
-            )
-        )
         binding.transactionsRecyclerView.adapter = adapter
         setupSwipeActions()
         binding.transactionsRecyclerView.addOnScrollListener(object :

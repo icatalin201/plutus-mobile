@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/month_card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_8"
+        android:layout_marginBottom="@dimen/margin_8"
+        app:cardCornerRadius="16dp">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/month_title_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="@dimen/padding_16"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="@dimen/text_size_14" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+</layout>

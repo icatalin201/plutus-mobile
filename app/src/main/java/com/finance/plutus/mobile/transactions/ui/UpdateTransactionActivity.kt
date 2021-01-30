@@ -72,16 +72,26 @@ class UpdateTransactionActivity : AppCompatActivity() {
             else -> Currency.RON
         }
         viewModel.updateRequest.deductible = binding.transactionDeductible.isChecked
+        if (validate()) {
+            viewModel.save()
+        }
+    }
+
+    private fun validate(): Boolean {
+        var valid = true
         if (binding.transactionDate.text.toString().isBlank()) {
             binding.transactionDate.error = getString(R.string.invalid_field)
+            valid = false
         }
         if (binding.transactionDocument.text.toString().isBlank()) {
             binding.transactionDocument.error = getString(R.string.invalid_field)
+            valid = false
         }
         if (binding.transactionDetails.text.toString().isBlank()) {
             binding.transactionDetails.error = getString(R.string.invalid_field)
+            valid = false
         }
-        viewModel.save()
+        return valid
     }
 
     private fun setTransaction(transaction: Transaction?) {

@@ -18,8 +18,8 @@
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/partner_app_bar"
             android:layout_width="match_parent"
-            android:background="@color/background"
             android:layout_height="?attr/actionBarSize"
+            android:background="@color/background"
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.appcompat.widget.Toolbar
@@ -72,6 +72,7 @@
                     android:id="@+id/partner_business_type_group"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_32"
                     app:checkedButton="@id/partner_business_individual"
                     app:selectionRequired="true"
                     app:singleSelection="true">
@@ -97,7 +98,8 @@
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/TextInputLayoutStyle"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_32">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/partner_name"
@@ -114,7 +116,8 @@
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/TextInputLayoutStyle"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_32">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/partner_email"
@@ -131,7 +134,8 @@
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/TextInputLayoutStyle"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_32">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/partner_phone"
@@ -148,7 +152,8 @@
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/TextInputLayoutStyle"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_32">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/partner_vat"
@@ -165,7 +170,8 @@
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/TextInputLayoutStyle"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_32">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/partner_commercial_registry"
@@ -182,7 +188,8 @@
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/TextInputLayoutStyle"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_32">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/partner_address"
@@ -199,7 +206,8 @@
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/TextInputLayoutStyle"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_32">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/partner_term_in_days"
@@ -216,7 +224,8 @@
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/TextInputLayoutStyle"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_32">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/partner_bank_account"
@@ -233,7 +242,8 @@
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/TextInputLayoutStyle"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_32">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/partner_bank"
@@ -247,7 +257,8 @@
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/TextInputLayoutStyle"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_32">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/partner_country"
@@ -264,7 +275,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
-                    android:layout_marginTop="@dimen/margin_8"
+                    android:layout_marginTop="@dimen/margin_32"
                     android:text="@string/action_save" />
 
             </LinearLayout>

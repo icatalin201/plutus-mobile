@@ -72,6 +72,7 @@
                     android:id="@+id/transaction_method_group"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_32"
                     app:checkedButton="@id/transaction_bank"
                     app:selectionRequired="true"
                     app:singleSelection="true">
@@ -98,6 +99,7 @@
                     android:id="@+id/transaction_currency_group"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_32"
                     app:checkedButton="@id/transaction_ron"
                     app:selectionRequired="true"
                     app:singleSelection="true">
@@ -131,7 +133,8 @@
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/TextInputLayoutStyle"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_32">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/transaction_partner"
@@ -146,7 +149,8 @@
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/TextInputLayoutStyle"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_32">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/transaction_date"
@@ -162,7 +166,8 @@
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/TextInputLayoutStyle"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_32">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/transaction_document"
@@ -179,7 +184,8 @@
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/TextInputLayoutStyle"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_32">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/transaction_details"
@@ -196,7 +202,8 @@
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/TextInputLayoutStyle"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_32">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/transaction_value"
@@ -214,6 +221,7 @@
                     android:id="@+id/transaction_deductible"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_32"
                     android:checked="@={request.deductible}"
                     android:text="@string/deductible_label"
                     android:textColor="@color/colorPrimaryText" />
@@ -223,7 +231,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
-                    android:layout_marginTop="@dimen/margin_8"
+                    android:layout_marginTop="@dimen/margin_32"
                     android:text="@string/action_save" />
 
             </LinearLayout>

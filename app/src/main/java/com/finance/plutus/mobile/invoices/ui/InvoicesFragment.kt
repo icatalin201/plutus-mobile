@@ -39,26 +39,12 @@ class InvoicesFragment : Fragment() {
             R.layout.fragment_invoices, container, false
         )
         setupRecycler()
-        binding.invoicesSwipeLayout.setOnRefreshListener {
-            triggerSwipeRefresh()
-        }
         binding.invoicesAddBtn.setOnClickListener {
             openAddInvoiceActivity()
         }
         viewModel.invoices.observe(viewLifecycleOwner) { setInvoices(it) }
-        return binding.root
-    }
-
-    override fun onResume() {
-        super.onResume()
-        binding.invoicesSwipeLayout.post {
-            triggerSwipeRefresh()
-        }
-    }
-
-    private fun triggerSwipeRefresh() {
-        binding.invoicesSwipeLayout.isRefreshing = true
         viewModel.fetchInvoices()
+        return binding.root
     }
 
     private fun openAddInvoiceActivity() {
@@ -67,7 +53,6 @@ class InvoicesFragment : Fragment() {
     }
 
     private fun setInvoices(invoices: PagingData<Invoice>) {
-        binding.invoicesSwipeLayout.isRefreshing = false
         adapter.submitData(lifecycle, invoices)
     }
 
