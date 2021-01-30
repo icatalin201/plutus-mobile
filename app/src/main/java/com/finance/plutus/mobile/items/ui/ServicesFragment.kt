@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.paging.PagingData
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.finance.plutus.mobile.R
@@ -27,15 +26,7 @@ class ServicesFragment : Fragment() {
 
     private val viewModel: ServicesViewModel by inject()
     private lateinit var binding: FragmentServicesBinding
-    private val adapter = ItemAdapter(object : ItemSwipeListener {
-        override fun delete(item: Item) {
-            deleteItem(item)
-        }
-
-        override fun edit(item: Item) {
-            editItem(item)
-        }
-    })
+    private lateinit var adapter: ItemAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -47,26 +38,12 @@ class ServicesFragment : Fragment() {
             R.layout.fragment_services, container, false
         )
         setupRecycler()
-        binding.servicesSwipeLayout.setOnRefreshListener {
-            triggerSwipeRefresh()
-        }
         binding.servicesAddBtn.setOnClickListener {
             openAddItemActivity()
         }
         viewModel.items.observe(viewLifecycleOwner) { setServices(it) }
-        return binding.root
-    }
-
-    override fun onResume() {
-        super.onResume()
-        binding.servicesSwipeLayout.post {
-            triggerSwipeRefresh()
-        }
-    }
-
-    private fun triggerSwipeRefresh() {
-        binding.servicesSwipeLayout.isRefreshing = true
         viewModel.fetchItems()
+        return binding.root
     }
 
     private fun openAddItemActivity() {
@@ -75,19 +52,21 @@ class ServicesFragment : Fragment() {
     }
 
     private fun setServices(items: PagingData<Item>) {
-        binding.servicesSwipeLayout.isRefreshing = false
         adapter.submitData(lifecycle, items)
     }
 
     private fun setupRecycler() {
+        adapter = ItemAdapter(object : ItemSwipeListener {
+            override fun delete(item: Item) {
+                deleteItem(item)
+            }
+
+            override fun edit(item: Item) {
+                editItem(item)
+            }
+        }, requireContext())
         binding.servicesRecyclerView.layoutManager =
             LinearLayoutManager(requireContext())
-        binding.servicesRecyclerView.addItemDecoration(
-            DividerItemDecoration(
-                requireContext(),
-                DividerItemDecoration.VERTICAL
-            )
-        )
         binding.servicesRecyclerView.adapter = adapter
         setupSwipeActions()
     }
@@ -101,7 +80,7 @@ class ServicesFragment : Fragment() {
                 val editButton = Buttons.editButton(requireContext()) {
                     adapter.onEdit(position)
                 }
-                return listOf(editButton, deleteButton)
+                return listOf(deleteButton, editButton)
             }
         })
         itemTouchHelper.attachToRecyclerView(binding.servicesRecyclerView)

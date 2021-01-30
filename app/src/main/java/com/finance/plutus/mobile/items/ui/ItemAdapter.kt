@@ -1,5 +1,6 @@
 package com.finance.plutus.mobile.items.ui
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -7,6 +8,10 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.finance.plutus.mobile.R
+import com.finance.plutus.mobile.app.util.AdapterExtensions.ITEM_BOTTOM
+import com.finance.plutus.mobile.app.util.AdapterExtensions.ITEM_MIDDLE
+import com.finance.plutus.mobile.app.util.AdapterExtensions.ITEM_TOP
+import com.finance.plutus.mobile.app.util.AdapterExtensions.setupLayout
 import com.finance.plutus.mobile.databinding.ItemViewBinding
 import com.finance.plutus.mobile.items.data.model.Item
 
@@ -15,7 +20,8 @@ import com.finance.plutus.mobile.items.data.model.Item
  * Created by Catalin on 1/23/2021
  **/
 class ItemAdapter(
-    private val swipeListener: ItemSwipeListener
+    private val swipeListener: ItemSwipeListener,
+    private val context: Context
 ) : PagingDataAdapter<Item, ItemAdapter.ItemViewHolder>(COMPARATOR) {
 
     companion object {
@@ -34,8 +40,9 @@ class ItemAdapter(
         private val binding: ItemViewBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun render(item: Item?) {
+        fun render(item: Item?, itemType: Int) {
             item?.let {
+                setupLayout(itemType, context, binding.itemCard)
                 binding.itemNameTv.text = item.name
             }
         }
@@ -60,7 +67,15 @@ class ItemAdapter(
     }
 
     override fun onBindViewHolder(holder: ItemViewHolder, position: Int) {
-        holder.render(getItem(position))
+        holder.render(getItem(position), getItemViewType(position))
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return when (position) {
+            0 -> ITEM_TOP
+            itemCount - 1 -> ITEM_BOTTOM
+            else -> ITEM_MIDDLE
+        }
     }
 
 }

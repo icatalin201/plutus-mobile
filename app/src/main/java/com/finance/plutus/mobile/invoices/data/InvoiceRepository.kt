@@ -7,6 +7,7 @@ import com.finance.plutus.mobile.invoices.data.model.Invoice
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Single
+import java.io.InputStream
 import java.util.*
 
 /**
@@ -20,5 +21,6 @@ interface InvoiceRepository {
     fun findAll(): Flowable<PagingData<Invoice>>
     fun delete(id: UUID): Completable
     fun collect(ids: List<UUID>): Completable
-    fun download(id: UUID): Single<*>
+    fun download(id: UUID): Single<InputStream>
+    fun downloadArchive(): Single<InputStream>
 }

@@ -10,6 +10,7 @@ import com.finance.plutus.mobile.transactions.data.model.TransactionFilter
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Single
+import java.io.InputStream
 import java.util.*
 
 /**
@@ -24,4 +25,5 @@ interface TransactionRepository {
     fun uploadFile(request: UploadFileRequest): Completable
     fun findAllFiltered(filter: TransactionFilter): Flowable<PagingData<Transaction>>
     fun findStats(filter: TransactionFilter): Single<TransactionStat>
+    fun downloadReport(): Single<InputStream>
 }

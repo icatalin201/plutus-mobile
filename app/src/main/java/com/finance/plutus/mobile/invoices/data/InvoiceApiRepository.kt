@@ -14,6 +14,7 @@ import io.reactivex.Flowable
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import java.io.InputStream
 import java.util.*
 
 /**
@@ -64,9 +65,17 @@ class InvoiceApiRepository(
             .subscribeOn(Schedulers.io())
     }
 
-    override fun download(id: UUID): Single<*> {
+    override fun download(id: UUID): Single<InputStream> {
         return plutusService.downloadInvoice(id)
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeOn(Schedulers.io())
+            .map { response ->
+                response.byteStream()
+            }
+    }
+
+    override fun downloadArchive(): Single<InputStream> {
+        return plutusService.downloadInvoicesArchive()
+            .map { response ->
+                response.byteStream()
+            }
     }
 }

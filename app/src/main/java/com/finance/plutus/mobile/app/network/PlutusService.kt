@@ -9,6 +9,7 @@ import com.finance.plutus.mobile.transactions.data.model.Transaction
 import com.finance.plutus.mobile.transactions.data.model.TransactionType
 import io.reactivex.Completable
 import io.reactivex.Single
+import okhttp3.ResponseBody
 import retrofit2.http.*
 import java.time.LocalDate
 import java.util.*
@@ -126,7 +127,7 @@ interface PlutusService {
 
     @GET("invoices/{id}/pdf")
     @Headers("Content-Type: application/vnd.plutus.finance+json")
-    fun downloadInvoice(@Path("id") id: UUID): Single<*>
+    fun downloadInvoice(@Path("id") id: UUID): Single<ResponseBody>
 
     @POST("transactions")
     @Headers("Content-Type: application/vnd.plutus.finance+json")
@@ -174,6 +175,17 @@ interface PlutusService {
     fun uploadTransactionsFile(@Body request: PlutusRequest<UploadFileRequest>): Completable
 
     @GET("rates/today")
+    @Headers("Content-Type: application/vnd.plutus.finance+json")
     fun fetchTodayRates(): Single<PlutusResponse<List<CurrencyRate>>>
+
+    @GET("reports/transactions")
+    @Streaming
+    @Headers("Content-Type: application/vnd.plutus.finance+json")
+    fun downloadTransactionsReport(): Single<ResponseBody>
+
+    @GET("reports/invoices")
+    @Streaming
+    @Headers("Content-Type: application/vnd.plutus.finance+json")
+    fun downloadInvoicesArchive(): Single<ResponseBody>
 
 }

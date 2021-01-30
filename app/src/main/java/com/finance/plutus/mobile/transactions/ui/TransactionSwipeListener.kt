@@ -9,5 +9,5 @@ Created by Catalin on 1/24/2021
 interface TransactionSwipeListener {
     fun edit(transaction: Transaction)
     fun delete(transaction: Transaction)
-    fun cashing(transaction: Transaction)
+    fun collect(transaction: Transaction)
 }

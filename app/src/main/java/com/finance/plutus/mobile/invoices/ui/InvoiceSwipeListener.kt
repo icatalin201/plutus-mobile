@@ -9,5 +9,5 @@ import com.finance.plutus.mobile.invoices.data.model.Invoice
 interface InvoiceSwipeListener {
     fun delete(invoice: Invoice)
     fun edit(invoice: Invoice)
-    fun cashing(invoice: Invoice)
+    fun collect(invoice: Invoice)
 }

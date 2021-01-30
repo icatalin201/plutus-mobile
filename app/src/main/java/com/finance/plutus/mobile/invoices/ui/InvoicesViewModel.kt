@@ -27,6 +27,15 @@ class InvoicesViewModel(
         compositeDisposable.add(disposable)
     }
 
+    fun collect(invoice: Invoice) {
+        compositeDisposable.add(
+            invoiceRepository.collect(listOf(invoice.id))
+                .subscribe {
+                    fetchInvoices()
+                }
+        )
+    }
+
     fun delete(invoice: Invoice) {
         val disposable = invoiceRepository.delete(invoice.id)
             .subscribe {

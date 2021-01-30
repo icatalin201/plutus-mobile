@@ -74,4 +74,7 @@
     <string name="action_update_serial">Actualizeaza</string>
     <string name="currency_title">Curs valutar</string>
     <string name="update_serial_title">Actualizare numar de serie</string>
+    <string name="download_transactions">Descarca registru tranzactii</string>
+    <string name="download_invoices">Descarca arhiva facturi</string>
+    <string name="file_downloaded">Fisierul a fost descarcat</string>
 </resources>

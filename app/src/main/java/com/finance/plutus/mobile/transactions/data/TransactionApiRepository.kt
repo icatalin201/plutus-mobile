@@ -17,6 +17,7 @@ import io.reactivex.Flowable
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import java.io.InputStream
 import java.util.*
 
 /**
@@ -74,5 +75,13 @@ class TransactionApiRepository(
         ).map { response -> response.data }
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeOn(Schedulers.io())
+    }
+
+    override fun downloadReport(): Single<InputStream> {
+        return plutusService.downloadTransactionsReport()
+            .map { response ->
+                response.byteStream()
+            }
+
     }
 }

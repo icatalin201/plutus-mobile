@@ -1,7 +1,10 @@
 package com.finance.plutus.mobile.dashboard
 
+import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.work.OneTimeWorkRequest
+import androidx.work.WorkManager
 import com.finance.plutus.mobile.app.data.CurrencyRateRepository
 import com.finance.plutus.mobile.app.data.SerialApiRepository.Companion.SERIAL_ID
 import com.finance.plutus.mobile.app.data.SerialRepository
@@ -40,6 +43,22 @@ class DashboardViewModel(
                     { error -> error.printStackTrace() }
                 )
         )
+    }
+
+    fun downloadTransactionsReport(context: Context) {
+        val manager = WorkManager.getInstance(context)
+        val workRequest = OneTimeWorkRequest
+            .Builder(TransactionsReportDownloader::class.java)
+            .build()
+        manager.enqueue(workRequest)
+    }
+
+    fun downloadInvoicesArchive(context: Context) {
+        val manager = WorkManager.getInstance(context)
+        val workRequest = OneTimeWorkRequest
+            .Builder(InvoicesArchiveDownloader::class.java)
+            .build()
+        manager.enqueue(workRequest)
     }
 
     fun findDeductibleExpensesForLastYear() {

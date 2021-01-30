@@ -3,10 +3,10 @@ package com.finance.plutus.mobile.transactions.ui
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PagingData
-import com.finance.plutus.mobile.transactions.data.model.TransactionFilter
+import com.finance.plutus.mobile.app.ui.BaseViewModel
 import com.finance.plutus.mobile.transactions.data.TransactionRepository
 import com.finance.plutus.mobile.transactions.data.model.Transaction
-import com.finance.plutus.mobile.app.ui.BaseViewModel
+import com.finance.plutus.mobile.transactions.data.model.TransactionFilter
 
 /**
 Plutus Finance
@@ -28,6 +28,15 @@ class TransactionsViewModel(
                 { error -> error.printStackTrace() }
             )
         compositeDisposable.add(disposable)
+    }
+
+    fun collect(transaction: Transaction) {
+        compositeDisposable.add(
+            transactionRepository.collect(listOf(transaction.id))
+                .subscribe {
+                    fetchTransactions()
+                }
+        )
     }
 
     fun delete(transaction: Transaction) {

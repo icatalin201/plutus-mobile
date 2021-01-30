@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.paging.PagingData
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -28,15 +27,7 @@ class PartnersFragment : Fragment() {
 
     private val viewModel: PartnersViewModel by inject()
     private lateinit var binding: FragmentPartnersBinding
-    private val adapter = PartnerAdapter(object : PartnerSwipeListener {
-        override fun delete(partner: Partner) {
-            deletePartner(partner)
-        }
-
-        override fun edit(partner: Partner) {
-            editPartner(partner)
-        }
-    })
+    private lateinit var adapter: PartnerAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -48,26 +39,12 @@ class PartnersFragment : Fragment() {
             R.layout.fragment_partners, container, false
         )
         setupRecycler()
-        binding.partnersSwipeLayout.setOnRefreshListener {
-            triggerSwipeRefresh()
-        }
         binding.partnersAddBtn.setOnClickListener {
             openAddPartnerActivity()
         }
         viewModel.partners.observe(viewLifecycleOwner) { setPartners(it) }
-        return binding.root
-    }
-
-    override fun onResume() {
-        super.onResume()
-        binding.partnersSwipeLayout.post {
-            triggerSwipeRefresh()
-        }
-    }
-
-    private fun triggerSwipeRefresh() {
-        binding.partnersSwipeLayout.isRefreshing = true
         viewModel.fetchPartners()
+        return binding.root
     }
 
     private fun openAddPartnerActivity() {
@@ -76,18 +53,20 @@ class PartnersFragment : Fragment() {
     }
 
     private fun setPartners(partners: PagingData<Partner>) {
-        binding.partnersSwipeLayout.isRefreshing = false
         adapter.submitData(lifecycle, partners)
     }
 
     private fun setupRecycler() {
+        adapter = PartnerAdapter(object : PartnerSwipeListener {
+            override fun delete(partner: Partner) {
+                deletePartner(partner)
+            }
+
+            override fun edit(partner: Partner) {
+                editPartner(partner)
+            }
+        }, requireContext())
         binding.partnersRecyclerView.layoutManager = LinearLayoutManager(requireContext())
-        binding.partnersRecyclerView.addItemDecoration(
-            DividerItemDecoration(
-                requireContext(),
-                DividerItemDecoration.VERTICAL
-            )
-        )
         binding.partnersRecyclerView.adapter = adapter
         setupSwipeActions()
         binding.partnersRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
@@ -115,7 +94,7 @@ class PartnersFragment : Fragment() {
                 val editButton = Buttons.editButton(requireContext()) {
                     adapter.onEdit(position)
                 }
-                return listOf(editButton, deleteButton)
+                return listOf(deleteButton, editButton)
             }
         })
         itemTouchHelper.attachToRecyclerView(binding.partnersRecyclerView)

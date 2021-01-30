@@ -1,5 +1,6 @@
 package com.finance.plutus.mobile.invoices.ui
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -7,6 +8,8 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.finance.plutus.mobile.R
+import com.finance.plutus.mobile.app.util.AdapterExtensions
+import com.finance.plutus.mobile.app.util.AdapterExtensions.setupLayout
 import com.finance.plutus.mobile.app.util.formatInLocalCurrency
 import com.finance.plutus.mobile.databinding.InvoiceViewBinding
 import com.finance.plutus.mobile.invoices.data.model.Invoice
@@ -17,7 +20,8 @@ import com.finance.plutus.mobile.invoices.data.model.InvoiceStatus
  * Created by Catalin on 1/24/2021
  **/
 class InvoiceAdapter(
-    private val swipeListener: InvoiceSwipeListener
+    private val swipeListener: InvoiceSwipeListener,
+    private val context: Context
 ) : PagingDataAdapter<Invoice, InvoiceAdapter.InvoiceViewHolder>(COMPARATOR) {
 
     companion object {
@@ -36,8 +40,9 @@ class InvoiceAdapter(
         private val binding: InvoiceViewBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun render(invoice: Invoice?) {
+        fun render(invoice: Invoice?, viewType: Int) {
             invoice?.let {
+                setupLayout(viewType, context, binding.invoiceCard)
                 binding.invoiceNameTv.text = invoice.name
                 binding.invoiceDateTv.text = invoice.date
                 binding.invoiceValueTv.text = invoice.total.formatInLocalCurrency()
@@ -54,7 +59,7 @@ class InvoiceAdapter(
     }
 
     fun onCashing(position: Int) {
-        getItem(position)?.let { swipeListener.cashing(it) }
+        getItem(position)?.let { swipeListener.collect(it) }
     }
 
     fun isDraft(position: Int): Boolean {
@@ -72,7 +77,15 @@ class InvoiceAdapter(
     }
 
     override fun onBindViewHolder(holder: InvoiceViewHolder, position: Int) {
-        holder.render(getItem(position))
+        holder.render(getItem(position), getItemViewType(position))
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return when (position) {
+            0 -> AdapterExtensions.ITEM_TOP
+            itemCount - 1 -> AdapterExtensions.ITEM_BOTTOM
+            else -> AdapterExtensions.ITEM_MIDDLE
+        }
     }
 
 }

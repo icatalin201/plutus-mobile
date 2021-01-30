@@ -48,8 +48,8 @@ class TransactionsFragment : Fragment() {
                 editTransaction(transaction)
             }
 
-            override fun cashing(transaction: Transaction) {
-                cashingTransaction(transaction)
+            override fun collect(transaction: Transaction) {
+                collectTransaction(transaction)
             }
         }, requireContext())
         setupRecycler()
@@ -149,8 +149,8 @@ class TransactionsFragment : Fragment() {
         }
     }
 
-    private fun cashingTransaction(transaction: Transaction) {
-
+    private fun collectTransaction(transaction: Transaction) {
+        viewModel.collect(transaction)
     }
 
 }

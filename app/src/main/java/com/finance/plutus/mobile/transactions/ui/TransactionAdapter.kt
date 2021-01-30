@@ -62,7 +62,7 @@ class TransactionAdapter(
     }
 
     fun onCashing(position: Int) {
-        getItem(position)?.let { listener.cashing(it) }
+        getItem(position)?.let { listener.collect(it) }
     }
 
     fun isDraft(position: Int): Boolean {

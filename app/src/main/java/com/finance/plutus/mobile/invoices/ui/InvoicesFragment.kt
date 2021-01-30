@@ -27,19 +27,7 @@ class InvoicesFragment : Fragment() {
 
     private val viewModel: InvoicesViewModel by inject()
     private lateinit var binding: FragmentInvoicesBinding
-    private val adapter = InvoiceAdapter(object : InvoiceSwipeListener {
-        override fun delete(invoice: Invoice) {
-            deleteInvoice(invoice)
-        }
-
-        override fun edit(invoice: Invoice) {
-            editInvoice(invoice)
-        }
-
-        override fun cashing(invoice: Invoice) {
-            cashingInvoice(invoice)
-        }
-    })
+    private lateinit var adapter: InvoiceAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -84,6 +72,19 @@ class InvoicesFragment : Fragment() {
     }
 
     private fun setupRecycler() {
+        adapter = InvoiceAdapter(object : InvoiceSwipeListener {
+            override fun delete(invoice: Invoice) {
+                deleteInvoice(invoice)
+            }
+
+            override fun edit(invoice: Invoice) {
+                editInvoice(invoice)
+            }
+
+            override fun collect(invoice: Invoice) {
+                collectInvoice(invoice)
+            }
+        }, requireContext())
         binding.invoicesRecyclerView.layoutManager =
             LinearLayoutManager(requireContext())
         binding.invoicesRecyclerView.addItemDecoration(
@@ -131,8 +132,8 @@ class InvoicesFragment : Fragment() {
         }
     }
 
-    private fun cashingInvoice(invoice: Invoice) {
-
+    private fun collectInvoice(invoice: Invoice) {
+        viewModel.collect(invoice)
     }
 
 }

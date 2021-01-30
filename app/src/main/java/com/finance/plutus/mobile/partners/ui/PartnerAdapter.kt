@@ -1,5 +1,6 @@
 package com.finance.plutus.mobile.partners.ui
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -7,6 +8,10 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.finance.plutus.mobile.R
+import com.finance.plutus.mobile.app.util.AdapterExtensions.ITEM_BOTTOM
+import com.finance.plutus.mobile.app.util.AdapterExtensions.ITEM_MIDDLE
+import com.finance.plutus.mobile.app.util.AdapterExtensions.ITEM_TOP
+import com.finance.plutus.mobile.app.util.AdapterExtensions.setupLayout
 import com.finance.plutus.mobile.databinding.PartnerViewBinding
 import com.finance.plutus.mobile.partners.data.model.Partner
 
@@ -15,7 +20,8 @@ import com.finance.plutus.mobile.partners.data.model.Partner
  * Created by Catalin on 1/24/2021
  **/
 class PartnerAdapter(
-    private val swipeListener: PartnerSwipeListener
+    private val swipeListener: PartnerSwipeListener,
+    private val context: Context
 ) : PagingDataAdapter<Partner, PartnerAdapter.PartnerViewHolder>(COMPARATOR) {
 
     companion object {
@@ -34,8 +40,9 @@ class PartnerAdapter(
         private val binding: PartnerViewBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun render(partner: Partner?) {
+        fun render(partner: Partner?, itemType: Int) {
             partner?.let {
+                setupLayout(itemType, context, binding.partnerLayout)
                 binding.partnerNameTv.text = partner.name
                 binding.partnerCountryTv.text = partner.country.name
             }
@@ -62,7 +69,15 @@ class PartnerAdapter(
     }
 
     override fun onBindViewHolder(holder: PartnerViewHolder, position: Int) {
-        holder.render(getItem(position))
+        holder.render(getItem(position), getItemViewType(position))
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return when (position) {
+            0 -> ITEM_TOP
+            itemCount - 1 -> ITEM_BOTTOM
+            else -> ITEM_MIDDLE
+        }
     }
 
 }

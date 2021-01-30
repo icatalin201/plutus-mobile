@@ -7,10 +7,8 @@ import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.view.MotionEvent
 import android.view.View
-import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.appcompat.content.res.AppCompatResources
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.finance.plutus.mobile.R
@@ -53,32 +51,6 @@ abstract class SwipeHelper(
 
     init {
         recyclerView.setOnTouchListener(touchListener)
-    }
-
-    private fun recoverSwipedItem() {
-        while (!recoverQueue.isEmpty()) {
-            val position = recoverQueue.poll() ?: return
-            recyclerView.adapter?.notifyItemChanged(position)
-        }
-    }
-
-    private fun drawButtons(
-        canvas: Canvas,
-        buttons: List<UnderlayButton>,
-        itemView: View,
-        dX: Float
-    ) {
-        var right = itemView.right
-        buttons.forEach { button ->
-            val width = (-1) * dX / buttons.size
-            val left = right - width
-            button.draw(
-                canvas,
-                RectF(left, itemView.top.toFloat(), right.toFloat(), itemView.bottom.toFloat())
-            )
-
-            right = left.toInt()
-        }
     }
 
     override fun onChildDraw(
@@ -133,6 +105,32 @@ abstract class SwipeHelper(
         recoverSwipedItem()
     }
 
+    private fun recoverSwipedItem() {
+        while (!recoverQueue.isEmpty()) {
+            val position = recoverQueue.poll() ?: return
+            recyclerView.adapter?.notifyItemChanged(position)
+        }
+    }
+
+    private fun drawButtons(
+        canvas: Canvas,
+        buttons: List<UnderlayButton>,
+        itemView: View,
+        dX: Float
+    ) {
+        var right = itemView.right
+        buttons.forEach { button ->
+            val width = (-1) * dX / buttons.size
+            val left = right - width
+            button.draw(
+                canvas,
+                RectF(left, itemView.top.toFloat(), right.toFloat(), itemView.bottom.toFloat())
+            )
+
+            right = left.toInt()
+        }
+    }
+
     abstract fun instantiateUnderlayButton(position: Int): List<UnderlayButton>
 
     interface UnderlayButtonClickListener {
@@ -142,15 +140,12 @@ abstract class SwipeHelper(
     class UnderlayButton(
         private val context: Context,
         @DrawableRes private val drawableRes: Int,
-        @ColorRes private val colorBackground: Int,
         private val clickListener: UnderlayButtonClickListener
     ) {
         private var clickableRegion: RectF? = null
 
         fun draw(canvas: Canvas, rect: RectF) {
             val paint = Paint()
-
-            paint.color = ContextCompat.getColor(context, colorBackground)
             canvas.drawRect(rect, paint)
 
             val bitmap = AppCompatResources.getDrawable(
@@ -200,7 +195,6 @@ object Buttons {
         return SwipeHelper.UnderlayButton(
             context,
             R.drawable.ic_baseline_delete_24,
-            android.R.color.holo_red_light,
             object : SwipeHelper.UnderlayButtonClickListener {
                 override fun onClick() {
                     callback.run()
@@ -212,7 +206,6 @@ object Buttons {
         return SwipeHelper.UnderlayButton(
             context,
             R.drawable.ic_baseline_edit_24,
-            android.R.color.holo_orange_light,
             object : SwipeHelper.UnderlayButtonClickListener {
                 override fun onClick() {
                     callback.run()
@@ -224,7 +217,6 @@ object Buttons {
         return SwipeHelper.UnderlayButton(
             context,
             R.drawable.ic_baseline_monetization_on_24,
-            android.R.color.holo_blue_light,
             object : SwipeHelper.UnderlayButtonClickListener {
                 override fun onClick() {
                     callback.run()

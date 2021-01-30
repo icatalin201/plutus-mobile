@@ -7,18 +7,11 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:id="@+id/partners_swipe_layout"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/partners_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/partners_recycler_view"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                tools:listitem="@layout/partner_view" />
-
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+            android:layout_height="match_parent"
+            tools:listitem="@layout/partner_view" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/partners_add_btn"
