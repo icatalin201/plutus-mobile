@@ -1,4 +1,4 @@
-package com.finance.plutus.mobile.dashboard
+package com.finance.plutus.mobile.dashboard.ui
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,6 +6,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.finance.plutus.mobile.R
 import com.finance.plutus.mobile.app.util.formatInLocalCurrency
+import com.finance.plutus.mobile.dashboard.data.DashboardStat
 import com.finance.plutus.mobile.databinding.StatViewBinding
 
 /**
@@ -27,8 +28,9 @@ class DashboardAdapter : RecyclerView.Adapter<DashboardAdapter.DashboardViewHold
 
     }
 
-    fun add(stat: DashboardStat) {
-        this.stats.add(stat)
+    fun submit(stats: List<DashboardStat>) {
+        this.stats.clear()
+        this.stats.addAll(stats)
         notifyDataSetChanged()
     }
 

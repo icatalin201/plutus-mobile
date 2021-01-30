@@ -77,4 +77,6 @@
     <string name="download_transactions">Descarca registru tranzactii</string>
     <string name="download_invoices">Descarca arhiva facturi</string>
     <string name="file_downloaded">Fisierul a fost descarcat</string>
+    <string name="downloading">Se descarca...</string>
+    <string name="downloaded">Descarcarea s-a incheiat</string>
 </resources>

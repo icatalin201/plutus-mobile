@@ -30,13 +30,28 @@
         <item name="android:textColorSecondary">@color/colorSecondaryText</item>
     </style>
 
-    <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
-        <item name="boxBackgroundColor">@color/surface</item>
+    <style name="Theme.Plutus.Dialog" parent="Theme.MaterialComponents.DayNight.Dialog">
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryText</item>
+        <item name="colorPrimaryVariant">@color/primaryVariant</item>
+        <item name="colorOnPrimary">@color/onPrimary</item>
+        <item name="colorSecondary">@color/secondary</item>
+        <item name="colorSecondaryVariant">@color/secondaryVariant</item>
+        <item name="colorOnSecondary">@color/onSecondary</item>
+        <item name="colorError">@color/error</item>
+        <item name="colorOnError">@color/onError</item>
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorOnSurface">@color/onSurface</item>
+        <item name="android:colorBackground">@color/surface</item>
+        <item name="colorOnBackground">@color/onBackground</item>
+        <item name="android:textColor">@color/colorPrimaryText</item>
+        <item name="android:textColorPrimary">@color/colorPrimaryText</item>
+        <item name="textColorAlertDialogListItem">@color/colorPrimaryText</item>
+        <item name="android:textColorAlertDialogListItem">@color/colorPrimaryText</item>
     </style>
 
-    <style name="ButtonGroupLayoutStyle" parent="Widget.MaterialComponents.Button.OutlinedButton">
-        <item name="strokeWidth">2dp</item>
-        <item name="strokeColor">@color/input_selector</item>
+    <style name="TextInputLayoutStyle" parent="Widget.MaterialComponents.TextInputLayout.FilledBox">
+        <item name="boxBackgroundColor">@color/surface</item>
     </style>
 
     <style name="ButtonStyle" parent="Widget.MaterialComponents.Button">

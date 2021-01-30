@@ -1,4 +1,4 @@
-package com.finance.plutus.mobile.dashboard
+package com.finance.plutus.mobile.dashboard.ui
 
 import android.os.Bundle
 import android.view.*
@@ -10,6 +10,7 @@ import com.finance.plutus.mobile.app.data.model.Currency
 import com.finance.plutus.mobile.app.data.model.CurrencyRate
 import com.finance.plutus.mobile.app.data.model.Serial
 import com.finance.plutus.mobile.app.util.showInputDialog
+import com.finance.plutus.mobile.app.util.showListDialog
 import com.finance.plutus.mobile.databinding.FragmentDashboardBinding
 import org.koin.android.ext.android.inject
 
@@ -42,14 +43,10 @@ class DashboardFragment : Fragment() {
         binding.dashboardStatRecycler.layoutManager =
             GridLayoutManager(requireContext(), 2)
         binding.dashboardStatRecycler.adapter = adapter
-        viewModel.stats.observe(viewLifecycleOwner) { stat ->
-            adapter.add(stat)
+        viewModel.stats.observe(viewLifecycleOwner) { stats ->
+            adapter.submit(stats)
         }
-        viewModel.findTotalExpense()
-        viewModel.findTotalExpenseForLastYear()
-        viewModel.findTotalIncome()
-        viewModel.findTotalIncomeForLastYear()
-        viewModel.findDeductibleExpensesForLastYear()
+        viewModel.getStats()
         return binding.root
     }
 
@@ -62,7 +59,11 @@ class DashboardFragment : Fragment() {
         if (item.itemId == R.id.download_invoices) {
             viewModel.downloadInvoicesArchive(requireContext())
         } else if (item.itemId == R.id.download_transactions) {
-            viewModel.downloadTransactionsReport(requireContext())
+            val years = arrayOf("2019", "2020", "2021")
+            showListDialog(requireContext(), years) { position ->
+                val year = years[position]
+                viewModel.downloadTransactionsReport(requireContext(), year)
+            }
         }
         return super.onOptionsItemSelected(item)
     }

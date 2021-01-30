@@ -178,12 +178,12 @@ interface PlutusService {
     @Headers("Content-Type: application/vnd.plutus.finance+json")
     fun fetchTodayRates(): Single<PlutusResponse<List<CurrencyRate>>>
 
-    @GET("reports/transactions")
+    @GET("transactions/document/{year}")
     @Streaming
     @Headers("Content-Type: application/vnd.plutus.finance+json")
-    fun downloadTransactionsReport(): Single<ResponseBody>
+    fun downloadTransactionsReport(@Path("year") year: String): Single<ResponseBody>
 
-    @GET("reports/invoices")
+    @GET("invoices/archive")
     @Streaming
     @Headers("Content-Type: application/vnd.plutus.finance+json")
     fun downloadInvoicesArchive(): Single<ResponseBody>

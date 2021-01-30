@@ -77,8 +77,8 @@ class TransactionApiRepository(
             .subscribeOn(Schedulers.io())
     }
 
-    override fun downloadReport(): Single<InputStream> {
-        return plutusService.downloadTransactionsReport()
+    override fun downloadDocument(year: String): Single<InputStream> {
+        return plutusService.downloadTransactionsReport(year)
             .map { response ->
                 response.byteStream()
             }

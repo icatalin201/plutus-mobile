@@ -22,7 +22,7 @@ fun LifecycleOwner.showConfirmationDialog(
     @StringRes message: Int,
     callback: Runnable
 ) {
-    val dialog = AlertDialog.Builder(context)
+    val dialog = AlertDialog.Builder(context, R.style.Theme_Plutus_Dialog)
         .setTitle(R.string.app_name)
         .setMessage(message)
         .setNegativeButton(R.string.cancel) { dialog, _ -> dialog.dismiss() }
@@ -38,7 +38,7 @@ fun LifecycleOwner.showListDialog(
     items: Array<String>,
     callback: (position: Int) -> Unit
 ) {
-    val dialog = AlertDialog.Builder(context)
+    val dialog = AlertDialog.Builder(context, R.style.Theme_Plutus_Dialog)
         .setTitle(R.string.app_name)
         .setItems(items) { dialog, which ->
             dialog.dismiss()
@@ -57,7 +57,7 @@ fun LifecycleOwner.showInputDialog(
     editText.isSingleLine = true
     editText.inputType = InputType.TYPE_NUMBER_FLAG_DECIMAL
     editText.setText(initialValue)
-    val dialog = AlertDialog.Builder(context)
+    val dialog = AlertDialog.Builder(context, R.style.Theme_Plutus_Dialog)
         .setTitle(R.string.app_name)
         .setMessage(R.string.update_serial_title)
         .setView(editText)

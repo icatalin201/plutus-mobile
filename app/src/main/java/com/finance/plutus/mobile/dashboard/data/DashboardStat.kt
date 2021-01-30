@@ -1,4 +1,4 @@
-package com.finance.plutus.mobile.dashboard
+package com.finance.plutus.mobile.dashboard.data
 
 /**
  * Plutus Finance

@@ -2,6 +2,7 @@ package com.finance.plutus.mobile.app
 
 import android.app.Application
 import com.finance.plutus.mobile.app.util.InjectionModule
+import com.finance.plutus.mobile.app.util.NotificationManager
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -19,6 +20,7 @@ class PlutusApplication : Application() {
             androidContext(this@PlutusApplication)
             modules(InjectionModule.appModule)
         }
+        NotificationManager.createNotificationChannel(applicationContext)
     }
 
 }

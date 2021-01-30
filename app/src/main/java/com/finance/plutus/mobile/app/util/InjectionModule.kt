@@ -5,7 +5,7 @@ import com.finance.plutus.mobile.app.network.ClientBuilder
 import com.finance.plutus.mobile.app.network.LoginService
 import com.finance.plutus.mobile.app.network.PlutusService
 import com.finance.plutus.mobile.app.network.interceptor.HeaderInterceptor
-import com.finance.plutus.mobile.dashboard.DashboardViewModel
+import com.finance.plutus.mobile.dashboard.ui.DashboardViewModel
 import com.finance.plutus.mobile.invoices.data.InvoiceApiRepository
 import com.finance.plutus.mobile.invoices.data.InvoiceRepository
 import com.finance.plutus.mobile.invoices.ui.InvoicesViewModel

@@ -25,5 +25,5 @@ interface TransactionRepository {
     fun uploadFile(request: UploadFileRequest): Completable
     fun findAllFiltered(filter: TransactionFilter): Flowable<PagingData<Transaction>>
     fun findStats(filter: TransactionFilter): Single<TransactionStat>
-    fun downloadReport(): Single<InputStream>
+    fun downloadDocument(year: String): Single<InputStream>
 }
