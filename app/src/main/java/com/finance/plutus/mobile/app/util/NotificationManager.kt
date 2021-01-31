@@ -37,7 +37,7 @@ object NotificationManager {
         val notification = NotificationCompat.Builder(context, NOTIFICATION_CHANNEL_ID)
             .setContentTitle(context.getString(R.string.app_name))
             .setContentText(context.getText(text))
-            .setSmallIcon(R.drawable.ic_baseline_money_24)
+            .setSmallIcon(R.drawable.ic_launcher_foreground)
             .setAutoCancel(true)
             .build()
         val notificationManager = context
