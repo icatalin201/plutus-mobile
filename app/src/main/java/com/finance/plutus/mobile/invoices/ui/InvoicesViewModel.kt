@@ -30,6 +30,7 @@ class InvoicesViewModel(
     fun collect(invoice: Invoice) {
         compositeDisposable.add(
             invoiceRepository.collect(listOf(invoice.id))
+                .onErrorComplete()
                 .subscribe {
                     fetchInvoices()
                 }
@@ -38,6 +39,7 @@ class InvoicesViewModel(
 
     fun delete(invoice: Invoice) {
         val disposable = invoiceRepository.delete(invoice.id)
+            .onErrorComplete()
             .subscribe {
                 fetchInvoices()
             }

@@ -38,8 +38,12 @@ class PartnersFragment : Fragment() {
         setHasOptionsMenu(true)
         setupRecycler()
         viewModel.partners.observe(viewLifecycleOwner) { setPartners(it) }
-        viewModel.fetchPartners()
         return binding.root
+    }
+
+    override fun onResume() {
+        viewModel.fetchPartners()
+        super.onResume()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

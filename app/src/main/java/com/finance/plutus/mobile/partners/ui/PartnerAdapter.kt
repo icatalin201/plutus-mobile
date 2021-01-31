@@ -57,7 +57,6 @@ class PartnerAdapter(
     fun onDelete(position: Int) {
         getItem(position)?.let {
             swipeListener.delete(it)
-            notifyItemRemoved(position)
         }
     }
 

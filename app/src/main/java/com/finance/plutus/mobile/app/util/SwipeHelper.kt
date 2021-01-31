@@ -68,6 +68,7 @@ abstract class SwipeHelper(
 
         if (actionState == ItemTouchHelper.ACTION_STATE_SWIPE) {
             if (dX < 0) {
+                if (position == -1) return
                 if (!buttonsBuffer.containsKey(position)) {
                     buttonsBuffer[position] = instantiateUnderlayButton(position)
                 }

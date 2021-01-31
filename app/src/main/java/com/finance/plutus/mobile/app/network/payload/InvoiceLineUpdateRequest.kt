@@ -62,6 +62,9 @@ class InvoiceLineUpdateRequest : BaseObservable() {
             unitPrice = invoiceLine.unitPrice
             uom = invoiceLine.uom
             details = invoiceLine.details
+            if (invoiceLine.currency != null) {
+                unitPrice = invoiceLine.currency.subtotal
+            }
         }
     }
 }

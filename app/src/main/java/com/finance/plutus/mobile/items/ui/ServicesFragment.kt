@@ -38,8 +38,12 @@ class ServicesFragment : Fragment() {
         setHasOptionsMenu(true)
         setupRecycler()
         viewModel.items.observe(viewLifecycleOwner) { setServices(it) }
-        viewModel.fetchItems()
         return binding.root
+    }
+
+    override fun onResume() {
+        viewModel.fetchItems()
+        super.onResume()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

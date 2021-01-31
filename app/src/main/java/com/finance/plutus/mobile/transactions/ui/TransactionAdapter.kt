@@ -13,7 +13,6 @@ import com.finance.plutus.mobile.app.util.AdapterExtensions.setupLayout
 import com.finance.plutus.mobile.app.util.formatInLocalCurrency
 import com.finance.plutus.mobile.databinding.TransactionViewBinding
 import com.finance.plutus.mobile.transactions.data.model.Transaction
-import com.finance.plutus.mobile.transactions.data.model.TransactionStatus
 import com.finance.plutus.mobile.transactions.data.model.TransactionType
 
 /**
@@ -63,7 +62,6 @@ class TransactionAdapter(
     fun onDelete(position: Int) {
         getItem(position)?.let {
             listener.delete(it)
-            notifyItemRemoved(position)
         }
     }
 
@@ -71,10 +69,6 @@ class TransactionAdapter(
         getItem(position)?.let {
             listener.collect(it)
         }
-    }
-
-    fun isDraft(position: Int): Boolean {
-        return getItem(position)?.status == TransactionStatus.DRAFT
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransactionViewHolder {

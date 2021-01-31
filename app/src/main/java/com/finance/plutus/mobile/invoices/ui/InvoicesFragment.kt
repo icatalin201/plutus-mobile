@@ -38,8 +38,12 @@ class InvoicesFragment : Fragment() {
         setHasOptionsMenu(true)
         setupRecycler()
         viewModel.invoices.observe(viewLifecycleOwner) { setInvoices(it) }
-        viewModel.fetchInvoices()
         return binding.root
+    }
+
+    override fun onResume() {
+        viewModel.fetchInvoices()
+        super.onResume()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -87,17 +91,15 @@ class InvoicesFragment : Fragment() {
         val itemTouchHelper = ItemTouchHelper(object : SwipeHelper(binding.invoicesRecyclerView) {
             override fun instantiateUnderlayButton(position: Int): List<UnderlayButton> {
                 val buttons = mutableListOf<UnderlayButton>()
-                if (adapter.isDraft(position)) {
-                    buttons.add(Buttons.deleteButton(requireContext()) {
-                        adapter.onDelete(position)
-                    })
-                    buttons.add(Buttons.editButton(requireContext()) {
-                        adapter.onEdit(position)
-                    })
-//                    buttons.add(Buttons.cashingButton(requireContext()) {
-//                        adapter.onCashing(position)
-//                    })
-                }
+                buttons.add(Buttons.deleteButton(requireContext()) {
+                    adapter.onDelete(position)
+                })
+                buttons.add(Buttons.editButton(requireContext()) {
+                    adapter.onEdit(position)
+                })
+                buttons.add(Buttons.cashingButton(requireContext()) {
+                    adapter.onCashing(position)
+                })
                 return buttons
             }
         })
@@ -119,7 +121,9 @@ class InvoicesFragment : Fragment() {
     }
 
     private fun collectInvoice(invoice: Invoice) {
-        viewModel.collect(invoice)
+        showConfirmationDialog(requireContext(), R.string.collect_confirmation) {
+            viewModel.collect(invoice)
+        }
     }
 
 }

@@ -47,12 +47,14 @@ class TransactionsViewModel(
     fun collect(transaction: Transaction) {
         compositeDisposable.add(
             transactionRepository.collect(listOf(transaction.id))
+                .onErrorComplete()
                 .subscribe { fetchTransactions() }
         )
     }
 
     fun delete(transaction: Transaction) {
         val disposable = transactionRepository.delete(transaction.id)
+            .onErrorComplete()
             .subscribe { fetchTransactions() }
         compositeDisposable.add(disposable)
     }

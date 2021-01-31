@@ -114,19 +114,15 @@ class TransactionsFragment : Fragment() {
             ItemTouchHelper(object : SwipeHelper(binding.transactionsRecyclerView) {
                 override fun instantiateUnderlayButton(position: Int): List<UnderlayButton> {
                     val buttons = mutableListOf<UnderlayButton>()
-                    if (position != -1) {
-                        if (adapter.isDraft(position)) {
-                            buttons.add(Buttons.deleteButton(requireContext()) {
-                                adapter.onDelete(position)
-                            })
-                            buttons.add(Buttons.editButton(requireContext()) {
-                                adapter.onEdit(position)
-                            })
-//                            buttons.add(Buttons.cashingButton(requireContext()) {
-//                                adapter.onCashing(position)
-//                            })
-                        }
-                    }
+                    buttons.add(Buttons.deleteButton(requireContext()) {
+                        adapter.onDelete(position)
+                    })
+                    buttons.add(Buttons.editButton(requireContext()) {
+                        adapter.onEdit(position)
+                    })
+                    buttons.add(Buttons.cashingButton(requireContext()) {
+                        adapter.onCashing(position)
+                    })
                     return buttons
                 }
             })
@@ -148,7 +144,9 @@ class TransactionsFragment : Fragment() {
     }
 
     private fun collectTransaction(transaction: Transaction) {
-        viewModel.collect(transaction)
+        showConfirmationDialog(requireContext(), R.string.collect_confirmation) {
+            viewModel.collect(transaction)
+        }
     }
 
 }
