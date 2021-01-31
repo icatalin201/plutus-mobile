@@ -55,7 +55,10 @@ class PartnerAdapter(
     }
 
     fun onDelete(position: Int) {
-        getItem(position)?.let { swipeListener.delete(it) }
+        getItem(position)?.let {
+            swipeListener.delete(it)
+            notifyItemRemoved(position)
+        }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PartnerViewHolder {

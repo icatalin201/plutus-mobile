@@ -23,32 +23,37 @@ class TransactionsViewModel(
     val transactions: LiveData<PagingData<Transaction>> = _transactions
     val months: LiveData<List<TransactionMonth>> = _months
 
+    var month: TransactionMonth? = null
+
     init {
         generateMonths()
     }
 
-    fun fetchTransactions(transactionMonth: TransactionMonth) {
-        val filter = TransactionFilter()
-        filter.startDate = transactionMonth.date.withDayOfMonth(1)
-        filter.endDate = transactionMonth.date.withDayOfMonth(transactionMonth.date.lengthOfMonth())
-        val disposable = transactionRepository.findAllFiltered(filter)
-            .subscribe(
-                { transactions -> _transactions.value = transactions },
-                { error -> error.printStackTrace() }
-            )
-        compositeDisposable.add(disposable)
+    fun fetchTransactions() {
+        month?.let {
+            val filter = TransactionFilter()
+            filter.startDate = it.date.withDayOfMonth(1)
+            filter.endDate =
+                it.date.withDayOfMonth(it.date.lengthOfMonth())
+            val disposable = transactionRepository.findAllFiltered(filter)
+                .subscribe(
+                    { transactions -> _transactions.value = transactions },
+                    { error -> error.printStackTrace() }
+                )
+            compositeDisposable.add(disposable)
+        }
     }
 
     fun collect(transaction: Transaction) {
         compositeDisposable.add(
             transactionRepository.collect(listOf(transaction.id))
-                .subscribe { }
+                .subscribe { fetchTransactions() }
         )
     }
 
     fun delete(transaction: Transaction) {
         val disposable = transactionRepository.delete(transaction.id)
-            .subscribe { }
+            .subscribe { fetchTransactions() }
         compositeDisposable.add(disposable)
     }
 

@@ -2,9 +2,7 @@ package com.finance.plutus.mobile.items.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.paging.PagingData
@@ -37,13 +35,23 @@ class ServicesFragment : Fragment() {
             inflater,
             R.layout.fragment_services, container, false
         )
+        setHasOptionsMenu(true)
         setupRecycler()
-        binding.servicesAddBtn.setOnClickListener {
-            openAddItemActivity()
-        }
         viewModel.items.observe(viewLifecycleOwner) { setServices(it) }
         viewModel.fetchItems()
         return binding.root
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_add, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.add) {
+            openAddItemActivity()
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun openAddItemActivity() {

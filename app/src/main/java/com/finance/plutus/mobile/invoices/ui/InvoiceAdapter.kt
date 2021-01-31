@@ -55,11 +55,16 @@ class InvoiceAdapter(
     }
 
     fun onDelete(position: Int) {
-        getItem(position)?.let { swipeListener.delete(it) }
+        getItem(position)?.let {
+            swipeListener.delete(it)
+            notifyItemRemoved(position)
+        }
     }
 
     fun onCashing(position: Int) {
-        getItem(position)?.let { swipeListener.collect(it) }
+        getItem(position)?.let {
+            swipeListener.collect(it)
+        }
     }
 
     fun isDraft(position: Int): Boolean {

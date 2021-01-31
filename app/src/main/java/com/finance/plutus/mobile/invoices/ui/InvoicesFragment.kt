@@ -2,13 +2,10 @@ package com.finance.plutus.mobile.invoices.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.paging.PagingData
-import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.finance.plutus.mobile.R
@@ -38,13 +35,23 @@ class InvoicesFragment : Fragment() {
             inflater,
             R.layout.fragment_invoices, container, false
         )
+        setHasOptionsMenu(true)
         setupRecycler()
-        binding.invoicesAddBtn.setOnClickListener {
-            openAddInvoiceActivity()
-        }
         viewModel.invoices.observe(viewLifecycleOwner) { setInvoices(it) }
         viewModel.fetchInvoices()
         return binding.root
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_add, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.add) {
+            openAddInvoiceActivity()
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun openAddInvoiceActivity() {
@@ -72,12 +79,6 @@ class InvoicesFragment : Fragment() {
         }, requireContext())
         binding.invoicesRecyclerView.layoutManager =
             LinearLayoutManager(requireContext())
-        binding.invoicesRecyclerView.addItemDecoration(
-            DividerItemDecoration(
-                requireContext(),
-                DividerItemDecoration.VERTICAL
-            )
-        )
         binding.invoicesRecyclerView.adapter = adapter
         setupSwipeActions()
     }
@@ -93,9 +94,9 @@ class InvoicesFragment : Fragment() {
                     buttons.add(Buttons.editButton(requireContext()) {
                         adapter.onEdit(position)
                     })
-                    buttons.add(Buttons.cashingButton(requireContext()) {
-                        adapter.onCashing(position)
-                    })
+//                    buttons.add(Buttons.cashingButton(requireContext()) {
+//                        adapter.onCashing(position)
+//                    })
                 }
                 return buttons
             }

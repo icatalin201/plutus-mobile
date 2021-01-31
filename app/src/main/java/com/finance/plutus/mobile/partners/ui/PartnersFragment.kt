@@ -2,15 +2,12 @@ package com.finance.plutus.mobile.partners.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.finance.plutus.mobile.R
 import com.finance.plutus.mobile.app.util.Buttons
 import com.finance.plutus.mobile.app.util.SwipeHelper
@@ -38,13 +35,23 @@ class PartnersFragment : Fragment() {
             inflater,
             R.layout.fragment_partners, container, false
         )
+        setHasOptionsMenu(true)
         setupRecycler()
-        binding.partnersAddBtn.setOnClickListener {
-            openAddPartnerActivity()
-        }
         viewModel.partners.observe(viewLifecycleOwner) { setPartners(it) }
         viewModel.fetchPartners()
         return binding.root
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_add, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.add) {
+            openAddPartnerActivity()
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun openAddPartnerActivity() {
@@ -69,20 +76,6 @@ class PartnersFragment : Fragment() {
         binding.partnersRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.partnersRecyclerView.adapter = adapter
         setupSwipeActions()
-        binding.partnersRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                if (dy > 0 || dy < 0 && binding.partnersAddBtn.isShown) {
-                    binding.partnersAddBtn.hide()
-                }
-            }
-
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-                    binding.partnersAddBtn.show()
-                }
-                super.onScrollStateChanged(recyclerView, newState)
-            }
-        })
     }
 
     private fun setupSwipeActions() {

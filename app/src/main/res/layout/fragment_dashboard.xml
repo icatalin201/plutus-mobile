@@ -34,7 +34,17 @@
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/margin_8"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/dashboard_serial_element" />
+            app:layout_constraintTop_toBottomOf="@id/dashboard_currency_element" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/add_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_32"
+            android:contentDescription="@string/add"
+            android:src="@drawable/ic_baseline_add_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

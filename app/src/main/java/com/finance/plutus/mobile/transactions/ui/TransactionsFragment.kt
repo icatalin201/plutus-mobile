@@ -2,15 +2,12 @@ package com.finance.plutus.mobile.transactions.ui
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.paging.PagingData
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.finance.plutus.mobile.R
 import com.finance.plutus.mobile.app.util.Buttons
 import com.finance.plutus.mobile.app.util.SwipeHelper
@@ -39,6 +36,7 @@ class TransactionsFragment : Fragment() {
             inflater,
             R.layout.fragment_transactions, container, false
         )
+        setHasOptionsMenu(true)
         adapter = TransactionAdapter(object : TransactionSwipeListener {
             override fun delete(transaction: Transaction) {
                 deleteTransaction(transaction)
@@ -53,12 +51,26 @@ class TransactionsFragment : Fragment() {
             }
         }, requireContext())
         setupRecycler()
-        binding.transactionsAddBtn.setOnClickListener {
-            openAddTransactionActivity()
-        }
         viewModel.transactions.observe(viewLifecycleOwner) { setTransactions(it) }
         viewModel.months.observe(viewLifecycleOwner) { setMonths(it) }
         return binding.root
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.fetchTransactions()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_add, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.add) {
+            openAddTransactionActivity()
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     private fun openAddTransactionActivity() {
@@ -78,7 +90,8 @@ class TransactionsFragment : Fragment() {
             requireContext(),
             object : MonthClickListener {
                 override fun onClick(month: TransactionMonth) {
-                    viewModel.fetchTransactions(month)
+                    viewModel.month = month
+                    viewModel.fetchTransactions()
                 }
             }
         )
@@ -94,21 +107,6 @@ class TransactionsFragment : Fragment() {
         binding.transactionsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.transactionsRecyclerView.adapter = adapter
         setupSwipeActions()
-        binding.transactionsRecyclerView.addOnScrollListener(object :
-            RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                if (dy > 0 || dy < 0 && binding.transactionsAddBtn.isShown) {
-                    binding.transactionsAddBtn.hide()
-                }
-            }
-
-            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
-                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-                    binding.transactionsAddBtn.show()
-                }
-                super.onScrollStateChanged(recyclerView, newState)
-            }
-        })
     }
 
     private fun setupSwipeActions() {
@@ -116,16 +114,18 @@ class TransactionsFragment : Fragment() {
             ItemTouchHelper(object : SwipeHelper(binding.transactionsRecyclerView) {
                 override fun instantiateUnderlayButton(position: Int): List<UnderlayButton> {
                     val buttons = mutableListOf<UnderlayButton>()
-                    if (adapter.isDraft(position)) {
-                        buttons.add(Buttons.deleteButton(requireContext()) {
-                            adapter.onDelete(position)
-                        })
-                        buttons.add(Buttons.editButton(requireContext()) {
-                            adapter.onEdit(position)
-                        })
-                        buttons.add(Buttons.cashingButton(requireContext()) {
-                            adapter.onCashing(position)
-                        })
+                    if (position != -1) {
+                        if (adapter.isDraft(position)) {
+                            buttons.add(Buttons.deleteButton(requireContext()) {
+                                adapter.onDelete(position)
+                            })
+                            buttons.add(Buttons.editButton(requireContext()) {
+                                adapter.onEdit(position)
+                            })
+//                            buttons.add(Buttons.cashingButton(requireContext()) {
+//                                adapter.onCashing(position)
+//                            })
+                        }
                     }
                     return buttons
                 }

@@ -8,6 +8,8 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.finance.plutus.mobile.R
+import com.finance.plutus.mobile.app.util.AdapterExtensions
+import com.finance.plutus.mobile.app.util.AdapterExtensions.setupLayout
 import com.finance.plutus.mobile.app.util.formatInLocalCurrency
 import com.finance.plutus.mobile.databinding.TransactionViewBinding
 import com.finance.plutus.mobile.transactions.data.model.Transaction
@@ -39,8 +41,9 @@ class TransactionAdapter(
         private val binding: TransactionViewBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun render(transaction: Transaction?) {
+        fun render(transaction: Transaction?, viewType: Int) {
             transaction?.let {
+                setupLayout(viewType, context, binding.transactionCard)
                 binding.transactionNameTv.text = transaction.document
                 binding.transactionDateTv.text = transaction.date
                 binding.transactionValueTv.text = transaction.value.formatInLocalCurrency()
@@ -58,11 +61,16 @@ class TransactionAdapter(
     }
 
     fun onDelete(position: Int) {
-        getItem(position)?.let { listener.delete(it) }
+        getItem(position)?.let {
+            listener.delete(it)
+            notifyItemRemoved(position)
+        }
     }
 
     fun onCashing(position: Int) {
-        getItem(position)?.let { listener.collect(it) }
+        getItem(position)?.let {
+            listener.collect(it)
+        }
     }
 
     fun isDraft(position: Int): Boolean {
@@ -80,6 +88,14 @@ class TransactionAdapter(
     }
 
     override fun onBindViewHolder(holder: TransactionViewHolder, position: Int) {
-        holder.render(getItem(position))
+        holder.render(getItem(position), getItemViewType(position))
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        return when (position) {
+            0 -> AdapterExtensions.ITEM_TOP
+            itemCount - 1 -> AdapterExtensions.ITEM_BOTTOM
+            else -> AdapterExtensions.ITEM_MIDDLE
+        }
     }
 }
