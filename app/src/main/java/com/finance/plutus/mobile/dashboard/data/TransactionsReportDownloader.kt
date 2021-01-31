@@ -39,7 +39,7 @@ class TransactionsReportDownloader(
             File(
                 applicationContext
                     .getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS),
-                "transactions.pdf"
+                "transactions-$year.pdf"
             )
         writeStream(inputStream, file)
         NotificationManager.createNotification(
