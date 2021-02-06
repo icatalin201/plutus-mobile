@@ -68,19 +68,28 @@ class InvoicesFragment : Fragment() {
     }
 
     private fun setupRecycler() {
-        adapter = InvoiceAdapter(object : InvoiceSwipeListener {
-            override fun delete(invoice: Invoice) {
-                deleteInvoice(invoice)
-            }
+        adapter = InvoiceAdapter(
+            object : InvoiceSwipeListener {
+                override fun delete(invoice: Invoice) {
+                    deleteInvoice(invoice)
+                }
 
-            override fun edit(invoice: Invoice) {
-                editInvoice(invoice)
-            }
+                override fun edit(invoice: Invoice) {
+                    editInvoice(invoice)
+                }
 
-            override fun collect(invoice: Invoice) {
-                collectInvoice(invoice)
-            }
-        }, requireContext())
+                override fun collect(invoice: Invoice) {
+                    collectInvoice(invoice)
+                }
+            },
+            object : InvoiceClickListener {
+                override fun onClick(invoice: Invoice) {
+                    val fragment = BottomSheetInvoice.getInstance(invoice)
+                    fragment.show(parentFragmentManager, "Invoice")
+                }
+            },
+            requireContext()
+        )
         binding.invoicesRecyclerView.layoutManager =
             LinearLayoutManager(requireContext())
         binding.invoicesRecyclerView.adapter = adapter

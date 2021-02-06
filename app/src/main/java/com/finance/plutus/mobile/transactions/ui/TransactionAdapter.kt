@@ -20,7 +20,8 @@ Plutus Finance
 Created by Catalin on 1/24/2021
  **/
 class TransactionAdapter(
-    private val listener: TransactionSwipeListener,
+    private val swipeListener: TransactionSwipeListener,
+    private val listener: TransactionClickListener,
     private val context: Context
 ) : PagingDataAdapter<Transaction, TransactionAdapter.TransactionViewHolder>(COMPARATOR) {
 
@@ -42,6 +43,7 @@ class TransactionAdapter(
 
         fun render(transaction: Transaction?, viewType: Int) {
             transaction?.let {
+                binding.transactionCard.setOnClickListener { listener.onClick(transaction) }
                 setupLayout(viewType, context, binding.transactionCard)
                 binding.transactionNameTv.text = transaction.document
                 binding.transactionDateTv.text = transaction.date
@@ -56,18 +58,18 @@ class TransactionAdapter(
     }
 
     fun onEdit(position: Int) {
-        getItem(position)?.let { listener.edit(it) }
+        getItem(position)?.let { swipeListener.edit(it) }
     }
 
     fun onDelete(position: Int) {
         getItem(position)?.let {
-            listener.delete(it)
+            swipeListener.delete(it)
         }
     }
 
     fun onCashing(position: Int) {
         getItem(position)?.let {
-            listener.collect(it)
+            swipeListener.collect(it)
         }
     }
 

@@ -20,6 +20,7 @@ import com.finance.plutus.mobile.invoices.data.model.Invoice
  **/
 class InvoiceAdapter(
     private val swipeListener: InvoiceSwipeListener,
+    private val listener: InvoiceClickListener,
     private val context: Context
 ) : PagingDataAdapter<Invoice, InvoiceAdapter.InvoiceViewHolder>(COMPARATOR) {
 
@@ -41,6 +42,7 @@ class InvoiceAdapter(
 
         fun render(invoice: Invoice?, viewType: Int) {
             invoice?.let {
+                binding.invoiceCard.setOnClickListener { listener.onClick(invoice) }
                 setupLayout(viewType, context, binding.invoiceCard)
                 binding.invoiceNameTv.text = invoice.name
                 binding.invoiceDateTv.text = invoice.date

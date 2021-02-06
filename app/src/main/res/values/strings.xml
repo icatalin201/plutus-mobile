@@ -81,4 +81,5 @@
     <string name="downloaded">Descarcarea s-a incheiat</string>
     <string name="add">Adauga</string>
     <string name="collect_confirmation">Esti sigur ca vrei sa incasezi?</string>
+    <string name="ok">OK</string>
 </resources>

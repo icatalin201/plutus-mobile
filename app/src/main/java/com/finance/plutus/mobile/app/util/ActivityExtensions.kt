@@ -33,6 +33,17 @@ fun LifecycleOwner.showConfirmationDialog(
     dialog.show()
 }
 
+fun LifecycleOwner.showInformationDialog(
+    context: Context,
+    message: String
+) {
+    val dialog = AlertDialog.Builder(context, R.style.Theme_Plutus_Dialog)
+        .setTitle(R.string.app_name)
+        .setMessage(message)
+        .setPositiveButton(R.string.ok, null)
+    dialog.show()
+}
+
 fun LifecycleOwner.showListDialog(
     context: Context,
     items: Array<String>,

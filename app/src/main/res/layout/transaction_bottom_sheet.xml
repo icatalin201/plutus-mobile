@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="transaction"
+            type="com.finance.plutus.mobile.transactions.data.model.Transaction" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/padding_16">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/transaction_name_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_8"
+            android:text="@{transaction.document}"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="@dimen/text_size_18"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/transaction_partner_tv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/transaction_partner_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{transaction.partner.name}"
+            android:textAlignment="textEnd"
+            android:textColor="@color/colorPrimaryText"
+            app:layout_constraintBottom_toBottomOf="@id/transaction_name_tv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/transaction_name_tv"
+            app:layout_constraintTop_toTopOf="@id/transaction_name_tv" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/transaction_date_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{transaction.date}"
+            android:textColor="@color/colorSecondaryText"
+            app:layout_constraintTop_toBottomOf="@id/transaction_name_tv" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/transaction_details_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_8"
+            android:text="@{transaction.details}"
+            android:textColor="@color/colorPrimaryText"
+            app:layout_constraintTop_toBottomOf="@id/transaction_date_tv" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/transaction_value_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_8"
+            android:textAlignment="textEnd"
+            android:textSize="@dimen/text_size_16"
+            app:layout_constraintTop_toBottomOf="@id/transaction_details_tv" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

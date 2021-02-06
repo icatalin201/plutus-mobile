@@ -37,19 +37,6 @@ class TransactionsFragment : Fragment() {
             R.layout.fragment_transactions, container, false
         )
         setHasOptionsMenu(true)
-        adapter = TransactionAdapter(object : TransactionSwipeListener {
-            override fun delete(transaction: Transaction) {
-                deleteTransaction(transaction)
-            }
-
-            override fun edit(transaction: Transaction) {
-                editTransaction(transaction)
-            }
-
-            override fun collect(transaction: Transaction) {
-                collectTransaction(transaction)
-            }
-        }, requireContext())
         setupRecycler()
         viewModel.transactions.observe(viewLifecycleOwner) { setTransactions(it) }
         viewModel.months.observe(viewLifecycleOwner) { setMonths(it) }
@@ -104,6 +91,28 @@ class TransactionsFragment : Fragment() {
     }
 
     private fun setupRecycler() {
+        adapter = TransactionAdapter(
+            object : TransactionSwipeListener {
+                override fun delete(transaction: Transaction) {
+                    deleteTransaction(transaction)
+                }
+
+                override fun edit(transaction: Transaction) {
+                    editTransaction(transaction)
+                }
+
+                override fun collect(transaction: Transaction) {
+                    collectTransaction(transaction)
+                }
+            },
+            object : TransactionClickListener {
+                override fun onClick(transaction: Transaction) {
+                    val fragment = BottomSheetTransaction.getInstance(transaction)
+                    fragment.show(parentFragmentManager, "Transaction")
+                }
+            },
+            requireContext()
+        )
         binding.transactionsRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         binding.transactionsRecyclerView.adapter = adapter
         setupSwipeActions()

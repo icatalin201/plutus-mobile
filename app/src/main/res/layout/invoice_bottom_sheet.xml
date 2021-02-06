@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="invoice"
+            type="com.finance.plutus.mobile.invoices.data.model.Invoice" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="@dimen/padding_16">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/invoice_name_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_8"
+            android:text="@{invoice.name}"
+            android:textColor="@color/colorPrimaryText"
+            android:textSize="@dimen/text_size_18"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/invoice_partner_tv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/invoice_partner_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{invoice.partner.name}"
+            android:textAlignment="textEnd"
+            android:textColor="@color/colorPrimaryText"
+            app:layout_constraintBottom_toBottomOf="@id/invoice_name_tv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/invoice_name_tv"
+            app:layout_constraintTop_toTopOf="@id/invoice_name_tv" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/invoice_date_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{invoice.date}"
+            android:textColor="@color/colorSecondaryText"
+            app:layout_constraintTop_toBottomOf="@id/invoice_name_tv" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/invoice_item_name_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_8"
+            android:textColor="@color/colorPrimaryText"
+            app:layout_constraintEnd_toStartOf="@id/invoice_item_price_tv"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/invoice_date_tv" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/invoice_item_price_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_8"
+            android:textColor="@color/colorPrimaryText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/invoice_item_name_tv"
+            app:layout_constraintTop_toBottomOf="@id/invoice_date_tv" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/invoice_value_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_8"
+            android:textAlignment="textEnd"
+            android:textColor="@color/primary"
+            android:textSize="@dimen/text_size_16"
+            app:layout_constraintTop_toBottomOf="@id/invoice_item_name_tv" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/invoice_currency_value_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="textEnd"
+            android:textColor="@color/primary"
+            android:visibility="gone"
+            app:layout_constraintTop_toBottomOf="@id/invoice_value_tv" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
