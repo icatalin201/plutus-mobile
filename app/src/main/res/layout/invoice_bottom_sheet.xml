@@ -34,6 +34,7 @@
             android:text="@{invoice.partner.name}"
             android:textAlignment="textEnd"
             android:textColor="@color/colorPrimaryText"
+            android:textSize="@dimen/text_size_16"
             app:layout_constraintBottom_toBottomOf="@id/invoice_name_tv"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/invoice_name_tv"
