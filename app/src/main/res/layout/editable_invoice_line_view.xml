@@ -6,7 +6,7 @@
 
         <variable
             name="request"
-            type="com.finance.plutus.mobile.app.network.payload.InvoiceLineUpdateRequest" />
+            type="com.finance.plutus.mobile.data.network.payload.InvoiceLineUpdateRequest" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

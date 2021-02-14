@@ -5,7 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".app.PlutusApplication"
+        android:name=".PlutusApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -14,21 +14,21 @@
         android:theme="@style/Theme.Plutus.Splash"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".invoices.ui.UpdateInvoiceActivity"
+            android:name="com.finance.plutus.mobile.ui.updateinvoice.UpdateInvoiceActivity"
             android:theme="@style/Theme.Plutus" />
         <activity
-            android:name=".transactions.ui.UpdateTransactionActivity"
+            android:name="com.finance.plutus.mobile.ui.updatetransaction.UpdateTransactionActivity"
             android:theme="@style/Theme.Plutus" />
         <activity
-            android:name=".partners.ui.UpdatePartnerActivity"
+            android:name="com.finance.plutus.mobile.ui.updatepartner.UpdatePartnerActivity"
             android:theme="@style/Theme.Plutus" />
         <activity
-            android:name=".items.ui.UpdateItemActivity"
+            android:name="com.finance.plutus.mobile.ui.updateitem.UpdateItemActivity"
             android:theme="@style/Theme.Plutus" />
         <activity
-            android:name=".app.ui.MainActivity"
+            android:name=".ui.common.MainActivity"
             android:theme="@style/Theme.Plutus" />
-        <activity android:name=".app.ui.SplashActivity">
+        <activity android:name=".ui.common.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -36,7 +36,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".login.ui.LoginActivity"
+            android:name="com.finance.plutus.mobile.ui.login.LoginActivity"
             android:theme="@style/Theme.Plutus" />
     </application>
 

@@ -2,13 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".partners.ui.UpdatePartnerActivity">
+    tools:context=".ui.updatepartner.UpdatePartnerActivity">
 
     <data>
 
         <variable
             name="request"
-            type="com.finance.plutus.mobile.app.network.payload.PartnerUpdateRequest" />
+            type="com.finance.plutus.mobile.data.network.payload.PartnerUpdateRequest" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

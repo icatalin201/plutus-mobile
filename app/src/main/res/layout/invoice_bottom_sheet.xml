@@ -6,7 +6,7 @@
 
         <variable
             name="invoice"
-            type="com.finance.plutus.mobile.invoices.data.model.Invoice" />
+            type="com.finance.plutus.mobile.data.model.Invoice" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
