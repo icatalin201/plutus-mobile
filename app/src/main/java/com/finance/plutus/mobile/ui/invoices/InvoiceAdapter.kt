@@ -82,10 +82,14 @@ class InvoiceAdapter(
     }
 
     override fun getItemViewType(position: Int): Int {
-        return when (position) {
-            0 -> AdapterExtensions.ITEM_TOP
-            itemCount - 1 -> AdapterExtensions.ITEM_BOTTOM
-            else -> AdapterExtensions.ITEM_MIDDLE
+        return if (position == 0 && itemCount == 1) {
+            AdapterExtensions.ITEM_SINGLE
+        } else if (position == 0) {
+            AdapterExtensions.ITEM_TOP
+        } else if (position == itemCount - 1) {
+            AdapterExtensions.ITEM_BOTTOM
+        } else {
+            AdapterExtensions.ITEM_MIDDLE
         }
     }
 

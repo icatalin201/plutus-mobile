@@ -16,14 +16,7 @@ object AdapterExtensions {
     const val ITEM_TOP = 1
     const val ITEM_MIDDLE = 2
     const val ITEM_BOTTOM = 3
-
-    fun RecyclerView.ViewHolder.convertValueToPx(value: Float, context: Context): Int {
-        return TypedValue.applyDimension(
-            TypedValue.COMPLEX_UNIT_DIP,
-            value,
-            context.resources.displayMetrics
-        ).toInt()
-    }
+    const val ITEM_SINGLE = 4
 
     fun RecyclerView.ViewHolder.setupLayout(itemType: Int, context: Context, layout: View) {
         val params = layout.layoutParams as RecyclerView.LayoutParams
@@ -45,8 +38,21 @@ object AdapterExtensions {
                 params.bottomMargin = convertValueToPx(16.0f, context)
                 layout.setBackgroundResource(R.drawable.item_bottom_background)
             }
+            ITEM_SINGLE -> {
+                params.topMargin = convertValueToPx(16.0f, context)
+                params.bottomMargin = convertValueToPx(16.0f, context)
+                layout.setBackgroundResource(R.drawable.item_top_bottom_background)
+            }
         }
         layout.layoutParams = params
+    }
+
+    private fun RecyclerView.ViewHolder.convertValueToPx(value: Float, context: Context): Int {
+        return TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP,
+                value,
+                context.resources.displayMetrics
+        ).toInt()
     }
 
 }

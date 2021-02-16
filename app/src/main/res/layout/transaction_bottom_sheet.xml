@@ -19,7 +19,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/margin_8"
-            android:text="@{transaction.document}"
+            android:text="@{transaction.details}"
             android:textColor="@color/colorPrimaryText"
             android:textSize="@dimen/text_size_18"
             android:textStyle="bold"
@@ -54,7 +54,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_8"
-            android:text="@{transaction.details}"
+            android:text="@{transaction.document}"
             android:textColor="@color/colorPrimaryText"
             app:layout_constraintTop_toBottomOf="@id/transaction_date_tv" />
 

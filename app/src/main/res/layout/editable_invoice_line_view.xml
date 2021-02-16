@@ -19,7 +19,7 @@
             style="@style/TextInputLayoutStyle"
             android:layout_width="0dp"
             android:layout_height="50dp"
-            app:layout_constraintEnd_toStartOf="@id/invoice_line_quantity_layout"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -40,9 +40,8 @@
             android:layout_width="0dp"
             android:layout_height="50dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/invoice_line_item_layout"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/invoice_line_item_layout">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/invoice_line_quantity"
@@ -61,9 +60,9 @@
             style="@style/TextInputLayoutStyle"
             android:layout_width="0dp"
             android:layout_height="50dp"
-            app:layout_constraintEnd_toStartOf="@id/invoice_line_vat_layout"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/invoice_line_item_layout">
+            app:layout_constraintTop_toBottomOf="@id/invoice_line_quantity_layout">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/invoice_line_price"
@@ -83,9 +82,8 @@
             android:layout_width="0dp"
             android:layout_height="50dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/invoice_line_price_layout"
-            app:layout_constraintTop_toBottomOf="@id/invoice_line_item_layout">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/invoice_line_price_layout">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/invoice_line_vat"
@@ -104,9 +102,9 @@
             style="@style/TextInputLayoutStyle"
             android:layout_width="0dp"
             android:layout_height="50dp"
-            app:layout_constraintEnd_toStartOf="@id/invoice_line_details_layout"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/invoice_line_price_layout">
+            app:layout_constraintTop_toBottomOf="@id/invoice_line_vat_layout">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/invoice_line_uom"
@@ -126,9 +124,8 @@
             android:layout_width="0dp"
             android:layout_height="50dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@id/invoice_line_uom_layout"
-            app:layout_constraintTop_toBottomOf="@id/invoice_line_price_layout">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/invoice_line_uom_layout">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/invoice_line_details"

@@ -20,9 +20,9 @@ Plutus Finance
 Created by Catalin on 1/24/2021
  **/
 class TransactionAdapter(
-    private val swipeListener: TransactionSwipeListener,
-    private val listener: TransactionClickListener,
-    private val context: Context
+        private val swipeListener: TransactionSwipeListener,
+        private val listener: TransactionClickListener,
+        private val context: Context
 ) : PagingDataAdapter<Transaction, TransactionAdapter.TransactionViewHolder>(COMPARATOR) {
 
     companion object {
@@ -38,14 +38,14 @@ class TransactionAdapter(
     }
 
     inner class TransactionViewHolder(
-        private val binding: TransactionViewBinding
+            private val binding: TransactionViewBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun render(transaction: Transaction?, viewType: Int) {
             transaction?.let {
                 binding.transactionCard.setOnClickListener { listener.onClick(transaction) }
                 setupLayout(viewType, context, binding.transactionCard)
-                binding.transactionNameTv.text = transaction.document
+                binding.transactionNameTv.text = transaction.details
                 binding.transactionDateTv.text = transaction.date
                 binding.transactionValueTv.text = transaction.value.formatInLocalCurrency()
                 val color = when (transaction.type) {
@@ -76,9 +76,9 @@ class TransactionAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransactionViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding: TransactionViewBinding = DataBindingUtil.inflate(
-            inflater,
-            R.layout.transaction_view,
-            parent, false
+                inflater,
+                R.layout.transaction_view,
+                parent, false
         )
         return TransactionViewHolder(binding)
     }
@@ -88,10 +88,14 @@ class TransactionAdapter(
     }
 
     override fun getItemViewType(position: Int): Int {
-        return when (position) {
-            0 -> AdapterExtensions.ITEM_TOP
-            itemCount - 1 -> AdapterExtensions.ITEM_BOTTOM
-            else -> AdapterExtensions.ITEM_MIDDLE
+        return if (position == 0 && itemCount == 1) {
+            AdapterExtensions.ITEM_SINGLE
+        } else if (position == 0) {
+            AdapterExtensions.ITEM_TOP
+        } else if (position == itemCount - 1) {
+            AdapterExtensions.ITEM_BOTTOM
+        } else {
+            AdapterExtensions.ITEM_MIDDLE
         }
     }
 }

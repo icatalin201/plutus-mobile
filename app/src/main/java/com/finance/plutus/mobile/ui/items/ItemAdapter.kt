@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.finance.plutus.mobile.R
 import com.finance.plutus.mobile.data.model.Item
 import com.finance.plutus.mobile.databinding.ItemViewBinding
+import com.finance.plutus.mobile.ext.AdapterExtensions
 import com.finance.plutus.mobile.ext.AdapterExtensions.ITEM_BOTTOM
 import com.finance.plutus.mobile.ext.AdapterExtensions.ITEM_MIDDLE
 import com.finance.plutus.mobile.ext.AdapterExtensions.ITEM_TOP
@@ -73,10 +74,14 @@ class ItemAdapter(
     }
 
     override fun getItemViewType(position: Int): Int {
-        return when (position) {
-            0 -> ITEM_TOP
-            itemCount - 1 -> ITEM_BOTTOM
-            else -> ITEM_MIDDLE
+        return if (position == 0 && itemCount == 1) {
+            AdapterExtensions.ITEM_SINGLE
+        } else if (position == 0) {
+            AdapterExtensions.ITEM_TOP
+        } else if (position == itemCount - 1) {
+            AdapterExtensions.ITEM_BOTTOM
+        } else {
+            AdapterExtensions.ITEM_MIDDLE
         }
     }
 

@@ -9,13 +9,15 @@ import com.finance.plutus.mobile.data.model.TransactionMonth
 import com.finance.plutus.mobile.data.repository.TransactionRepository
 import com.finance.plutus.mobile.ui.BaseViewModel
 import java.time.LocalDate
+import java.time.format.TextStyle
+import java.util.*
 
 /**
 Plutus Finance
 Created by Catalin on 1/24/2021
  **/
 class TransactionsViewModel(
-    private val transactionRepository: TransactionRepository
+        private val transactionRepository: TransactionRepository
 ) : BaseViewModel() {
 
     private val _transactions = MutableLiveData<PagingData<Transaction>>()
@@ -34,28 +36,28 @@ class TransactionsViewModel(
             val filter = TransactionFilter()
             filter.startDate = it.date.withDayOfMonth(1)
             filter.endDate =
-                it.date.withDayOfMonth(it.date.lengthOfMonth())
+                    it.date.withDayOfMonth(it.date.lengthOfMonth())
             val disposable = transactionRepository.findAllFiltered(filter)
-                .subscribe(
-                    { transactions -> _transactions.value = transactions },
-                    { error -> error.printStackTrace() }
-                )
+                    .subscribe(
+                            { transactions -> _transactions.value = transactions },
+                            { error -> error.printStackTrace() }
+                    )
             compositeDisposable.add(disposable)
         }
     }
 
     fun collect(transaction: Transaction) {
         compositeDisposable.add(
-            transactionRepository.collect(listOf(transaction.id))
-                .onErrorComplete()
-                .subscribe { fetchTransactions() }
+                transactionRepository.collect(listOf(transaction.id))
+                        .onErrorComplete()
+                        .subscribe { fetchTransactions() }
         )
     }
 
     fun delete(transaction: Transaction) {
         val disposable = transactionRepository.delete(transaction.id)
-            .onErrorComplete()
-            .subscribe { fetchTransactions() }
+                .onErrorComplete()
+                .subscribe { fetchTransactions() }
         compositeDisposable.add(disposable)
     }
 
@@ -65,7 +67,9 @@ class TransactionsViewModel(
         var startingDate = LocalDate.now()
         while (startingDate.isAfter(endingDate)) {
             val year = startingDate.year
-            val title = startingDate.month.name
+            val title = startingDate.month
+                    .getDisplayName(TextStyle.FULL, Locale("ro"))
+                    .capitalize(Locale.getDefault())
             months.add(TransactionMonth("$title $year", startingDate, false))
             startingDate = startingDate.minusMonths(1L)
         }

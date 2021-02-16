@@ -25,13 +25,13 @@ class DashboardFragment : Fragment() {
     private val adapter = DashboardAdapter()
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View {
         binding = DataBindingUtil.inflate(
-            inflater,
-            R.layout.fragment_dashboard, container, false
+                inflater,
+                R.layout.fragment_dashboard, container, false
         )
         setHasOptionsMenu(true)
         viewModel.serial.observe(viewLifecycleOwner) { serial ->
@@ -41,7 +41,7 @@ class DashboardFragment : Fragment() {
             showRates(rates)
         }
         binding.dashboardStatRecycler.layoutManager =
-            GridLayoutManager(requireContext(), 2)
+                GridLayoutManager(requireContext(), 2)
         binding.dashboardStatRecycler.adapter = adapter
         viewModel.stats.observe(viewLifecycleOwner) { stats ->
             adapter.submit(stats)
@@ -60,7 +60,7 @@ class DashboardFragment : Fragment() {
             viewModel.downloadInvoicesArchive(requireContext())
         } else if (item.itemId == R.id.download_transactions) {
             val years = arrayOf("2019", "2020", "2021")
-            showListDialog(requireContext(), years) { position ->
+            showListDialog(requireContext(), R.string.download_transactions, years) { position ->
                 val year = years[position]
                 viewModel.downloadTransactionsReport(requireContext(), year)
             }
