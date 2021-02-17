@@ -7,6 +7,10 @@
     <data>
 
         <variable
+            name="line"
+            type="com.finance.plutus.mobile.data.network.payload.InvoiceLineUpdateRequest" />
+
+        <variable
             name="request"
             type="com.finance.plutus.mobile.data.network.payload.InvoiceUpdateRequest" />
     </data>
@@ -127,21 +131,80 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/invoice_add_line_btn"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/invoice_line_item_layout"
+                    style="@style/TextInputLayoutStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/margin_32"
-                    android:drawableEnd="@drawable/ic_baseline_add_24"
-                    android:text="@string/invoice_lines_title"
-                    android:textAlignment="textStart" />
+                    android:layout_marginTop="@dimen/margin_32">
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/invoice_lines_recycler"
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/invoice_line_item"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="@string/prompt_item"
+                        android:editable="false"
+                        android:hint="@string/prompt_item"
+                        android:imeOptions="actionDone" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/invoice_line_quantity_layout"
+                    style="@style/TextInputLayoutStyle"
                     android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    tools:listitem="@layout/editable_invoice_line_view" />
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_32">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/invoice_line_quantity"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="@string/prompt_quantity"
+                        android:hint="@string/prompt_quantity"
+                        android:imeOptions="actionDone"
+                        android:inputType="number"
+                        android:text="@={`` + line.quantity}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/invoice_line_price_layout"
+                    style="@style/TextInputLayoutStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_32">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/invoice_line_price"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="@string/prompt_price"
+                        android:hint="@string/prompt_price"
+                        android:imeOptions="actionDone"
+                        android:inputType="number"
+                        android:text="@={`` + line.unitPrice}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/invoice_line_details_layout"
+                    style="@style/TextInputLayoutStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/margin_32">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/invoice_line_details"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autofillHints="@string/prompt_details"
+                        android:hint="@string/prompt_details"
+                        android:imeOptions="actionDone"
+                        android:inputType="text"
+                        android:text="@={line.details}" />
+
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/invoice_save_btn"

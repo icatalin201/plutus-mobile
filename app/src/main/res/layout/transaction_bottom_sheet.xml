@@ -24,21 +24,22 @@
             android:textSize="@dimen/text_size_18"
             android:textStyle="bold"
             app:layout_constraintEnd_toStartOf="@id/transaction_partner_tv"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/transaction_partner_tv"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="@{transaction.partner.name}"
             android:textAlignment="textEnd"
             android:textColor="@color/colorPrimaryText"
             android:textSize="@dimen/text_size_16"
-            app:layout_constraintBottom_toBottomOf="@id/transaction_name_tv"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@id/transaction_name_tv"
-            app:layout_constraintTop_toTopOf="@id/transaction_name_tv" />
+            app:layout_constraintTop_toTopOf="parent" />
 
 
         <androidx.appcompat.widget.AppCompatTextView

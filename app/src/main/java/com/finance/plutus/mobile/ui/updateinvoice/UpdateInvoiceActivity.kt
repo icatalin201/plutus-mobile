@@ -119,32 +119,18 @@ class UpdateInvoiceActivity : AppCompatActivity() {
         itemsNames.addAll(items.stream()
             .map { item -> item.name }
             .collect(Collectors.toList()))
-        val invoiceLineAdapter =
-            EditableInvoiceLineAdapter(object : EditableInvoiceLineListener {
-                override fun onInvoiceItemClick(
-                    invoiceLine: InvoiceLineUpdateRequest,
-                    callback: (Item) -> Unit
-                ) {
-                    showListDialog(
-                        this@UpdateInvoiceActivity,
-                        itemsNames.toTypedArray()
-                    ) { position ->
-                        val item = items[position]
-                        invoiceLine.itemId = item.id
-                        callback(item)
-                    }
-                }
-            })
-        binding.invoiceLinesRecycler.layoutManager =
-            LinearLayoutManager(this)
-        binding.invoiceLinesRecycler.addItemDecoration(
-            DividerItemDecoration(
-                this,
-                DividerItemDecoration.VERTICAL
-            )
-        )
-        binding.invoiceLinesRecycler.adapter = invoiceLineAdapter
-        invoiceLineAdapter.submit(viewModel.updateRequest.lines)
+        val line = viewModel.updateRequest.lines[0]
+        binding.line = line
+        binding.invoiceLineItem.setOnClickListener {
+            showListDialog(
+                    this@UpdateInvoiceActivity,
+                    itemsNames.toTypedArray()
+            ) { position ->
+                val item = items[position]
+                viewModel.updateRequest.lines[0].itemId = item.id
+                binding.invoiceLineItem.setText(item.name)
+            }
+        }
     }
 
     private fun handleResult(result: Result) {

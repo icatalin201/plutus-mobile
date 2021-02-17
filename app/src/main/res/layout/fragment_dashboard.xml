@@ -9,30 +9,26 @@
         <include
             android:id="@+id/dashboard_serial_element"
             layout="@layout/serial_card_view"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_8"
-            app:layout_constraintEnd_toStartOf="@id/dashboard_currency_element"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
+            android:layout_margin="@dimen/margin_16"
             app:layout_constraintTop_toTopOf="parent" />
 
         <include
             android:id="@+id/dashboard_currency_element"
             layout="@layout/currency_card_view"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_8"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@id/dashboard_serial_element"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_margin="@dimen/margin_16"
+            app:layout_constraintTop_toBottomOf="@id/dashboard_serial_element" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/dashboard_stat_recycler"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginStart="@dimen/margin_8"
             android:layout_marginTop="@dimen/margin_8"
+            android:layout_marginEnd="@dimen/margin_8"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/dashboard_currency_element" />
 
