@@ -4,11 +4,8 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.finance.plutus.mobile.R
 import com.finance.plutus.mobile.data.model.*
-import com.finance.plutus.mobile.data.network.payload.InvoiceLineUpdateRequest
 import com.finance.plutus.mobile.databinding.ActivityUpdateInvoiceBinding
 import com.finance.plutus.mobile.ext.showDateDialog
 import com.finance.plutus.mobile.ext.showListDialog
@@ -28,8 +25,8 @@ class UpdateInvoiceActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(
-            this,
-            R.layout.activity_update_invoice
+                this,
+                R.layout.activity_update_invoice
         )
         setSupportActionBar(binding.invoiceToolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
@@ -52,7 +49,7 @@ class UpdateInvoiceActivity : AppCompatActivity() {
         }
         binding.invoiceDueDate.setOnClickListener {
             showDateDialog(
-                this, viewModel.updateRequest.dueDate ?: LocalDate.now().toString()
+                    this, viewModel.updateRequest.dueDate ?: LocalDate.now().toString()
             ) {
                 viewModel.updateRequest.dueDate = it
             }
@@ -93,15 +90,19 @@ class UpdateInvoiceActivity : AppCompatActivity() {
             binding.invoicePartner.error = getString(R.string.invalid_field)
             return false
         }
+        if (binding.invoiceLineItem.text.toString().isBlank()) {
+            binding.invoiceLineItem.error = getString(R.string.invalid_field)
+            return false
+        }
         return true
     }
 
     private fun setPartners(partners: List<Partner>) {
         val partnersNames = mutableListOf<String>()
         partnersNames.addAll(partners.stream()
-            .filter { partner -> partner.type == PartnerType.CLIENT }
-            .map { partner -> partner.name }
-            .collect(Collectors.toList()))
+                .filter { partner -> partner.type == PartnerType.CLIENT }
+                .map { partner -> partner.name }
+                .collect(Collectors.toList()))
         viewModel.invoice?.let {
             binding.invoicePartner.setText(it.partner.name)
         }
@@ -117,10 +118,12 @@ class UpdateInvoiceActivity : AppCompatActivity() {
     private fun setItems(items: List<Item>) {
         val itemsNames = mutableListOf<String>()
         itemsNames.addAll(items.stream()
-            .map { item -> item.name }
-            .collect(Collectors.toList()))
+                .map { item -> item.name }
+                .collect(Collectors.toList()))
         val line = viewModel.updateRequest.lines[0]
         binding.line = line
+        val initialItem = items.findLast { item -> item.id == line.itemId }
+        binding.invoiceLineItem.setText(initialItem?.name)
         binding.invoiceLineItem.setOnClickListener {
             showListDialog(
                     this@UpdateInvoiceActivity,

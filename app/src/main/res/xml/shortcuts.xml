@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/splash_background"
+        android:shortcutId="create_invoice"
+        android:shortcutLongLabel="@string/create_invoice_title"
+        android:shortcutShortLabel="@string/create_invoice_title">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.finance.plutus.mobile.ui.updateinvoice.UpdateInvoiceActivity"
+            android:targetPackage="com.finance.plutus.mobile" />
+    </shortcut>
+    <shortcut
+        android:enabled="true"
+        android:icon="@drawable/splash_background"
+        android:shortcutId="create_transaction"
+        android:shortcutLongLabel="@string/create_transaction_title"
+        android:shortcutShortLabel="@string/create_transaction_title">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetClass="com.finance.plutus.mobile.ui.updatetransaction.UpdateTransactionActivity"
+            android:targetPackage="com.finance.plutus.mobile" />
+    </shortcut>
+</shortcuts>
