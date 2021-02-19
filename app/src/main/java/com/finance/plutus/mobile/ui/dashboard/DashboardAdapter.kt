@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.finance.plutus.mobile.R
-import com.finance.plutus.mobile.data.model.DashboardStat
+import com.finance.plutus.mobile.data.model.TransactionStat
 import com.finance.plutus.mobile.databinding.StatViewBinding
 import com.finance.plutus.mobile.ext.formatInLocalCurrency
 
@@ -15,20 +15,20 @@ import com.finance.plutus.mobile.ext.formatInLocalCurrency
  **/
 class DashboardAdapter : RecyclerView.Adapter<DashboardAdapter.DashboardViewHolder>() {
 
-    private val stats = mutableListOf<DashboardStat>()
+    private val stats = mutableListOf<TransactionStat>()
 
     inner class DashboardViewHolder(
         private val binding: StatViewBinding
     ) : RecyclerView.ViewHolder(binding.root) {
 
-        fun render(stat: DashboardStat) {
+        fun render(stat: TransactionStat) {
             binding.statName.text = stat.name
             binding.statValue.text = stat.value.formatInLocalCurrency()
         }
 
     }
 
-    fun submit(stats: List<DashboardStat>) {
+    fun submit(stats: List<TransactionStat>) {
         this.stats.clear()
         this.stats.addAll(stats)
         notifyDataSetChanged()

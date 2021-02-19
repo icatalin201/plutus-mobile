@@ -27,62 +27,56 @@ Plutus Finance
 Created by Catalin on 1/23/2021
  **/
 class TransactionApiRepository(
-    private val plutusService: PlutusService
+        private val plutusService: PlutusService
 ) : TransactionRepository {
 
     override fun create(request: TransactionUpdateRequest): Single<EntityCreatedResponse> {
         return plutusService.createTransaction(PlutusRequest(request))
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
     }
 
     override fun update(id: UUID, request: TransactionUpdateRequest): Completable {
         return plutusService.updateTransaction(id, PlutusRequest(request))
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
     }
 
     override fun delete(id: UUID): Completable {
         return plutusService.deleteTransaction(id)
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
     }
 
     override fun collect(ids: List<UUID>): Completable {
         return plutusService.collectTransactions(ids)
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
     }
 
     override fun uploadFile(request: UploadFileRequest): Completable {
         return plutusService.uploadTransactionsFile(PlutusRequest(request))
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
     }
 
     override fun findAllFiltered(filter: TransactionFilter): Flowable<PagingData<Transaction>> {
         return Pager(
-            config = PagingConfig(pageSize = 30),
-            pagingSourceFactory = { TransactionDataSource(plutusService, filter) }
+                config = PagingConfig(pageSize = 30),
+                pagingSourceFactory = { TransactionDataSource(plutusService, filter) }
         ).flowable
     }
 
-    override fun findStats(filter: TransactionFilter): Single<TransactionStat> {
-        return plutusService.findStats(
-            filter.partnerId,
-            filter.type,
-            filter.deductible,
-            filter.startDate,
-            filter.endDate
-        ).map { response -> response.data }
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeOn(Schedulers.io())
+    override fun findStats(): Single<List<TransactionStat>> {
+        return plutusService.findStats().map { response -> response.data }
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
     }
 
     override fun downloadDocument(year: String): Single<InputStream> {
         return plutusService.downloadTransactionsReport(year)
-            .map { response ->
-                response.byteStream()
-            }
+                .map { response ->
+                    response.byteStream()
+                }
     }
 }

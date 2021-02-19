@@ -46,7 +46,6 @@ class DashboardFragment : Fragment() {
         viewModel.stats.observe(viewLifecycleOwner) { stats ->
             adapter.submit(stats)
         }
-        viewModel.getStats()
         return binding.root
     }
 

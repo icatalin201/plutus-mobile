@@ -34,8 +34,8 @@ interface PlutusService {
     @PUT("partners/{id}")
     @Headers("Content-Type: application/vnd.plutus.finance+json")
     fun updatePartner(
-        @Path("id") id: UUID,
-        @Body request: PlutusRequest<PartnerUpdateRequest>
+            @Path("id") id: UUID,
+            @Body request: PlutusRequest<PartnerUpdateRequest>
     ): Completable
 
     @DELETE("partners/{id}")
@@ -49,8 +49,8 @@ interface PlutusService {
     @GET("partners")
     @Headers("Content-Type: application/vnd.plutus.finance+json")
     fun findAllPartners(
-        @Query("page") page: Int,
-        @Query("size") size: Int
+            @Query("page") page: Int,
+            @Query("size") size: Int
     ): Single<PlutusResponse<List<Partner>>>
 
     @POST("items")
@@ -60,8 +60,8 @@ interface PlutusService {
     @PUT("items/{id}")
     @Headers("Content-Type: application/vnd.plutus.finance+json")
     fun updateItem(
-        @Path("id") id: UUID,
-        @Body request: PlutusRequest<ItemUpdateRequest>
+            @Path("id") id: UUID,
+            @Body request: PlutusRequest<ItemUpdateRequest>
     ): Completable
 
     @DELETE("items/{id}")
@@ -75,15 +75,15 @@ interface PlutusService {
     @GET("items")
     @Headers("Content-Type: application/vnd.plutus.finance+json")
     fun findAllItems(
-        @Query("page") page: Int,
-        @Query("size") size: Int
+            @Query("page") page: Int,
+            @Query("size") size: Int
     ): Single<PlutusResponse<List<Item>>>
 
     @PUT("serials/{id}")
     @Headers("Content-Type: application/vnd.plutus.finance+json")
     fun updateSerial(
-        @Path("id") id: UUID,
-        @Body request: PlutusRequest<SerialUpdateRequest>
+            @Path("id") id: UUID,
+            @Body request: PlutusRequest<SerialUpdateRequest>
     ): Completable
 
     @GET("serials/{id}")
@@ -97,8 +97,8 @@ interface PlutusService {
     @PUT("invoices/{id}")
     @Headers("Content-Type: application/vnd.plutus.finance+json")
     fun updateInvoice(
-        @Path("id") id: UUID,
-        @Body request: PlutusRequest<InvoiceUpdateRequest>
+            @Path("id") id: UUID,
+            @Body request: PlutusRequest<InvoiceUpdateRequest>
     ): Completable
 
     @DELETE("invoices/{id}")
@@ -112,8 +112,8 @@ interface PlutusService {
     @GET("invoices")
     @Headers("Content-Type: application/vnd.plutus.finance+json")
     fun findAllInvoices(
-        @Query("page") page: Int,
-        @Query("size") size: Int
+            @Query("page") page: Int,
+            @Query("size") size: Int
     ): Single<PlutusResponse<List<Invoice>>>
 
     @POST("invoices/cashing")
@@ -131,8 +131,8 @@ interface PlutusService {
     @PUT("transactions/{id}")
     @Headers("Content-Type: application/vnd.plutus.finance+json")
     fun updateTransaction(
-        @Path("id") id: UUID,
-        @Body request: PlutusRequest<TransactionUpdateRequest>
+            @Path("id") id: UUID,
+            @Body request: PlutusRequest<TransactionUpdateRequest>
     ): Completable
 
     @DELETE("transactions/{id}")
@@ -142,24 +142,18 @@ interface PlutusService {
     @GET("transactions")
     @Headers("Content-Type: application/vnd.plutus.finance+json")
     fun findAllTransactions(
-        @Query("page") page: Int,
-        @Query("size") size: Int,
-        @Query("partnerId") partnerId: UUID?,
-        @Query("type") type: TransactionType?,
-        @Query("deductible") deductible: Boolean?,
-        @Query("startDate") startDate: LocalDate?,
-        @Query("endDate") endDate: LocalDate?
+            @Query("page") page: Int,
+            @Query("size") size: Int,
+            @Query("partnerId") partnerId: UUID?,
+            @Query("type") type: TransactionType?,
+            @Query("deductible") deductible: Boolean?,
+            @Query("startDate") startDate: LocalDate?,
+            @Query("endDate") endDate: LocalDate?
     ): Single<PlutusResponse<List<Transaction>>>
 
     @GET("transactions/stats")
     @Headers("Content-Type: application/vnd.plutus.finance+json")
-    fun findStats(
-        @Query("partnerId") partnerId: UUID?,
-        @Query("type") type: TransactionType?,
-        @Query("deductible") deductible: Boolean?,
-        @Query("startDate") startDate: LocalDate?,
-        @Query("endDate") endDate: LocalDate?
-    ): Single<PlutusResponse<TransactionStat>>
+    fun findStats(): Single<PlutusResponse<List<TransactionStat>>>
 
     @POST("transactions/cashing")
     @Headers("Content-Type: application/vnd.plutus.finance+json")
