@@ -12,14 +12,11 @@ Plutus Finance
 Created by Catalin on 1/23/2021
  **/
 class CountryApiRepository(
-    private val plutusService: PlutusService
+        private val plutusService: PlutusService
 ) : CountryRepository {
     override fun findAll(): Single<List<Country>> {
         return plutusService.findAllCountries()
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeOn(Schedulers.io())
-            .map { response ->
-                response.data
-            }
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
     }
 }

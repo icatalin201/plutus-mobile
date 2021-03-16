@@ -9,7 +9,6 @@ import com.finance.plutus.mobile.data.model.TransactionFilter
 import com.finance.plutus.mobile.data.model.TransactionStat
 import com.finance.plutus.mobile.data.network.PlutusService
 import com.finance.plutus.mobile.data.network.payload.EntityCreatedResponse
-import com.finance.plutus.mobile.data.network.payload.PlutusRequest
 import com.finance.plutus.mobile.data.network.payload.TransactionUpdateRequest
 import com.finance.plutus.mobile.data.network.payload.UploadFileRequest
 import com.finance.plutus.mobile.data.repository.TransactionRepository
@@ -31,13 +30,13 @@ class TransactionApiRepository(
 ) : TransactionRepository {
 
     override fun create(request: TransactionUpdateRequest): Single<EntityCreatedResponse> {
-        return plutusService.createTransaction(PlutusRequest(request))
+        return plutusService.createTransaction(request)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
     }
 
     override fun update(id: UUID, request: TransactionUpdateRequest): Completable {
-        return plutusService.updateTransaction(id, PlutusRequest(request))
+        return plutusService.updateTransaction(id, request)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
     }
@@ -55,7 +54,7 @@ class TransactionApiRepository(
     }
 
     override fun uploadFile(request: UploadFileRequest): Completable {
-        return plutusService.uploadTransactionsFile(PlutusRequest(request))
+        return plutusService.uploadTransactionsFile(request)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
     }
@@ -68,7 +67,7 @@ class TransactionApiRepository(
     }
 
     override fun findStats(): Single<List<TransactionStat>> {
-        return plutusService.findStats().map { response -> response.data }
+        return plutusService.findStats()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
     }

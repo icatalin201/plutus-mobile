@@ -15,29 +15,29 @@ Plutus Finance
 Created by Catalin on 1/24/2021
  **/
 class TransactionDataSource(
-    private val plutusService: PlutusService,
-    private val filter: TransactionFilter
+        private val plutusService: PlutusService,
+        private val filter: TransactionFilter
 ) : RxPagingSource<Int, Transaction>() {
 
     override fun loadSingle(params: LoadParams<Int>): Single<LoadResult<Int, Transaction>> {
         val page = params.key ?: STARTING_PAGE
         val size = PAGE_SIZE
         return plutusService.findAllTransactions(
-            page,
-            size,
-            filter.partnerId,
-            filter.type,
-            filter.deductible,
-            filter.startDate,
-            filter.endDate
+                page,
+                size,
+                filter.partnerId,
+                filter.type,
+                filter.deductible,
+                filter.startDate,
+                filter.endDate
         ).observeOn(AndroidSchedulers.mainThread())
-            .subscribeOn(Schedulers.io())
-            .map { response ->
-                LoadResult.Page(
-                    data = response.data,
-                    prevKey = if (page == STARTING_PAGE) null else page - 1,
-                    nextKey = if (response.data.isEmpty()) null else page + 1
-                )
-            }
+                .subscribeOn(Schedulers.io())
+                .map { response ->
+                    LoadResult.Page(
+                            data = response,
+                            prevKey = if (page == STARTING_PAGE) null else page - 1,
+                            nextKey = if (response.isEmpty()) null else page + 1
+                    )
+                }
     }
 }

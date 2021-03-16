@@ -12,15 +12,12 @@ Plutus Finance
 Created by Catalin on 1/25/2021
  **/
 class CurrencyRateApiRepository(
-    private val plutusService: PlutusService
+        private val plutusService: PlutusService
 ) : CurrencyRateRepository {
 
     override fun fetchTodayRates(): Flowable<List<CurrencyRate>> {
         return plutusService.fetchTodayRates()
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeOn(Schedulers.io())
-            .map { response ->
-                response.data
-            }.toFlowable()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io()).toFlowable()
     }
 }

@@ -5,11 +5,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.finance.plutus.mobile.R
-import com.finance.plutus.mobile.data.model.Currency
-import com.finance.plutus.mobile.data.model.Result
-import com.finance.plutus.mobile.data.model.Transaction
-import com.finance.plutus.mobile.data.model.TransactionMethod
-import com.finance.plutus.mobile.data.model.TransactionType
+import com.finance.plutus.mobile.data.model.*
 import com.finance.plutus.mobile.databinding.ActivityUpdateTransactionBinding
 import com.finance.plutus.mobile.ext.showDateDialog
 import com.finance.plutus.mobile.ext.showListDialog

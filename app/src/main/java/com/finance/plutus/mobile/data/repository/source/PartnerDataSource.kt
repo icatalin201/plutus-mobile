@@ -14,7 +14,7 @@ Plutus Finance
 Created by Catalin on 1/24/2021
  **/
 class PartnerDataSource(
-    private val plutusService: PlutusService
+        private val plutusService: PlutusService
 ) : RxPagingSource<Int, Partner>() {
 
 
@@ -22,16 +22,16 @@ class PartnerDataSource(
         val page = params.key ?: STARTING_PAGE
         val size = PAGE_SIZE
         return plutusService.findAllPartners(
-            page,
-            size
+                page,
+                size
         ).observeOn(AndroidSchedulers.mainThread())
-            .subscribeOn(Schedulers.io())
-            .map { response ->
-                LoadResult.Page(
-                    data = response.data,
-                    prevKey = if (page == STARTING_PAGE) null else page - 1,
-                    nextKey = if (response.data.isEmpty()) null else page + 1
-                )
-            }
+                .subscribeOn(Schedulers.io())
+                .map { response ->
+                    LoadResult.Page(
+                            data = response,
+                            prevKey = if (page == STARTING_PAGE) null else page - 1,
+                            nextKey = if (response.isEmpty()) null else page + 1
+                    )
+                }
     }
 }

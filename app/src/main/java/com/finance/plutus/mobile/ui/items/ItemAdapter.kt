@@ -11,9 +11,6 @@ import com.finance.plutus.mobile.R
 import com.finance.plutus.mobile.data.model.Item
 import com.finance.plutus.mobile.databinding.ItemViewBinding
 import com.finance.plutus.mobile.ext.AdapterExtensions
-import com.finance.plutus.mobile.ext.AdapterExtensions.ITEM_BOTTOM
-import com.finance.plutus.mobile.ext.AdapterExtensions.ITEM_MIDDLE
-import com.finance.plutus.mobile.ext.AdapterExtensions.ITEM_TOP
 import com.finance.plutus.mobile.ext.AdapterExtensions.setupLayout
 
 /**

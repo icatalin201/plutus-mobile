@@ -12,14 +12,11 @@ import io.reactivex.schedulers.Schedulers
  * Created by Catalin on 1/23/2021
  */
 class UserApiRepository(
-    private val plutusService: PlutusService
+        private val plutusService: PlutusService
 ) : UserRepository {
     override fun getBusiness(): Single<Business> {
         return plutusService.getBusiness()
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeOn(Schedulers.io())
-            .map { response ->
-                response.data
-            }
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
     }
 }

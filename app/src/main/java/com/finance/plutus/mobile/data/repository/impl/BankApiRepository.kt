@@ -12,15 +12,12 @@ Plutus Finance
 Created by Catalin on 1/23/2021
  **/
 class BankApiRepository(
-    private val plutusService: PlutusService
+        private val plutusService: PlutusService
 ) : BankRepository {
 
     override fun findAll(): Single<List<Bank>> {
         return plutusService.findAllBanks()
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeOn(Schedulers.io())
-            .map { response ->
-                response.data
-            }
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
     }
 }

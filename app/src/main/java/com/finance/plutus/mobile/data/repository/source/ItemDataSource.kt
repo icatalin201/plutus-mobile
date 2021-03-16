@@ -14,23 +14,23 @@ Plutus Finance
 Created by Catalin on 1/24/2021
  **/
 class ItemDataSource(
-    private val plutusService: PlutusService
+        private val plutusService: PlutusService
 ) : RxPagingSource<Int, Item>() {
 
     override fun loadSingle(params: LoadParams<Int>): Single<LoadResult<Int, Item>> {
         val page = params.key ?: STARTING_PAGE
         val size = PAGE_SIZE
         return plutusService.findAllItems(
-            page,
-            size
+                page,
+                size
         ).observeOn(AndroidSchedulers.mainThread())
-            .subscribeOn(Schedulers.io())
-            .map { response ->
-                LoadResult.Page(
-                    data = response.data,
-                    prevKey = if (page == STARTING_PAGE) null else page - 1,
-                    nextKey = if (response.data.isEmpty()) null else page + 1
-                )
-            }
+                .subscribeOn(Schedulers.io())
+                .map { response ->
+                    LoadResult.Page(
+                            data = response,
+                            prevKey = if (page == STARTING_PAGE) null else page - 1,
+                            nextKey = if (response.isEmpty()) null else page + 1
+                    )
+                }
     }
 }
