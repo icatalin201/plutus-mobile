@@ -54,8 +54,8 @@ class InvoiceUpdateRequest : BaseObservable() {
         invoice?.let {
             date = invoice.date
             dueDate = invoice.dueDate
-            currency = invoice.currency?.currency ?: Currency.USD
-            partnerId = invoice.partner.id
+            currency = invoice.currency?.value ?: Currency.USD
+            partnerId = invoice.customer.id
             lines.clear()
             lines.addAll(
                 invoice.lines

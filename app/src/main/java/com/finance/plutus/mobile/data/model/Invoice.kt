@@ -11,7 +11,7 @@ Created by Catalin on 1/23/2021
 data class Invoice(
     val id: UUID,
     val name: String,
-    val partner: Partner,
+    val customer: Partner,
     val date: String,
     val dueDate: String?,
     val subtotal: Double,
@@ -40,7 +40,7 @@ data class Invoice(
     override fun writeToParcel(parcel: Parcel, flags: Int) {
         parcel.writeString(id.toString())
         parcel.writeString(name)
-        parcel.writeParcelable(partner, flags)
+        parcel.writeParcelable(customer, flags)
         parcel.writeString(date)
         parcel.writeString(dueDate)
         parcel.writeDouble(subtotal)

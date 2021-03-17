@@ -32,7 +32,7 @@
             android:id="@+id/invoice_partner_tv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@{invoice.partner.name}"
+            android:text="@{invoice.customer.name}"
             android:textAlignment="textEnd"
             android:textColor="@color/colorPrimaryText"
             android:textSize="@dimen/text_size_16"

@@ -65,7 +65,7 @@ class UpdateInvoiceActivity : AppCompatActivity() {
     private fun setInvoice(invoice: Invoice?) {
         viewModel.submitInvoice(invoice)
         invoice?.let {
-            val currency = when (invoice.currency?.currency) {
+            val currency = when (invoice.currency?.value) {
                 Currency.EUR -> R.id.invoice_eur
                 Currency.RON -> R.id.invoice_ron
                 else -> R.id.invoice_usd
@@ -104,7 +104,7 @@ class UpdateInvoiceActivity : AppCompatActivity() {
                 .map { partner -> partner.name }
                 .collect(Collectors.toList()))
         viewModel.invoice?.let {
-            binding.invoicePartner.setText(it.partner.name)
+            binding.invoicePartner.setText(it.customer.name)
         }
         binding.invoicePartner.setOnClickListener {
             showListDialog(this, partnersNames.toTypedArray()) { position ->

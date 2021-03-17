@@ -8,7 +8,7 @@ Plutus Finance
 Created by Catalin on 1/23/2021
  **/
 data class InvoiceCurrency(
-    val currency: Currency,
+    val value: Currency,
     val rate: Double,
     val subtotal: Double,
     val total: Double,
@@ -23,7 +23,7 @@ data class InvoiceCurrency(
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(currency.name)
+        parcel.writeString(value.name)
         parcel.writeDouble(rate)
         parcel.writeDouble(subtotal)
         parcel.writeDouble(total)
